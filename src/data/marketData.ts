@@ -1,0 +1,339 @@
+export interface ProductItem {
+  id: string;
+  name: string;
+  amharicName: string;
+  department: 'injera-bakery' | 'spices' | 'butchery' | 'coffee' | 'grains-pantry' | 'cultural';
+  departmentLabel: string;
+  shortDesc: string;
+  fullDesc: string;
+  culinaryUse: string;
+  origin: string;
+  freshStatus: string;
+  image: string;
+  tags: string[];
+  inStock: boolean;
+  bulkAvailable: boolean;
+  unitExample: string;
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  location: string;
+  quote: string;
+  favoriteItem: string;
+}
+
+export interface ScheduleDay {
+  day: string;
+  time: string;
+  title: string;
+  description: string;
+  badge: string;
+}
+
+export const STORE_INFO = {
+  name: 'Yenat Market',
+  amharicName: 'የእናት ገበያ',
+  tagline: "Mother's Market — Authentic Ethiopian Grocery & Heritage Spices",
+  address: '4780 W Tropicana Ave',
+  city: 'Las Vegas',
+  state: 'NV',
+  zip: '89103',
+  fullAddress: '4780 W Tropicana Ave, Las Vegas, NV 89103',
+  phone: '(702) 240-8222',
+  phoneClean: 'tel:7022408222',
+  hours: 'Mon – Sun: 8:30 AM – 9:00 PM',
+  email: 'info@yenatmarketvegas.com',
+  landmarks: 'Minutes west of the Las Vegas Strip, near Tropicana & Decatur',
+  googleMapsUrl: 'https://maps.google.com/?q=4780+W+Tropicana+Ave,+Las+Vegas,+NV+89103',
+};
+
+export const MARKET_ITEMS: ProductItem[] = [
+  {
+    id: 'injera-pure-teff',
+    name: '100% Pure Teff Injera',
+    amharicName: 'የጤፍ እንጀራ',
+    department: 'injera-bakery',
+    departmentLabel: 'Injera & Bakery',
+    shortDesc: 'Naturally fermented with ancient teff flour. Tender, airy, and with authentic sour notes.',
+    fullDesc: 'Our signature 100% gluten-free brown and ivory teff injera is fermented naturally over three days using our proprietary heritage sourdough starter (ersho). Baked fresh twice daily on traditional ceramic mitad griddles.',
+    culinaryUse: 'The edible foundation of every Ethiopian meal. Tear by hand to scoop up spicy wats, tibs, and alicha stews.',
+    origin: 'Hand-baked in Las Vegas with certified Ethiopian highland teff',
+    freshStatus: 'Baked fresh daily at 7:30 AM & 2:00 PM',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?auto=format&fit=crop&w=800&q=80',
+    tags: ['Gluten-Free', 'Fermented', '100% Teff', 'Fresh Daily'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: 'Pack of 5 or 10 fresh rolls',
+  },
+  {
+    id: 'ambasha-bread',
+    name: 'Artisanal Ambasha Bread',
+    amharicName: 'አምባሻ / ድፎ ዳቦ',
+    department: 'injera-bakery',
+    departmentLabel: 'Injera & Bakery',
+    shortDesc: 'Traditional celebratory golden flatbread infused with crushed cardamom and nigella seed.',
+    fullDesc: 'A lightly sweet, fragrant Ethiopian celebratory bread decorated with the traditional radiating wheel spokes. Spiced with warm ground korarima (cardamom) and fenugreek, baked to golden crust perfection.',
+    culinaryUse: 'Perfect with morning Ethiopian spiced black tea (Shai) or spiced coffee (Buna), or enjoyed with honey and mild cheese.',
+    origin: 'Baked in-house fresh every Friday through Sunday',
+    freshStatus: 'Fresh weekend bake batches',
+    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=800&q=80',
+    tags: ['Fresh Baked', 'Cardamom', 'Weekend Specialty'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: 'Whole 12-inch scored round loaf',
+  },
+  {
+    id: 'berbere-spice',
+    name: 'Authentic Stone-Ground Berbere',
+    amharicName: 'የወጣት በርበሬ',
+    department: 'spices',
+    departmentLabel: 'Heritage Spices',
+    shortDesc: 'The crown jewel of Ethiopian cuisine. Sun-dried red chili blend with 14 mountain spices.',
+    fullDesc: 'Crafted from sun-ripened Ethiopian red peppers dried in mountain air and slowly stone-milled with korarima, garlic, ginger, sacred rue (tena adam), besobila, fenugreek, and cloves. Deep crimson with complex layered warmth.',
+    culinaryUse: 'The fundamental seasoning for Doro Wat (chicken stew), Siga Wat (beef stew), and spicy Misir Wat (red lentils).',
+    origin: 'Direct imported from smallholder spice growers in Gondar & Gojjam',
+    freshStatus: 'Fresh vacuum-sealed batches',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80',
+    tags: ['Direct Import', 'Stone Ground', 'Essential Pantry', 'Wholesale Grade'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: 'Available 8 oz, 1 lb, 5 lb & 25 lb commercial sacks',
+  },
+  {
+    id: 'mitmita-spice',
+    name: 'Fiery Mitmita Blend',
+    amharicName: 'ሚጥሚጣ',
+    department: 'spices',
+    departmentLabel: 'Heritage Spices',
+    shortDesc: 'Intense bird’s eye chili blend with sea salt, korarima, and toasted cloves.',
+    fullDesc: 'An electric orange-red powdered spice made from pulverized African bird’s eye chilies (piri piri), cardamom seeds, cloves, and sea salt. Delivers an immediate, clean, aromatic heat that enhances meats and cheeses.',
+    culinaryUse: 'Indispensable dry dip for Kitfo (Ethiopian beef tartare), Dulet, fresh grilled Tibs, or sprinkled over Ayib cheese.',
+    origin: 'Addis Ababa & Southern Rift Valley',
+    freshStatus: 'Aromatically sealed for peak potency',
+    image: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?auto=format&fit=crop&w=800&q=80',
+    tags: ['High Heat', 'Kitfo Pairing', 'Direct Import'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: '6 oz jar & 1 lb chef pack',
+  },
+  {
+    id: 'korarima-cardamom',
+    name: 'Whole Korarima (False Cardamom)',
+    amharicName: 'ኮረሪማ',
+    department: 'spices',
+    departmentLabel: 'Heritage Spices',
+    shortDesc: 'Indigenous Ethiopian black cardamom pods with smoky, resinous herbal complexity.',
+    fullDesc: 'Unlike Indian green cardamom, Korarima is harvested from the shaded forests of Kaffa and Illubabor. We carry whole sun-dried pods as well as freshly toasted black seeds. Smells of pine, smoke, and wild mint.',
+    culinaryUse: 'Cracked directly into Niter Kibbeh (spiced butter), simmered in Clarified Butter, or steeped in festive coffee roasts.',
+    origin: 'Kaffa Biosphere Reserve, Ethiopia',
+    freshStatus: 'Whole pods & seed pods in stock',
+    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?auto=format&fit=crop&w=800&q=80',
+    tags: ['Indigenous', 'Single Origin', 'Forest Harvested'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: 'Whole pods 8 oz / 16 oz',
+  },
+  {
+    id: 'shiro-powder',
+    name: 'Spiced Shiro Milled Flour',
+    amharicName: 'ሽሮ ዱቄት',
+    department: 'spices',
+    departmentLabel: 'Heritage Spices',
+    shortDesc: 'Sun-dried chickpeas seasoned with garlic, ginger, and berbere for velvety stew.',
+    fullDesc: 'Slow-toasted and peeled chickpeas, broad beans, and dried peas ground into silky powder with sweet garlic, ginger, and our gentle spice matrix. Simmers in minutes into the comforting national vegetarian favorite Shiro Tegabino.',
+    culinaryUse: 'Whisk with water, onions, and oil or Niter Kibbeh in a clay pot for rich, bubbly Shiro wat.',
+    origin: 'Highland Ethiopia',
+    freshStatus: 'Freshly milled batch',
+    image: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=800&q=80',
+    tags: ['Vegan Favorite', 'High Protein', 'Fast Prep'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: '1 lb, 2 lb & 10 lb restaurant bags',
+  },
+  {
+    id: 'butchery-kitfo-beef',
+    name: 'Prime Selected Beef for Kitfo',
+    amharicName: 'የክትፎ ስጋ',
+    department: 'butchery',
+    departmentLabel: 'Custom Butchery',
+    shortDesc: 'Ultra-lean, hand-trimmed top round beef cut fresh daily on dedicated chilled blocks.',
+    fullDesc: 'Kitfo demands immaculate freshness and total absence of sinew or gristle. Our in-house butchers select prime grass-fed cuts, hand-trim all fat, and slice or finely grind upon request for authentic raw (tire) or warmed (leb-leb) preparation.',
+    culinaryUse: 'Gently warmed with clarified Niter Kibbeh, Mitmita, and served alongside Gomen and Ayib cottage cheese.',
+    origin: 'Premium regional American cattle, Halal certified processing',
+    freshStatus: 'Cut to order daily from 9:00 AM',
+    image: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?auto=format&fit=crop&w=800&q=80',
+    tags: ['Cut to Order', 'Extra Lean', 'Halal Available', 'Kitfo Quality'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: 'Sold by the pound, custom trimmed',
+  },
+  {
+    id: 'butchery-tibs-beef',
+    name: 'Tender Beef & Lamb for Tibs',
+    amharicName: 'የጥብስ ስጋ',
+    department: 'butchery',
+    departmentLabel: 'Custom Butchery',
+    shortDesc: 'Marbled cubes of beef sirloin, fresh lamb, and bone-in goat cut for high-heat sizzling pans.',
+    fullDesc: 'Evenly cubed prime beef and tender young lamb with just enough marbling to caramelize in a sizzling hot skillet with rosemary, jalapeños, red onions, and spiced butter. We also carry fresh bone-in goat for festive stews.',
+    culinaryUse: 'Ideal for Derek Tibs (crispy dry sauté) or Awaze Tibs (simmered in rich chili sauce).',
+    origin: 'Locally sourced prime cuts, inspected daily',
+    freshStatus: 'Fresh delivery every morning',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80',
+    tags: ['Tibs Cuts', 'Lamb & Goat Available', 'Fresh Daily'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: 'Sold by the pound, cubed to custom sizes',
+  },
+  {
+    id: 'coffee-green-yirgacheffe',
+    name: 'Raw Green Yirgacheffe Beans',
+    amharicName: 'ጥሬ ይርጋጨፌ ቡና',
+    department: 'coffee',
+    departmentLabel: 'Coffee & Ritual',
+    shortDesc: 'Unroasted heirloom Arabica beans from the legendary birthplace of coffee.',
+    fullDesc: 'Grade 1 washed heirloom Arabica beans from the high altitude micro-climate of Yirgacheffe. Renowned worldwide for floral jasmine aromas, bergamot brightness, and honey sweetness. Ready for pan roasting on your stovetop.',
+    culinaryUse: 'Pan-roast in a Biret Mitad until they turn glossy dark chocolate brown for the traditional Ethiopian Buna ceremony.',
+    origin: 'Yirgacheffe Highland Cooperatives, Ethiopia',
+    freshStatus: 'Current harvest green beans',
+    image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80',
+    tags: ['Grade 1', 'Unroasted', 'Heirloom Arabica', 'Highland Origin'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: '2 lb, 5 lb & 50 lb burlap sacks',
+  },
+  {
+    id: 'coffee-ceremony-jebena',
+    name: 'Handcrafted Clay Jebena Pot',
+    amharicName: 'የሸክላ ጀበና',
+    department: 'coffee',
+    departmentLabel: 'Coffee & Ritual',
+    shortDesc: 'Traditional black earthenware kettle with long curved spout for slow brewing.',
+    fullDesc: 'Artisanal black clay boiling vessel sculpted by master potters. Features spherical belly for sediment settling, narrow neck, and natural straw stand (mat). Seasons over time to brew velvety, aromatic coffee.',
+    culinaryUse: 'Boil freshly ground coffee with water; pour from a height into small handleless porcelain cups (Cini).',
+    origin: 'Direct from Ethiopian artisan potters',
+    freshStatus: 'Authentic imported collection',
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80',
+    tags: ['Artisanal Pottery', 'Ceremony Centerpiece', 'Clay Cookware'],
+    inStock: true,
+    bulkAvailable: false,
+    unitExample: 'Complete pot with natural woven straw stand',
+  },
+  {
+    id: 'grains-teff-flour',
+    name: 'Certified Brown & Ivory Teff Flour',
+    amharicName: 'የጤፍ ዱቄት',
+    department: 'grains-pantry',
+    departmentLabel: 'Grains & Pantry',
+    shortDesc: 'Ancient iron-rich super-grain flour ground to extra-fine silky consistency.',
+    fullDesc: 'The smallest grain on earth packs colossal nutrition: rich in iron, prebiotic fiber, calcium, and protein. We stock pure brown teff (earthy and nutty) and ivory white teff (delicate and mild), double-milled for flawless fermentation.',
+    culinaryUse: 'The foundational grain for sourdough injera, wholesome porridge (Muk), or gluten-free baking.',
+    origin: 'Certified purity teff grain fields',
+    freshStatus: 'Cool storage sacks',
+    image: 'https://images.unsplash.com/photo-1505253758473-96b3015f27eb?auto=format&fit=crop&w=800&q=80',
+    tags: ['Gluten-Free', 'Supergrain', 'Restaurant Sacks'],
+    inStock: true,
+    bulkAvailable: true,
+    unitExample: '5 lb, 25 lb & 50 lb commercial bags',
+  },
+  {
+    id: 'cultural-mesob',
+    name: 'Handwoven Straw Mesob Dining Table',
+    amharicName: 'ባህላዊ መሶብ',
+    department: 'cultural',
+    departmentLabel: 'Cultural Goods',
+    shortDesc: 'Vibrantly dyed coiled grass communal dining table with conical cover.',
+    fullDesc: 'The quintessential symbol of Ethiopian communal gathering. Masterfully woven from dried native grasses and dyed with natural plant extracts into striking geometric motifs. Built to hold a full round of injera for shared dining.',
+    culinaryUse: 'Holds the central dining platter for family meals and celebratory holidays; keeps food warm under the cone lid.',
+    origin: 'Crafted by women’s artisanal collectives in Ethiopia',
+    freshStatus: 'Handcrafted authentic stock',
+    image: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80',
+    tags: ['Handcrafted', 'Communal Dining', 'Cultural Keepsake'],
+    inStock: true,
+    bulkAvailable: false,
+    unitExample: 'Small accent, medium family, or large traditional size',
+  },
+];
+
+export const SCHEDULE_DAYS: ScheduleDay[] = [
+  {
+    day: 'Monday – Thursday',
+    time: '7:30 AM & 1:30 PM',
+    title: 'Daily Teff Injera & Fresh Butchery Cuts',
+    description: 'Fresh hot injera comes off the griddles twice daily. Chilled butchery cases restocked with prime lean beef for kitfo and tibs.',
+    badge: 'Daily Core',
+  },
+  {
+    day: 'Friday Morning',
+    time: '8:30 AM',
+    title: 'Weekend Ambasha Bake & Restaurant Wholesale Sacks',
+    description: 'Golden cardamom Ambasha bread arrives warm. Local Ethiopian restaurant chefs arrive for commercial berbere, shiro, and teff pickups.',
+    badge: 'Chef Favorite',
+  },
+  {
+    day: 'Saturday All-Day',
+    time: '8:30 AM – 9:00 PM',
+    title: 'Community Market Day & Fresh Halal Lamb Delivery',
+    description: 'Our most vibrant day. Fresh lamb and goat custom-cut for family feasts. Continuous warm injera replenishment throughout the afternoon.',
+    badge: 'Peak Freshness',
+  },
+  {
+    day: 'Sunday',
+    time: '10:00 AM – 4:00 PM',
+    title: 'Coffee Ceremony Roasting & Cultural Showcase',
+    description: 'Aromas of freshly roasted Yirgacheffe beans and frankincense fill the market. Family grocery shopping and fresh takeout orders.',
+    badge: 'Cultural Highlight',
+  },
+];
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: '1',
+    name: 'Chef Dawit Mengistu',
+    role: 'Executive Chef & Owner',
+    location: 'Las Vegas Strip Area Restaurant',
+    quote: 'We have sourced our wholesale berbere and daily injera from Yenat Market for over four years. Their spice consistency is unmatched in Southern Nevada. The berbere has the true aroma of Gojjam soil.',
+    favoriteItem: 'Stone-Ground Berbere & Commercial Teff',
+  },
+  {
+    id: '2',
+    name: 'Selamawit Tadesse',
+    role: 'Home Cook & Community Organizer',
+    location: 'Summerlin, NV',
+    quote: 'Finding real 100% teff injera that doesn’t crack and holds up to heavy wats used to be impossible in Vegas. Yenat’s injera has the exact fermented tang and velvety eyes my grandmother made.',
+    favoriteItem: '100% Pure Teff Injera',
+  },
+  {
+    id: '3',
+    name: 'Marcus & Almaz Vance',
+    role: 'Local Shoppers',
+    location: 'Spring Valley, NV',
+    quote: 'Their butchers know exactly what you need when you ask for kitfo meat. Trimmed clean, zero sinew, completely fresh. The staff treats you like family the moment you walk through the doors.',
+    favoriteItem: 'Prime Selected Kitfo Beef',
+  },
+];
+
+export const FAQ_LIST = [
+  {
+    question: 'Is your Injera 100% gluten-free and made from pure Teff?',
+    answer: 'Yes! We bake two distinct types: our signature 100% Pure Teff Injera (made exclusively from fermented teff grain without wheat, completely gluten-free) and our traditional mixed teff injera. Both are baked fresh every morning in Las Vegas.',
+  },
+  {
+    question: 'How do restaurant wholesale orders and vendor partnerships work?',
+    answer: 'We supply dozens of Las Vegas restaurants, catering businesses, and food trucks with bulk 25 lb/50 lb sacks of berbere, shiro, teff flour, green coffee beans, and daily crates of fresh injera. We also welcome East African food producers and importers looking for premium retail shelf space. Inquire online or speak directly with our market manager at (702) 240-8222.',
+  },
+  {
+    question: 'Can I get custom cuts of meat for Kitfo, Tibs, and stews on the spot?',
+    answer: 'Absolutely. Our butchery counter prepares custom cuts while you browse. You can request extra-lean beef hand-trimmed and minced for raw or warmed kitfo, cube-cut sirloin for tibs, or bone-in pieces of lamb and goat for hearty family wats.',
+  },
+  {
+    question: 'Do you carry raw green coffee beans and authentic ceremony Jebenas?',
+    answer: 'Yes. We pride ourselves on the full Ethiopian coffee ritual. We stock raw unroasted green beans from Yirgacheffe and Sidama, hand-shaped clay Jebena kettles with stands, porcelain Cini cups, Frankincense (Itan), and traditional roasting pans.',
+  },
+  {
+    question: 'Where are you located in Las Vegas and is there parking?',
+    answer: 'We are conveniently located at 4780 W Tropicana Ave, Las Vegas, NV 89103, right near Decatur Blvd — just an 8-minute drive from the Strip. We have a spacious, free parking lot directly in front of the market.',
+  },
+];

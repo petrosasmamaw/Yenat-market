@@ -1,0 +1,6 @@
+{
+  "name": "Yenat Market - Las Vegas Ethiopian Grocery & Marketplace",
+  "description": "Authentic Ethiopian grocery, fresh daily teff injera, stone-ground spices, butcher-cut halal meats, and wholesale vendor partner in Las Vegas, NV.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
