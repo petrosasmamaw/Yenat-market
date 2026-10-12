@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { SCHEDULE_DAYS, STORE_INFO } from '../data/marketData';
-import { Clock, Calendar, Sparkles, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
+import { SCHEDULE_DAYS, STORE_INFO } from '../data/marketData.js';
+import { Clock, CheckCircle2 } from 'lucide-react';
 
-export const FreshScheduleSection: React.FC = () => {
+export const FreshScheduleSection = () => {
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
   const activeSchedule = SCHEDULE_DAYS[selectedDayIdx];
 
   return (
-    <section id="schedule" className="py-16 md:py-24 bg-white border-b border-stone-200">
+    <section id="schedule" className="border-b border-stone-200 bg-white py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -17,7 +17,7 @@ export const FreshScheduleSection: React.FC = () => {
             <span aria-hidden="true" className="text-stone-300">·</span>
             <span>የእለቱ ፕሮግራም</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 font-display mt-2 [text-wrap:balance]">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-stone-900 [text-wrap:balance] sm:text-3xl md:text-4xl">
             When to Catch Our Warmest Batches in Las Vegas
           </h2>
           <p className="text-stone-600 text-sm sm:text-base mt-2">
@@ -27,10 +27,30 @@ export const FreshScheduleSection: React.FC = () => {
         </div>
 
         {/* Interactive Schedule Selector */}
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          
-          {/* Day Tabs (4 cols) */}
-          <div className="lg:col-span-4 space-y-2">
+        <div className="mt-8 grid grid-cols-1 items-start gap-6 sm:mt-10 lg:grid-cols-12 lg:gap-8">
+          {/* Mobile: horizontal day picker */}
+          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 snap-x snap-mandatory scrollbar-none lg:hidden">
+            {SCHEDULE_DAYS.map((sched, idx) => (
+              <button
+                key={`mobile-${sched.day}`}
+                type="button"
+                onClick={() => setSelectedDayIdx(idx)}
+                className={`min-w-[9.5rem] shrink-0 snap-start rounded-xl border px-3 py-3 text-left transition-all ${
+                  selectedDayIdx === idx
+                    ? 'border-amber-800/40 bg-[#FAF7F2] shadow-xs'
+                    : 'border-stone-200 bg-white text-stone-600'
+                }`}
+              >
+                <div className={`text-xs font-bold font-display ${selectedDayIdx === idx ? 'text-stone-900' : 'text-stone-700'}`}>
+                  {sched.day.split(' ')[0]}
+                </div>
+                <div className="mt-1 text-[10px] text-stone-500">{sched.badge}</div>
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop: vertical day list */}
+          <div className="hidden lg:col-span-4 lg:block lg:space-y-2">
             {SCHEDULE_DAYS.map((sched, idx) => (
               <button
                 key={sched.day}
@@ -61,14 +81,14 @@ export const FreshScheduleSection: React.FC = () => {
           </div>
 
           {/* Active Schedule Showcase Card (8 cols) */}
-          <div className="lg:col-span-8 bg-[#FAF7F2] rounded-2xl border border-stone-200/90 p-6 sm:p-8 space-y-6">
+          <div className="space-y-5 rounded-2xl border border-stone-200/90 bg-[#FAF7F2] p-5 sm:space-y-6 sm:p-8 lg:col-span-8">
             
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-stone-200/80 pb-5">
               <div>
                 <span className="text-xs font-semibold uppercase tracking-wider text-amber-800">
                   {activeSchedule.day} Schedule
                 </span>
-                <h3 className="text-2xl font-bold text-stone-900 font-display mt-1">
+                <h3 className="mt-1 font-display text-xl font-bold text-stone-900 sm:text-2xl">
                   {activeSchedule.title}
                 </h3>
               </div>
@@ -125,9 +145,9 @@ export const FreshScheduleSection: React.FC = () => {
               </div>
               <a
                 href={STORE_INFO.phoneClean}
-                className="font-semibold text-stone-900 hover:text-amber-800 underline underline-offset-4"
+                className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-amber-400 px-4 py-2.5 text-center text-xs font-semibold text-stone-900 active:bg-amber-300 sm:w-auto sm:bg-transparent sm:py-0 sm:font-semibold sm:text-inherit sm:underline sm:underline-offset-4 hover:text-amber-800"
               >
-                Call Front Counter: {STORE_INFO.phone}
+                Call front counter: {STORE_INFO.phone}
               </a>
             </div>
 

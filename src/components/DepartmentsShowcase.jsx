@@ -1,19 +1,12 @@
-import React, { useState, useMemo } from 'react';
-import { MARKET_ITEMS, ProductItem } from '../data/marketData';
+import { useState, useMemo } from 'react';
+import { MARKET_ITEMS } from '../data/marketData.js';
 import { Search, Sparkles, Box, ArrowRight } from 'lucide-react';
 
-interface DepartmentsShowcaseProps {
-  onSelectItem: (item: ProductItem) => void;
-  onOpenVendorModal: () => void;
-}
-
-type DepartmentKey = 'all' | 'injera-bakery' | 'spices' | 'butchery' | 'coffee' | 'grains-pantry' | 'cultural';
-
-export const DepartmentsShowcase: React.FC<DepartmentsShowcaseProps> = ({
+export const DepartmentsShowcase = ({
   onSelectItem,
   onOpenVendorModal,
 }) => {
-  const [activeTab, setActiveTab] = useState<DepartmentKey>('all');
+  const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [freshOnly, setFreshOnly] = useState(false);
   const [bulkOnly, setBulkOnly] = useState(false);
@@ -57,7 +50,7 @@ export const DepartmentsShowcase: React.FC<DepartmentsShowcaseProps> = ({
   }, [activeTab, searchQuery, freshOnly, bulkOnly]);
 
   return (
-    <section id="departments" className="py-16 md:py-24 bg-[#FAF7F2] border-b border-stone-200">
+    <section id="departments" className="border-b border-stone-200 bg-[#FAF7F2] py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -68,7 +61,7 @@ export const DepartmentsShowcase: React.FC<DepartmentsShowcaseProps> = ({
               <span aria-hidden="true" className="text-stone-300">·</span>
               <span>የገበያ እቃዎች</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 font-display mt-2">
+            <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl">
               Explore Our Aisle Specialties
             </h2>
             <p className="text-stone-600 text-sm sm:text-base mt-2">
@@ -77,14 +70,14 @@ export const DepartmentsShowcase: React.FC<DepartmentsShowcaseProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onOpenVendorModal}
-              className="text-xs font-medium text-stone-700 hover:text-stone-900 underline underline-offset-4 decoration-stone-300"
-            >
-              Need bulk restaurant supply? Talk to our team →
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={onOpenVendorModal}
+            className="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-left text-xs font-semibold text-stone-800 shadow-2xs active:bg-stone-50 sm:w-auto sm:border-0 sm:bg-transparent sm:p-0 sm:font-medium sm:text-stone-700 sm:underline sm:underline-offset-4 sm:decoration-stone-300 hover:text-stone-900"
+          >
+            <span className="sm:hidden">Restaurant bulk supply → Talk to our team</span>
+            <span className="hidden sm:inline">Need bulk restaurant supply? Talk to our team →</span>
+          </button>
         </div>
 
         {/* Search & Department Segmented Tabs */}
@@ -94,14 +87,14 @@ export const DepartmentsShowcase: React.FC<DepartmentsShowcaseProps> = ({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
             
             {/* Search Input */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+            <div className="relative flex-1 md:max-w-md">
+              <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-stone-400" />
               <input
-                type="text"
+                type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search berbere, teff, kitfo meat, injera, jebena..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-stone-200 rounded-lg text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-600 shadow-2xs transition-all"
+                placeholder="Search berbere, teff, injera..."
+                className="w-full rounded-xl border border-stone-200 bg-white py-3 pl-10 pr-4 text-base text-stone-900 shadow-2xs placeholder:text-stone-400 transition-all focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-500/20 sm:rounded-lg sm:py-2.5 sm:text-sm"
               />
               {searchQuery && (
                 <button
@@ -114,41 +107,44 @@ export const DepartmentsShowcase: React.FC<DepartmentsShowcaseProps> = ({
             </div>
 
             {/* Quick interactive filter toggles */}
-            <div className="flex items-center gap-2 text-xs">
+            <div className="grid grid-cols-2 gap-2 text-xs sm:flex sm:items-center">
               <button
+                type="button"
                 onClick={() => setFreshOnly(!freshOnly)}
-                className={`px-3 py-2 rounded-lg border font-medium transition-colors flex items-center gap-1.5 ${
+                className={`flex min-h-11 items-center justify-center gap-1.5 rounded-xl border px-2 py-2.5 font-medium transition-colors sm:min-h-0 sm:rounded-lg sm:px-3 sm:py-2 ${
                   freshOnly
-                    ? 'bg-amber-100 border-amber-300 text-amber-950 shadow-2xs'
-                    : 'bg-white border-stone-200 text-stone-600 hover:text-stone-900'
+                    ? 'border-amber-300 bg-amber-100 text-amber-950 shadow-2xs'
+                    : 'border-stone-200 bg-white text-stone-600 hover:text-stone-900'
                 }`}
               >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Fresh Daily Batches</span>
+                <Sparkles className="h-3.5 w-3.5 shrink-0" />
+                <span className="leading-tight">Fresh daily</span>
               </button>
 
               <button
+                type="button"
                 onClick={() => setBulkOnly(!bulkOnly)}
-                className={`px-3 py-2 rounded-lg border font-medium transition-colors flex items-center gap-1.5 ${
+                className={`flex min-h-11 items-center justify-center gap-1.5 rounded-xl border px-2 py-2.5 font-medium transition-colors sm:min-h-0 sm:rounded-lg sm:px-3 sm:py-2 ${
                   bulkOnly
-                    ? 'bg-stone-900 border-stone-900 text-white shadow-2xs'
-                    : 'bg-white border-stone-200 text-stone-600 hover:text-stone-900'
+                    ? 'border-stone-900 bg-stone-900 text-white shadow-2xs'
+                    : 'border-stone-200 bg-white text-stone-600 hover:text-stone-900'
                 }`}
               >
-                <Box className="w-3.5 h-3.5" />
-                <span>Wholesale / Bulk Available</span>
+                <Box className="h-3.5 w-3.5 shrink-0" />
+                <span className="leading-tight">Bulk / wholesale</span>
               </button>
             </div>
 
           </div>
 
           {/* Department Segmented Controls (Buttons with click handlers) */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 border-b border-stone-200 scrollbar-none">
+          <div className="-mx-4 flex max-w-[100vw] gap-2 overflow-x-auto border-b border-stone-200 px-4 pb-2 snap-x snap-mandatory scrollbar-none sm:mx-0 sm:max-w-full sm:gap-1.5 sm:px-0">
             {categories.map((cat) => (
               <button
                 key={cat.key}
-                onClick={() => setActiveTab(cat.key as DepartmentKey)}
-                className={`px-4 py-2 text-xs font-semibold rounded-lg whitespace-nowrap transition-colors ${
+                type="button"
+                onClick={() => setActiveTab(cat.key)}
+                className={`shrink-0 snap-start px-4 py-2.5 text-xs font-semibold rounded-xl whitespace-nowrap transition-colors sm:rounded-lg sm:py-2 ${
                   activeTab === cat.key
                     ? 'bg-stone-900 text-white shadow-xs'
                     : 'bg-transparent text-stone-600 hover:text-stone-900 hover:bg-stone-100'

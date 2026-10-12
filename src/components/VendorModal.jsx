@@ -1,13 +1,8 @@
-import React, { useState } from 'react';
-import { STORE_INFO } from '../data/marketData';
-import { X, CheckCircle, Building2, Phone, Mail, Send } from 'lucide-react';
+import { useState } from 'react';
+import { STORE_INFO } from '../data/marketData.js';
+import { X, CheckCircle, Building2, Send } from 'lucide-react';
 
-interface VendorModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export const VendorModal: React.FC<VendorModalProps> = ({ isOpen, onClose }) => {
+export const VendorModal = ({ isOpen, onClose }) => {
   const [partnerType, setPartnerType] = useState('restaurant');
   const [businessName, setBusinessName] = useState('');
   const [contactName, setContactName] = useState('');
@@ -19,7 +14,7 @@ export const VendorModal: React.FC<VendorModalProps> = ({ isOpen, onClose }) => 
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     // Simulate swift local processing
@@ -40,9 +35,15 @@ export const VendorModal: React.FC<VendorModalProps> = ({ isOpen, onClose }) => 
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-stone-950/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
+      <button
+        type="button"
+        className="absolute inset-0 bg-stone-950/70 backdrop-blur-xs"
+        aria-label="Close modal"
+        onClick={onClose}
+      />
       <div
-        className="relative bg-white rounded-2xl max-w-xl w-full border border-stone-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="relative z-10 flex max-h-[min(92dvh,40rem)] w-full flex-col overflow-hidden rounded-t-2xl border border-stone-200 bg-white shadow-2xl sm:max-h-[90vh] sm:max-w-xl sm:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -65,7 +66,7 @@ export const VendorModal: React.FC<VendorModalProps> = ({ isOpen, onClose }) => 
         </div>
 
         {/* Modal Body */}
-        <div className="p-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           {submitted ? (
             <div className="py-8 text-center space-y-4">
               <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto">
@@ -105,7 +106,7 @@ export const VendorModal: React.FC<VendorModalProps> = ({ isOpen, onClose }) => 
                 <label className="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-1.5">
                   I Am Inquiring About:
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
                   <button
                     type="button"
                     onClick={() => setPartnerType('restaurant')}

@@ -1,38 +1,3 @@
-export interface ProductItem {
-  id: string;
-  name: string;
-  amharicName: string;
-  department: 'injera-bakery' | 'spices' | 'butchery' | 'coffee' | 'grains-pantry' | 'cultural';
-  departmentLabel: string;
-  shortDesc: string;
-  fullDesc: string;
-  culinaryUse: string;
-  origin: string;
-  freshStatus: string;
-  image: string;
-  tags: string[];
-  inStock: boolean;
-  bulkAvailable: boolean;
-  unitExample: string;
-}
-
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  location: string;
-  quote: string;
-  favoriteItem: string;
-}
-
-export interface ScheduleDay {
-  day: string;
-  time: string;
-  title: string;
-  description: string;
-  badge: string;
-}
-
 export const STORE_INFO = {
   name: 'Yenat Market',
   amharicName: 'የእናት ገበያ',
@@ -50,7 +15,7 @@ export const STORE_INFO = {
   googleMapsUrl: 'https://maps.google.com/?q=4780+W+Tropicana+Ave,+Las+Vegas,+NV+89103',
 };
 
-export const MARKET_ITEMS: ProductItem[] = [
+export const MARKET_ITEMS = [
   {
     id: 'injera-pure-teff',
     name: '100% Pure Teff Injera',
@@ -257,7 +222,7 @@ export const MARKET_ITEMS: ProductItem[] = [
   },
 ];
 
-export const SCHEDULE_DAYS: ScheduleDay[] = [
+export const SCHEDULE_DAYS = [
   {
     day: 'Monday – Thursday',
     time: '7:30 AM & 1:30 PM',
@@ -288,7 +253,7 @@ export const SCHEDULE_DAYS: ScheduleDay[] = [
   },
 ];
 
-export const TESTIMONIALS: Testimonial[] = [
+export const TESTIMONIALS = [
   {
     id: '1',
     name: 'Chef Dawit Mengistu',

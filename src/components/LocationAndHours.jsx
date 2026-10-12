@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { STORE_INFO } from '../data/marketData';
+import { useState } from 'react';
+import { STORE_INFO } from '../data/marketData.js';
 import { MapPin, Clock, Phone, Navigation, Copy, Check, Car, ExternalLink } from 'lucide-react';
 
-export const LocationAndHours: React.FC = () => {
+export const LocationAndHours = () => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyAddress = () => {
@@ -12,7 +12,7 @@ export const LocationAndHours: React.FC = () => {
   };
 
   return (
-    <section id="visit" className="py-16 md:py-24 bg-[#FAF7F2] border-b border-stone-200">
+    <section id="visit" className="border-b border-stone-200 bg-[#FAF7F2] py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
@@ -26,7 +26,7 @@ export const LocationAndHours: React.FC = () => {
                 <span aria-hidden="true" className="text-stone-300">·</span>
                 <span>አድራሻና የስራ ሰዓት</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 font-display mt-2">
+              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-stone-900 sm:text-3xl md:text-4xl">
                 Plan Your Visit to Yenat Market
               </h2>
               <p className="text-stone-600 text-sm sm:text-base mt-2">
@@ -141,7 +141,7 @@ export const LocationAndHours: React.FC = () => {
             <div className="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-sm">
               
               {/* Visual simulated street representation */}
-              <div className="relative h-72 bg-stone-100 overflow-hidden">
+              <div className="relative h-52 overflow-hidden bg-stone-100 sm:h-64 md:h-72">
                 <iframe
                   title="Yenat Market Location"
                   src="https://maps.google.com/maps?q=4780+W+Tropicana+Ave,+Las+Vegas,+NV+89103&t=&z=15&ie=UTF8&iwloc=&output=embed"

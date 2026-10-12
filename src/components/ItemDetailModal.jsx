@@ -1,14 +1,7 @@
-import React from 'react';
-import { ProductItem, STORE_INFO } from '../data/marketData';
-import { X, Phone, MapPin, Check, Sparkles, Box } from 'lucide-react';
+import { STORE_INFO } from '../data/marketData.js';
+import { X, Phone, MapPin, Sparkles, Box } from 'lucide-react';
 
-interface ItemDetailModalProps {
-  item: ProductItem | null;
-  onClose: () => void;
-  onOpenVendorModal: () => void;
-}
-
-export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
+export const ItemDetailModal = ({
   item,
   onClose,
   onOpenVendorModal,
@@ -16,9 +9,15 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
   if (!item) return null;
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
+      <button
+        type="button"
+        className="absolute inset-0 bg-stone-950/60 backdrop-blur-xs"
+        aria-label="Close"
+        onClick={onClose}
+      />
       <div
-        className="relative bg-white rounded-2xl max-w-2xl w-full border border-stone-200 shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="relative z-10 flex max-h-[min(94dvh,44rem)] w-full max-w-2xl flex-col overflow-hidden rounded-t-2xl border border-stone-200 bg-white shadow-2xl sm:max-h-[90vh] sm:rounded-2xl"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -51,7 +50,7 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
         </div>
 
         {/* Content Body */}
-        <div className="p-6 space-y-6 max-h-[60vh] overflow-y-auto">
+        <div className="flex-1 space-y-6 overflow-y-auto p-4 sm:p-6">
           
           {/* Origin & Freshness Strip */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-[#FAF7F2] p-4 rounded-xl border border-stone-200/80">
@@ -121,24 +120,26 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-stone-50 border-t border-stone-200 flex flex-wrap items-center justify-between gap-3">
+        <div className="flex flex-col gap-2 border-t border-stone-200 bg-stone-50 p-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <button
+            type="button"
             onClick={onClose}
-            className="px-4 py-2 text-xs font-medium text-stone-700 hover:text-stone-900 rounded-md"
+            className="hidden px-4 py-2 text-xs font-medium text-stone-700 hover:text-stone-900 sm:inline-flex sm:rounded-md"
           >
             Close
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
             {item.bulkAvailable && (
               <button
+                type="button"
                 onClick={() => {
                   onClose();
                   onOpenVendorModal();
                 }}
-                className="px-4 py-2 text-xs font-semibold text-stone-800 bg-white border border-stone-300 hover:bg-stone-50 rounded-md shadow-2xs"
+                className="min-h-11 w-full rounded-xl border border-stone-300 bg-white px-4 py-2.5 text-xs font-semibold text-stone-800 shadow-2xs sm:min-h-0 sm:w-auto sm:rounded-md"
               >
-                Request Wholesale Quote
+                Request wholesale quote
               </button>
             )}
 
@@ -146,9 +147,9 @@ export const ItemDetailModal: React.FC<ItemDetailModalProps> = ({
               href={STORE_INFO.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 text-xs font-semibold text-stone-900 bg-amber-400 hover:bg-amber-300 rounded-md shadow-2xs"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-amber-400 px-4 py-2.5 text-xs font-semibold text-stone-900 shadow-2xs active:bg-amber-300 sm:min-h-0 sm:w-auto sm:rounded-md"
             >
-              Get Directions to Store
+              Get directions
             </a>
           </div>
         </div>

@@ -1,16 +1,14 @@
 import React from 'react';
-import { STORE_INFO } from '../data/marketData';
+import { STORE_INFO } from '../data/marketData.js';
 import { Flame, Sparkles, Coffee, ShieldCheck } from 'lucide-react';
 
-export const CoffeeRitualSection: React.FC = () => {
+export const CoffeeRitualSection = () => {
   return (
-    <section id="coffee-ceremony" className="py-16 md:py-24 bg-[#FAF7F2] border-b border-stone-200">
+    <section id="coffee-ceremony" className="border-b border-stone-200 bg-[#FAF7F2] py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
-          {/* Left Column: Visual Storytelling (5 cols) */}
-          <div className="lg:col-span-5 space-y-4">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+          <div className="order-1 space-y-4 lg:order-1 lg:col-span-5">
             <div className="rounded-2xl overflow-hidden border border-stone-200/90 shadow-md">
               <img
                 src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
@@ -33,7 +31,7 @@ export const CoffeeRitualSection: React.FC = () => {
           </div>
 
           {/* Right Column: Cultural Ceremony Steps (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="order-2 space-y-5 sm:space-y-6 lg:col-span-7">
             
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-amber-800">
@@ -41,7 +39,7 @@ export const CoffeeRitualSection: React.FC = () => {
                 <span aria-hidden="true" className="text-stone-300">·</span>
                 <span>የቡና ቁርስና ስነ-ስርዓት</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 font-display mt-2 [text-wrap:balance]">
+              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-stone-900 [text-wrap:balance] sm:text-3xl md:text-4xl">
                 Buna: Honoring the Birthplace of Coffee
               </h2>
               <p className="text-stone-600 text-sm sm:text-base mt-3 leading-relaxed">

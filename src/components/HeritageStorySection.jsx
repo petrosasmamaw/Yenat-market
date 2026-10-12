@@ -1,9 +1,9 @@
 import React from 'react';
 import { Heart, Sparkles, Flame, Users } from 'lucide-react';
 
-export const HeritageStorySection: React.FC = () => {
+export const HeritageStorySection = () => {
   return (
-    <section id="heritage" className="py-16 md:py-24 bg-white border-b border-stone-200">
+    <section id="heritage" className="border-b border-stone-200 bg-white py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -13,7 +13,7 @@ export const HeritageStorySection: React.FC = () => {
             <span aria-hidden="true" className="text-stone-300">·</span>
             <span>የእናት ታሪክ</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 font-display mt-2 [text-wrap:balance]">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-stone-900 [text-wrap:balance] sm:text-3xl md:text-4xl">
             "Yenat" Means Mother — The Foundation of Every Authentic Meal
           </h2>
           <p className="text-stone-600 text-base sm:text-lg mt-4 leading-relaxed">

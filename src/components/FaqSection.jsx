@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
-import { FAQ_LIST } from '../data/marketData';
+import { useState } from 'react';
+import { FAQ_LIST } from '../data/marketData.js';
 import { ChevronDown } from 'lucide-react';
 
-interface FaqSectionProps {
-  onOpenVendorModal: () => void;
-}
+export const FaqSection = ({ onOpenVendorModal }) => {
+  const [openIndex, setOpenIndex] = useState(0);
 
-export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenVendorModal }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
-
-  const toggle = (idx: number) => {
+  const toggle = (idx) => {
     setOpenIndex(openIndex === idx ? null : idx);
   };
 
   return (
-    <section className="py-16 md:py-24 bg-white border-b border-stone-200">
+    <section className="border-b border-stone-200 bg-white py-12 sm:py-16 md:py-24">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -24,7 +20,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenVendorModal }) => 
             <span aria-hidden="true" className="text-stone-300">·</span>
             <span>ተደጋግመው የሚጠየቁ ጥያቄዎች</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-stone-900 font-display mt-2 [text-wrap:balance]">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-stone-900 [text-wrap:balance] sm:text-3xl md:text-4xl">
             Frequently Asked Questions
           </h2>
           <p className="text-stone-600 text-sm sm:text-base mt-2">
@@ -43,7 +39,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ onOpenVendorModal }) => 
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full text-left px-6 py-4.5 flex items-center justify-between gap-4 font-display font-semibold text-stone-900 hover:text-amber-900 transition-colors"
+                  className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left font-display text-sm font-semibold text-stone-900 transition-colors hover:text-amber-900 sm:gap-4 sm:px-6 sm:py-4.5 sm:text-base"
                 >
                   <span className="text-base sm:text-lg">{faq.question}</span>
                   <ChevronDown

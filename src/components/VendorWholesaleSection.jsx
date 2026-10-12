@@ -1,16 +1,12 @@
 import React from 'react';
-import { STORE_INFO } from '../data/marketData';
+import { STORE_INFO } from '../data/marketData.js';
 import { Building2, ShoppingBag, Truck, Check, ArrowRight, ShieldCheck } from 'lucide-react';
 
-interface VendorWholesaleSectionProps {
-  onOpenVendorModal: () => void;
-}
-
-export const VendorWholesaleSection: React.FC<VendorWholesaleSectionProps> = ({
+export const VendorWholesaleSection = ({
   onOpenVendorModal,
 }) => {
   return (
-    <section id="vendors" className="py-16 md:py-24 bg-stone-900 text-stone-100 border-b border-stone-800">
+    <section id="vendors" className="border-b border-stone-800 bg-stone-900 py-12 text-stone-100 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -20,7 +16,7 @@ export const VendorWholesaleSection: React.FC<VendorWholesaleSectionProps> = ({
             <span aria-hidden="true" className="text-stone-600">·</span>
             <span>ለነጋዴዎችና ለሆቴሎች</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-display mt-2 [text-wrap:balance]">
+          <h2 className="mt-2 font-display text-2xl font-bold tracking-tight text-white [text-wrap:balance] sm:text-3xl md:text-4xl">
             Partner with Las Vegas’ Established Ethiopian Marketplace
           </h2>
           <p className="text-stone-300 text-base sm:text-lg mt-3 leading-relaxed">

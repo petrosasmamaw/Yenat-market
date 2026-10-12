@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AnnouncementBar } from './components/AnnouncementBar';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
@@ -18,14 +18,14 @@ import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
 import { ItemDetailModal } from './components/ItemDetailModal';
 import { VendorModal } from './components/VendorModal';
-import { ProductItem } from './data/marketData';
+import { MobileQuickBar } from './components/MobileQuickBar';
 
 export default function App() {
   const [isVendorModalOpen, setIsVendorModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ProductItem | null>(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-stone-900 selection:bg-amber-300 selection:text-stone-950">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#FAF7F2] text-stone-900 selection:bg-amber-300 selection:text-stone-950">
       {/* Top Quiet Announcement Bar */}
       <AnnouncementBar />
 
@@ -33,7 +33,7 @@ export default function App() {
       <Header onOpenVendorModal={() => setIsVendorModalOpen(true)} />
 
       {/* Main Landing Page Content */}
-      <main className="flex-grow">
+      <main className="flex-grow pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
         {/* Hero Section */}
         <HeroSection onOpenVendorModal={() => setIsVendorModalOpen(true)} />
 
@@ -69,6 +69,8 @@ export default function App() {
 
       {/* Restrained Anti-Slop Footer */}
       <Footer onOpenVendorModal={() => setIsVendorModalOpen(true)} />
+
+      <MobileQuickBar />
 
       {/* Modals */}
       <ItemDetailModal
