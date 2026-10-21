@@ -18,16 +18,16 @@ export const Header = ({ onOpenVendorModal }) => {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#FAF7F2]/95 backdrop-blur-md border-b border-stone-200/80 shadow-2xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 lg:h-22 gap-3 sm:gap-4">
+      <div className="max-w-[1440px] mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 lg:h-22 gap-2 sm:gap-4">
           
           {/* Logo Section with User's Official Emblem */}
           <a
             href="/"
-            className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
+            className="flex items-center gap-2 sm:gap-3 group shrink-0"
             aria-label="Yenat Market Home"
           >
-            <div className="relative h-11 w-11 sm:h-13 sm:w-13 rounded-xl bg-white border border-stone-200 shadow-2xs p-1 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-amber-400 group-hover:shadow-sm">
+            <div className="relative h-11 w-11 sm:h-12 sm:w-12 2xl:h-13 2xl:w-13 rounded-xl bg-white border border-stone-200 shadow-2xs p-1 flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:border-amber-400 group-hover:shadow-sm">
               <img
                 src="/yenat-logo-cropped.png"
                 alt="Yenat Market Logo"
@@ -37,7 +37,7 @@ export const Header = ({ onOpenVendorModal }) => {
             </div>
             
             <div className="flex flex-col">
-              <div className="flex items-baseline gap-1 font-display text-base sm:text-xl 2xl:text-2xl font-extrabold tracking-tight text-stone-900 group-hover:text-amber-900 transition-colors">
+              <div className="flex items-baseline gap-1 font-display text-base sm:text-lg 2xl:text-2xl font-extrabold tracking-tight text-stone-900 group-hover:text-amber-900 transition-colors">
                 <span>YENAT</span>
                 <span className="text-amber-600">MARKET</span>
               </div>
@@ -52,7 +52,7 @@ export const Header = ({ onOpenVendorModal }) => {
 
           {/* Desktop Nav */}
           <nav
-            className="hidden xl:flex items-center justify-center gap-1 2xl:gap-2 px-2"
+            className="hidden xl:flex items-center justify-center gap-0.5 2xl:gap-1.5 px-1 2xl:px-2"
             aria-label="Main navigation"
           >
             {NAV_LINKS.map((link) => (
@@ -60,7 +60,7 @@ export const Header = ({ onOpenVendorModal }) => {
                 key={link.href}
                 href={link.href}
                 title={link.title}
-                className="rounded-lg px-2.5 py-1.5 text-xs 2xl:text-sm font-semibold text-stone-700 hover:bg-stone-100 hover:text-stone-900 transition-colors whitespace-nowrap"
+                className="rounded-lg px-2 2xl:px-2.5 py-1.5 text-xs 2xl:text-sm font-semibold text-stone-700 hover:bg-stone-100 hover:text-stone-900 transition-colors whitespace-nowrap"
               >
                 {link.label}
               </a>
@@ -68,7 +68,7 @@ export const Header = ({ onOpenVendorModal }) => {
           </nav>
 
           {/* Action CTAs */}
-          <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2.5">
+          <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2">
             {/* Quick 1-Tap Mobile Action: WhatsApp (visible only on mobile) */}
             <a
               href={STORE_INFO.whatsappUrl}
@@ -94,28 +94,30 @@ export const Header = ({ onOpenVendorModal }) => {
               href={STORE_INFO.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 text-xs font-semibold shadow-2xs transition-colors whitespace-nowrap"
+              className="hidden lg:inline-flex items-center justify-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white px-2.5 2xl:px-3 py-2 text-xs font-semibold shadow-2xs transition-colors whitespace-nowrap shrink-0"
               title="Chat with us on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5" />
-              <span>WhatsApp</span>
+              <span className="hidden 2xl:inline">WhatsApp</span>
             </a>
 
             {/* Wholesale / Catering Modal (Visible on tablet & desktop) */}
             <button
               type="button"
               onClick={onOpenVendorModal}
-              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-amber-400 hover:bg-amber-300 px-3.5 py-2 text-xs font-bold text-stone-900 shadow-2xs transition-colors active:scale-[0.98] whitespace-nowrap"
+              className="hidden sm:inline-flex items-center justify-center rounded-lg bg-amber-400 hover:bg-amber-300 px-3 py-2 text-xs font-bold text-stone-900 shadow-2xs transition-colors active:scale-[0.98] whitespace-nowrap shrink-0"
             >
-              <span>Wholesale & Ceremonies</span>
+              <span className="hidden xl:inline 2xl:hidden">Wholesale</span>
+              <span className="inline xl:hidden 2xl:inline">Wholesale & Ceremonies</span>
             </button>
 
-            {/* Direct Phone Call (Visible on tablet & desktop) */}
+            {/* Direct Phone Call (Always completely visible on tablet & desktop, never cut off) */}
             <a
               href={STORE_INFO.phoneClean}
-              className="hidden md:inline-flex items-center justify-center gap-1.5 rounded-lg border border-stone-300 hover:border-stone-400 bg-white px-3 py-2 text-xs font-semibold text-stone-800 shadow-2xs transition-colors whitespace-nowrap"
+              className="hidden md:inline-flex items-center justify-center gap-1.5 rounded-lg border border-stone-300 hover:border-amber-400 bg-white px-2.5 2xl:px-3 py-2 text-xs font-bold text-stone-800 shadow-2xs transition-colors whitespace-nowrap shrink-0"
+              title={`Call Yenat Market Front Desk: ${STORE_INFO.phone}`}
             >
-              <Phone className="w-3.5 h-3.5 text-amber-700" />
+              <Phone className="w-3.5 h-3.5 text-amber-700 shrink-0" />
               <span>{STORE_INFO.phone}</span>
             </a>
 
@@ -123,7 +125,7 @@ export const Header = ({ onOpenVendorModal }) => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden rounded-xl p-2 text-stone-700 hover:bg-stone-100 hover:text-stone-900 border border-stone-200/80 sm:border-0 transition-colors"
+              className="xl:hidden rounded-xl p-2 text-stone-700 hover:bg-stone-100 hover:text-stone-900 border border-stone-200/80 sm:border-0 transition-colors shrink-0"
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
             >

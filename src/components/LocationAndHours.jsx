@@ -10,8 +10,6 @@ import {
   Car,
   ExternalLink,
   MessageCircle,
-  CreditCard,
-  Mail,
   Zap,
 } from 'lucide-react';
 
@@ -150,50 +148,6 @@ export const LocationAndHours = () => {
                   <span className="font-medium text-stone-800">Sunday (Coffee Ritual & Groceries)</span>
                   <span className="font-bold text-stone-900">10:00 AM – 12:00 AM Midnight</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Payment Methods & Zelle Card */}
-            <div className="bg-white p-6 rounded-3xl border border-stone-200 shadow-2xs space-y-3">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800">
-                  <CreditCard className="w-4 h-4 text-amber-700" />
-                  <span>Accepted Payment Methods</span>
-                </div>
-                <span className="text-[11px] font-semibold text-purple-900 bg-purple-100 px-2.5 py-0.5 rounded-full">
-                  Zelle Accepted
-                </span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-xs">
-                <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-100">
-                  <div className="font-bold text-stone-900">Cash</div>
-                  <div className="text-[11px] text-stone-500 mt-0.5">In-store & delivery</div>
-                </div>
-                <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-100">
-                  <div className="font-bold text-stone-900">Credit / Debit</div>
-                  <div className="text-[11px] text-stone-500 mt-0.5">Visa, Amex, Discover</div>
-                </div>
-                <div className="p-2.5 rounded-xl bg-stone-50 border border-stone-100">
-                  <div className="font-bold text-stone-900">MasterCard</div>
-                  <div className="text-[11px] text-stone-500 mt-0.5">Tap & chip ready</div>
-                </div>
-                <div className="p-2.5 rounded-xl bg-blue-50/80 border border-blue-200">
-                  <div className="font-bold text-blue-950">EBT / SNAP</div>
-                  <div className="text-[11px] text-blue-700 mt-0.5">Quest card at checkout</div>
-                </div>
-                <div className="p-2.5 rounded-xl bg-purple-50/80 border border-purple-200 col-span-2 sm:col-span-2">
-                  <div className="font-bold text-purple-950 flex items-center justify-between">
-                    <span>Zelle Direct Pay</span>
-                    <span className="font-mono text-purple-900 font-black">{STORE_INFO.zelleNumber}</span>
-                  </div>
-                  <div className="text-[11px] text-purple-700 mt-0.5">Send directly to Yenat Market with zero fees</div>
-                </div>
-              </div>
-
-              <div className="pt-2 flex items-center gap-2 text-xs text-stone-500 border-t border-stone-100">
-                <Mail className="w-3.5 h-3.5 text-stone-400" />
-                <span>Email inquiries: <a href={`mailto:${STORE_INFO.email}`} className="text-amber-800 font-semibold underline underline-offset-2">{STORE_INFO.email}</a></span>
               </div>
             </div>
 

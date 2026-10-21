@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { CELEBRITY_REVIEWS, TESTIMONIALS, STORE_INFO } from '../data/marketData.js';
+import { CELEBRITY_REVIEWS, STORE_INFO } from '../data/marketData.js';
 import {
   Star,
   Play,
@@ -9,7 +9,6 @@ import {
   Video,
   CheckCircle,
   Store,
-  Users,
 } from 'lucide-react';
 
 export const CelebrityReviewsSection = () => {
@@ -53,9 +52,9 @@ export const CelebrityReviewsSection = () => {
                     loading="lazy"
                     onError={(e) => {
                       if (celeb.id === 'helen-berhe') {
-                        e.currentTarget.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTinlbBtmUAnftDhs-y7P6DASy2NT48yCVPRdw_uFNOSg&s=10';
+                        e.currentTarget.src = '/celebrities/helen_berhe.jpg';
                       } else if (celeb.id === 'biniyam-shibre') {
-                        e.currentTarget.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5vd95oktzqZUIoJbrE4qGVRlEWDGPxpSxkwcIWXx8cg&s=10';
+                        e.currentTarget.src = '/celebrities/biniyam_shibre.jpg';
                       }
                     }}
                   />
@@ -181,42 +180,6 @@ export const CelebrityReviewsSection = () => {
               </div>
             </div>
 
-          </div>
-        </div>
-
-        {/* Regular Community Testimonials */}
-        <div className="mt-12 sm:mt-16">
-          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 mb-6">
-            <Users className="w-4 h-4 text-amber-700" />
-            <span>Las Vegas Community & Home Cook Voices</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {TESTIMONIALS.map((t) => (
-              <div
-                key={t.id}
-                className="bg-[#FAF7F2] p-5 sm:p-6 rounded-2xl border border-stone-200/90 shadow-2xs flex flex-col justify-between space-y-4"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center gap-1 text-amber-500">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-xs sm:text-sm leading-relaxed text-stone-700 italic">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                </div>
-
-                <div className="border-t border-stone-200 pt-3">
-                  <div className="font-display text-sm font-bold text-stone-900">{t.name}</div>
-                  <div className="text-[11px] text-stone-500">{t.role} · {t.location}</div>
-                  <div className="mt-1.5 text-[11px] font-semibold text-amber-900">
-                    Weekly pick: {t.favoriteItem}
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
