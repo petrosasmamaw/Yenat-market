@@ -7,31 +7,31 @@ export const CoffeeRitualSection = () => {
     <section id="coffee-ceremony" className="border-b border-stone-200 bg-[#FAF7F2] py-12 sm:py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
-          <div className="order-1 space-y-4 lg:order-1 lg:col-span-5">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12 md:gap-8 lg:gap-12">
+          <div className="order-1 space-y-4 md:col-span-5">
             <div className="rounded-2xl overflow-hidden border border-stone-200/90 shadow-md">
               <img
                 src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80"
                 alt="Ethiopian coffee ceremony with rich black brew poured into cini cups"
-                className="w-full h-80 object-cover"
+                className="w-full h-72 sm:h-80 object-cover"
                 loading="lazy"
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="bg-white p-3.5 rounded-xl border border-stone-200/80">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs">
+              <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-stone-200/80">
                 <span className="text-amber-800 font-bold block">Raw Green Beans</span>
-                <span className="text-stone-500 mt-0.5 block">Grade 1 Washed Yirgacheffe & Sidama</span>
+                <span className="text-stone-500 mt-0.5 block text-[11px]">Grade 1 Washed Yirgacheffe & Sidama</span>
               </div>
-              <div className="bg-white p-3.5 rounded-xl border border-stone-200/80">
+              <div className="bg-white p-3 sm:p-3.5 rounded-xl border border-stone-200/80">
                 <span className="text-amber-800 font-bold block">Ceremony Pottery</span>
-                <span className="text-stone-500 mt-0.5 block">Hand-shaped Jebena & Cini cup sets</span>
+                <span className="text-stone-500 mt-0.5 block text-[11px]">Hand-shaped Jebena & Cini cup sets</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Cultural Ceremony Steps (7 cols) */}
-          <div className="order-2 space-y-5 sm:space-y-6 lg:col-span-7">
+          {/* Right Column: Cultural Ceremony Steps (7 cols on Tablet & Desktop) */}
+          <div className="order-2 space-y-4 sm:space-y-6 md:col-span-7">
             
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-amber-800">

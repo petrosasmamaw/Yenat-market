@@ -26,10 +26,10 @@ export const VendorWholesaleSection = ({
         </div>
 
         {/* 3 Value Pillars for Vendors & Commercial Buyers */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-8">
           
           {/* Pillar 1: Restaurant Wholesale Supply */}
-          <div className="bg-stone-800/80 rounded-2xl p-7 border border-stone-700/80 flex flex-col justify-between space-y-6">
+          <div className="bg-stone-800/80 rounded-2xl p-5 sm:p-7 border border-stone-700/80 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-amber-400/10 text-amber-400 flex items-center justify-center border border-amber-400/20">
                 <Building2 className="w-6 h-6" />
@@ -66,7 +66,7 @@ export const VendorWholesaleSection = ({
           </div>
 
           {/* Pillar 2: Retail Shelf Space for Brands & Importers */}
-          <div className="bg-stone-800/80 rounded-2xl p-7 border border-stone-700/80 flex flex-col justify-between space-y-6">
+          <div className="bg-stone-800/80 rounded-2xl p-5 sm:p-7 border border-stone-700/80 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-emerald-400/10 text-emerald-400 flex items-center justify-center border border-emerald-400/20">
                 <ShoppingBag className="w-6 h-6" />
@@ -96,14 +96,14 @@ export const VendorWholesaleSection = ({
 
             <button
               onClick={onOpenVendorModal}
-              className="w-full text-center px-4 py-2.5 text-xs font-semibold text-white bg-stone-700 hover:bg-stone-600 border border-stone-600 rounded-md transition-colors"
+              className="w-full text-center px-4 py-3 sm:py-2.5 text-xs font-semibold text-white bg-stone-700 hover:bg-stone-600 border border-stone-600 rounded-xl sm:rounded-md transition-colors min-h-[44px] sm:min-h-0"
             >
               Apply for Shelf Placement
             </button>
           </div>
 
           {/* Pillar 3: Reliable Logistics & Trust */}
-          <div className="bg-stone-800/80 rounded-2xl p-7 border border-stone-700/80 flex flex-col justify-between space-y-6">
+          <div className="bg-stone-800/80 rounded-2xl p-5 sm:p-7 border border-stone-700/80 flex flex-col justify-between space-y-6">
             <div className="space-y-4">
               <div className="w-12 h-12 rounded-xl bg-blue-400/10 text-blue-400 flex items-center justify-center border border-blue-400/20">
                 <Truck className="w-6 h-6" />

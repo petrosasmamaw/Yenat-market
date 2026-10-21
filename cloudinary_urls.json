@@ -1,0 +1,97 @@
+{
+  "chkna_tibs": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346473/yenat_market/meat/chkna_tibs_cut.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 768,
+    "height": 1024,
+    "duration": null
+  },
+  "kurt_tire": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346474/yenat_market/meat/kurt_tire_siga.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 768,
+    "height": 1024,
+    "duration": null
+  },
+  "tibs": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346476/yenat_market/meat/ye_tibs_siga.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 460,
+    "height": 1024,
+    "duration": null
+  },
+  "kitfo": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346477/yenat_market/meat/ye_kitfo_siga.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 460,
+    "height": 1024,
+    "duration": null
+  },
+  "sheep_goat_delivery": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346478/yenat_market/meat/sheep_goat_house_delivery.jpg",
+    "cropped_url": "https://res.cloudinary.com/dkcanqmko/image/upload/c_crop,x_0,y_205,w_472,h_717/v1792346478/yenat_market/meat/sheep_goat_house_delivery.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 472,
+    "height": 717,
+    "duration": null
+  },
+  "delivery_van": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792350713/yenat_market/delivery/yenat_real_delivery_van.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 1024,
+    "height": 767
+  },
+  "ceremony_photo_1": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346481/yenat_market/ceremony/ceremony_roasting_1.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 591,
+    "height": 1280,
+    "duration": null
+  },
+  "ceremony_photo_2": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346483/yenat_market/ceremony/ceremony_roasting_2.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 960,
+    "height": 1280,
+    "duration": null
+  },
+  "ceremony_photo_3": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792346485/yenat_market/ceremony/ceremony_roasting_3.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 960,
+    "height": 1280,
+    "duration": null
+  },
+  "ceremony_video_1": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/video/upload/v1792346534/yenat_market/ceremony/ceremony_video_roasting_1.mp4",
+    "resource_type": "video",
+    "format": "mp4",
+    "width": 478,
+    "height": 850,
+    "duration": 13.815873
+  },
+  "ceremony_video_2": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/video/upload/v1792346576/yenat_market/ceremony/ceremony_video_roasting_2.mp4",
+    "resource_type": "video",
+    "format": "mp4",
+    "width": 478,
+    "height": 850,
+    "duration": 9.988526
+  },
+  "store_inside": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1792350716/yenat_market/store/inside_yenat_market_store.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 1280,
+    "height": 591
+  }
+}

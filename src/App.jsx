@@ -7,12 +7,13 @@ import { useState } from 'react';
 import { AnnouncementBar } from './components/AnnouncementBar';
 import { Header } from './components/Header';
 import { HeroSection } from './components/HeroSection';
-import { HeritageStorySection } from './components/HeritageStorySection';
+import { SigaButcherySection } from './components/SigaButcherySection';
 import { DepartmentsShowcase } from './components/DepartmentsShowcase';
+import { DeliveryServiceSection } from './components/DeliveryServiceSection';
+import { CelebrityReviewsSection } from './components/CelebrityReviewsSection';
 import { FreshScheduleSection } from './components/FreshScheduleSection';
 import { VendorWholesaleSection } from './components/VendorWholesaleSection';
 import { CoffeeRitualSection } from './components/CoffeeRitualSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { LocationAndHours } from './components/LocationAndHours';
 import { FaqSection } from './components/FaqSection';
 import { Footer } from './components/Footer';
@@ -26,27 +27,33 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-[#FAF7F2] text-stone-900 selection:bg-amber-300 selection:text-stone-950">
-      {/* Top Quiet Announcement Bar */}
+      {/* Top Announcement Bar */}
       <AnnouncementBar />
 
-      {/* Top Navigation Bar adhering to the 3-Zone Contract */}
+      {/* Header with Official Logo Emblem & Navigation */}
       <Header onOpenVendorModal={() => setIsVendorModalOpen(true)} />
 
       {/* Main Landing Page Content */}
       <main className="flex-grow pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
-        {/* Hero Section */}
+        {/* Hero Section with 2-second Rotating 3D Payment Showcase */}
         <HeroSection onOpenVendorModal={() => setIsVendorModalOpen(true)} />
 
-        {/* Heritage Story: "Yenat Means Mother" */}
-        <HeritageStorySection />
+        {/* 100% Grass-Fed Butchery & Siga Showcase with Animated Gallery */}
+        <SigaButcherySection onOpenVendorModal={() => setIsVendorModalOpen(true)} />
 
-        {/* Interactive Market Departments Showcase */}
+        {/* Interactive Market Departments: Injera & Ambasha Top Sellers, Spices, Drinks & Pantry */}
         <DepartmentsShowcase
           onSelectItem={(item) => setSelectedItem(item)}
           onOpenVendorModal={() => setIsVendorModalOpen(true)}
         />
 
-        {/* Peak Freshness Timetable / Daily Drops */}
+        {/* Dedicated Yenat Mobile Delivery Van Service */}
+        <DeliveryServiceSection onOpenVendorModal={() => setIsVendorModalOpen(true)} />
+
+        {/* Celebrity Video Reviews (Helen Berhe & Biniyam Shibre) & Shop Atmosphere */}
+        <CelebrityReviewsSection />
+
+        {/* Peak Freshness Timetable / Daily Drops (Open 10 AM - 12 AM Midnight) */}
         <FreshScheduleSection />
 
         {/* Dedicated B2B & Wholesale Vendor Hub */}
@@ -54,22 +61,20 @@ export default function App() {
           onOpenVendorModal={() => setIsVendorModalOpen(true)}
         />
 
-        {/* Coffee Ritual & Ceremony Showcase */}
+        {/* Coffee Ritual & Buna Ceremony Showcase */}
         <CoffeeRitualSection />
 
-        {/* Community Testimonials & Social Proof */}
-        <TestimonialsSection />
-
-        {/* Interactive Location, Hours & Visit Details */}
+        {/* Interactive Location, Suite 102, Hours & Payment Details */}
         <LocationAndHours />
 
         {/* Frequently Asked Questions */}
         <FaqSection onOpenVendorModal={() => setIsVendorModalOpen(true)} />
       </main>
 
-      {/* Restrained Anti-Slop Footer */}
+      {/* Footer */}
       <Footer onOpenVendorModal={() => setIsVendorModalOpen(true)} />
 
+      {/* Bottom Sticky Bar for Mobile Users */}
       <MobileQuickBar />
 
       {/* Modals */}

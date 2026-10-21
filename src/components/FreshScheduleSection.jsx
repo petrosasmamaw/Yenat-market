@@ -27,35 +27,39 @@ export const FreshScheduleSection = () => {
         </div>
 
         {/* Interactive Schedule Selector */}
-        <div className="mt-8 grid grid-cols-1 items-start gap-6 sm:mt-10 lg:grid-cols-12 lg:gap-8">
-          {/* Mobile: horizontal day picker */}
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 snap-x snap-mandatory scrollbar-none lg:hidden">
-            {SCHEDULE_DAYS.map((sched, idx) => (
-              <button
-                key={`mobile-${sched.day}`}
-                type="button"
-                onClick={() => setSelectedDayIdx(idx)}
-                className={`min-w-[9.5rem] shrink-0 snap-start rounded-xl border px-3 py-3 text-left transition-all ${
-                  selectedDayIdx === idx
-                    ? 'border-amber-800/40 bg-[#FAF7F2] shadow-xs'
-                    : 'border-stone-200 bg-white text-stone-600'
-                }`}
-              >
-                <div className={`text-xs font-bold font-display ${selectedDayIdx === idx ? 'text-stone-900' : 'text-stone-700'}`}>
-                  {sched.day.split(' ')[0]}
-                </div>
-                <div className="mt-1 text-[10px] text-stone-500">{sched.badge}</div>
-              </button>
-            ))}
+        {/* Interactive Schedule Selector: 2-Column on Tablet & Desktop */}
+        <div className="mt-8 grid grid-cols-1 items-start gap-6 sm:mt-10 md:grid-cols-12 md:gap-6 lg:gap-8">
+          {/* Mobile: horizontal day picker with fade hint */}
+          <div className="relative md:hidden -mx-4 px-4">
+            <div className="flex gap-2 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-none">
+              {SCHEDULE_DAYS.map((sched, idx) => (
+                <button
+                  key={`mobile-${sched.day}`}
+                  type="button"
+                  onClick={() => setSelectedDayIdx(idx)}
+                  className={`min-w-[9.5rem] shrink-0 snap-start rounded-xl border px-3.5 py-3 text-left transition-all min-h-[50px] ${
+                    selectedDayIdx === idx
+                      ? 'border-amber-800/40 bg-[#FAF7F2] shadow-xs'
+                      : 'border-stone-200 bg-white text-stone-600'
+                  }`}
+                >
+                  <div className={`text-xs font-bold font-display ${selectedDayIdx === idx ? 'text-stone-900' : 'text-stone-700'}`}>
+                    {sched.day.split(' ')[0]}
+                  </div>
+                  <div className="mt-1 text-[10px] text-stone-500">{sched.badge}</div>
+                </button>
+              ))}
+            </div>
+            <div className="pointer-events-none absolute right-4 top-0 bottom-2 w-8 bg-gradient-to-l from-white to-transparent" />
           </div>
 
-          {/* Desktop: vertical day list */}
-          <div className="hidden lg:col-span-4 lg:block lg:space-y-2">
+          {/* Tablet & Desktop: vertical day list */}
+          <div className="hidden md:col-span-4 md:block md:space-y-2">
             {SCHEDULE_DAYS.map((sched, idx) => (
               <button
                 key={sched.day}
                 onClick={() => setSelectedDayIdx(idx)}
-                className={`w-full text-left p-4 rounded-xl border transition-all flex items-start justify-between ${
+                className={`w-full text-left p-3.5 lg:p-4 rounded-xl border transition-all flex items-start justify-between ${
                   selectedDayIdx === idx
                     ? 'bg-[#FAF7F2] border-amber-800/40 shadow-xs'
                     : 'bg-white border-stone-200 hover:border-stone-300 text-stone-600'
@@ -80,8 +84,8 @@ export const FreshScheduleSection = () => {
             ))}
           </div>
 
-          {/* Active Schedule Showcase Card (8 cols) */}
-          <div className="space-y-5 rounded-2xl border border-stone-200/90 bg-[#FAF7F2] p-5 sm:space-y-6 sm:p-8 lg:col-span-8">
+          {/* Active Schedule Showcase Card (8 cols on Tablet & Desktop) */}
+          <div className="space-y-4 sm:space-y-5 rounded-2xl border border-stone-200/90 bg-[#FAF7F2] p-4 sm:p-6 lg:p-8 md:col-span-8">
             
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-stone-200/80 pb-5">
               <div>
