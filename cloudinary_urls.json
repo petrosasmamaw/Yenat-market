@@ -93,5 +93,19 @@
     "format": "jpg",
     "width": 1280,
     "height": 591
+  },
+  "ceremony_photo_4": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1794310733/yenat_market/ceremony/ceremony_hanging_cuts.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 768,
+    "height": 1024
+  },
+  "ceremony_photo_5": {
+    "secure_url": "https://res.cloudinary.com/dkcanqmko/image/upload/v1794310735/yenat_market/ceremony/ceremony_event_meat_trays.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 768,
+    "height": 1024
   }
 }

@@ -78,16 +78,16 @@ const GALLERY_SLIDES = [
     caption: 'Hardwood charcoal-fired ceremonial roasting prepared on-site across Las Vegas for holiday banquets.',
   },
   {
-    type: 'video',
-    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/video/upload/v1792346534/yenat_market/ceremony/ceremony_video_roasting_1.mp4',
-    title: 'Live Roasting Action: Traditional Roasting Spit',
-    caption: 'Real-time ceremony roasting — watch our skilled pit masters turning whole seasoned meat over glowing coals.',
+    type: 'image',
+    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1794310733/yenat_market/ceremony/ceremony_hanging_cuts.jpg',
+    title: 'Custom Event Carcass & Prime Butchery Preparation',
+    caption: 'Freshly hung and aged whole and quarter grass-fed beef and lamb, expertly prepped for weddings, holidays, and large family banquets.',
   },
   {
-    type: 'video',
-    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/video/upload/v1792346576/yenat_market/ceremony/ceremony_video_roasting_2.mp4',
-    title: 'Live Roasting Action: Sizzling Celebration Cuts',
-    caption: 'Live event sizzle — tender, golden cuts roasting over fire to mouthwatering perfection for catering events.',
+    type: 'image',
+    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1794310735/yenat_market/ceremony/ceremony_event_meat_trays.jpg',
+    title: 'Pre-Portioned Event Catering & Banquet Meat Trays',
+    caption: 'Neatly butchered, pre-portioned, and chilled banquet trays prepared for seamless event service and live roasting.',
   },
 ];
 

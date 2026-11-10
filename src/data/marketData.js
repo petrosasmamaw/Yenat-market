@@ -184,7 +184,7 @@ export const MARKET_ITEMS = [
   {
     id: 'berbere-spice',
     name: 'Berbere',
-    amharicName: 'የወጣት በርበሬ',
+    amharicName: 'በርበሬ',
     department: 'spices',
     departmentLabel: 'Heritage Spices',
     shortDesc: 'Spicy red pepper blend',
