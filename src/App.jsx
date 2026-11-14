@@ -35,8 +35,8 @@ export default function App() {
 
       {/* Main Landing Page Content */}
       <main className="flex-grow pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
-        {/* Hero Section with 2-second Rotating 3D Payment Showcase */}
-        <HeroSection onOpenVendorModal={() => setIsVendorModalOpen(true)} />
+        {/* Hero: Big brand logo + "Welcome to Yenat Market" sign */}
+        <HeroSection />
 
         {/* 100% Grass-Fed Butchery & Siga Showcase with Animated Gallery */}
         <SigaButcherySection onOpenVendorModal={() => setIsVendorModalOpen(true)} />

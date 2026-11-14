@@ -46,3 +46,23 @@
 .animate-card-switch {
   animation: cardFadeSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Hero entrance + slow photo drift */
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-rise {
+  opacity: 0;
+  animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+.hero-kenburns {
+  animation: heroKenBurns 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise, .hero-kenburns { animation: none; opacity: 1; transform: none; }
+}
