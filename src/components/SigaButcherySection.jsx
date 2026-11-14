@@ -1,419 +1,323 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { STORE_INFO } from '../data/marketData.js';
 import {
   Flame,
-  ShieldCheck,
-  CheckCircle2,
+
   Phone,
   MessageCircle,
-  Sparkles,
   ChevronLeft,
   ChevronRight,
-  PartyPopper,
+
   Truck,
+  Leaf,
+  Ban,
   Scale,
-  Video,
 } from 'lucide-react';
 
-const SIGA_CUTS = [
-  {
-    id: 'chkna',
-    name: 'Ye Chkna Siga',
-    amharicName: 'የጭከና ስጋ (Tenderloin)',
-    animal: '100% Grass-Fed Beef Tenderloin',
-    badge: 'Prized Filet Mignon',
-    image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346473/yenat_market/meat/chkna_tibs_cut.jpg',
-    description: 'The most tender, luxurious cut of Ethiopian beef. Velvety tenderloin that melts in your mouth like butter. Ideal for special VIP tibs, wedding feasts, and raw delicacies.',
-    tags: ['Tenderloin', 'Melts in Mouth', 'Gourmet Feast', 'Premium Reserve'],
-  },
-  {
-    id: 'tire',
-    name: 'Ye Tire Siga (Kurt)',
-    amharicName: 'የጥሬ ስጋ (ቁርጥ)',
-    animal: '100% Grass-Fed Prime Ox',
-    badge: 'Connoisseur Raw Cut',
-    image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346474/yenat_market/meat/kurt_tire_siga.jpg',
-    description: 'The pinnacle of authentic Ethiopian raw beef appreciation. Chosen from the freshest prime cuts of pasture-raised oxen, carved with surgical precision for qurata with mitmita and senafitch.',
-    tags: ['Prime Raw Cut', 'Zero Sinew', 'Strict Chilling', 'By the Kilo'],
-  },
-  {
-    id: 'tibs',
-    name: 'Ye Tibs Siga',
-    amharicName: 'የጥብስ ስጋ',
-    animal: '100% Grass-Fed Ox, Lamb & Goat',
-    badge: 'Sold by the Kilo (KG)',
-    image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346476/yenat_market/meat/ye_tibs_siga.jpg',
-    description: 'Perfect succulent cubes with ideal marbling. Sizzles in the skillet with fresh rosemary, jalapeños, onions, awaze, and niter kibe butter for unforgettable Derek Tibs.',
-    tags: ['Derek Tibs', 'Awaze Tibs', 'Grass-Fed', 'Cubed Fresh'],
-  },
-  {
-    id: 'kitfo',
-    name: 'Ye Kitfo Siga',
-    amharicName: 'የክትፎ ስጋ',
-    animal: '100% Grass-Fed Top Round',
-    badge: 'Extra Lean Trimmed',
-    image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346477/yenat_market/meat/ye_kitfo_siga.jpg',
-    description: 'Meticulously hand-trimmed of every single fiber of connective tissue and fat. Minced or finely sliced on demand for raw (tire), lightly warmed (leb-leb), or fully cooked kitfo.',
-    tags: ['Hand Trimmed', 'Super Lean', 'Minced to Order', 'No Fillers'],
-  },
-];
+const SLIDE_MS = 2500;
 
 const GALLERY_SLIDES = [
   {
-    type: 'image',
     mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346481/yenat_market/ceremony/ceremony_roasting_1.jpg',
     title: 'Ceremonial Whole Carcass Preparation & Butchery',
     caption: 'Pasture-raised whole sheep & goats freshly prepared with traditional butcher mastery for weddings & celebrations.',
   },
   {
-    type: 'image',
-    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346483/yenat_market/ceremony/ceremony_roasting_2.jpg',
-    title: 'Live Outdoor Roasting Spit (የጥብስ ዝግጅት)',
-    caption: 'Authentic charcoal rotisserie setup delivering hot sizzling roasted meat right to your event guests.',
+    mediaUrl: '/ceremony/van-hanging-beef.jpg',
+    title: 'Chilled Van Delivery — Whole Grass-Fed Beef Quarters',
+    caption: 'Fresh beef quarters hung on rails inside our refrigerated van, delivered cold and clean to your event, church hall or home.',
   },
   {
-    type: 'image',
     mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346485/yenat_market/ceremony/ceremony_roasting_3.jpg',
     title: 'Golden Charcoal Roasting for Festive Banquets',
     caption: 'Hardwood charcoal-fired ceremonial roasting prepared on-site across Las Vegas for holiday banquets.',
   },
   {
-    type: 'image',
     mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1794310733/yenat_market/ceremony/ceremony_hanging_cuts.jpg',
     title: 'Custom Event Carcass & Prime Butchery Preparation',
     caption: 'Freshly hung and aged whole and quarter grass-fed beef and lamb, expertly prepped for weddings, holidays, and large family banquets.',
   },
   {
-    type: 'image',
-    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1794310735/yenat_market/ceremony/ceremony_event_meat_trays.jpg',
-    title: 'Pre-Portioned Event Catering & Banquet Meat Trays',
-    caption: 'Neatly butchered, pre-portioned, and chilled banquet trays prepared for seamless event service and live roasting.',
+    mediaUrl: '/ceremony/butcher-cutting-fresh.jpg',
+    title: 'Cut Fresh to Order at Our Butcher Counter',
+    caption: 'Every order is hand-carved in Suite 102 — tibs, kitfo and ceremony portions trimmed to your exact weight by the kilo.',
   },
 ];
 
-export const SigaButcherySection = ({ onOpenVendorModal }) => {
-  const [activeSlide, setActiveSlide] = useState(0);
+const SERVICES = [
+  {
+    icon: Flame,
+    title: 'Live Roasting Service (የጥብስ ዝግጅት)',
+    text: 'We roast tender marinated grass-fed meat on-demand for special events and cultural celebrations.',
+  },
+  {
+    icon: Truck,
+    title: 'Direct Venue Delivery via Our Van',
+    text: 'Chilled delivery directly to your home, church hall, reception center, or restaurant in Las Vegas.',
+  },
+];
 
-  // Auto-advance gallery animation (6 seconds per slide)
+const GRASS_FED_POINTS = [
+  { icon: Leaf, label: 'Pasture-raised' },
+  { icon: Ban, label: 'Hormone-free' },
+  { icon: Scale, label: 'By the kilo' },
+];
+
+const pad = (n) => String(n).padStart(2, '0');
+
+// Ask Cloudinary for a resized, auto-format/quality version (local images pass through)
+const cld = (url, w) => (url.includes('/image/upload/') ? url.replace('/image/upload/', `/image/upload/f_auto,q_auto,w_${w}/`) : url);
+
+export const SigaButcherySection = () => {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const touchX = useRef(null);
+  const total = GALLERY_SLIDES.length;
+
+  const go = useCallback((i) => setActive((i + total) % total), [total]);
+  const next = useCallback(() => go(active + 1), [go, active]);
+  const prev = useCallback(() => go(active - 1), [go, active]);
+
+  // Auto-advance (pauses on hover / touch)
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % GALLERY_SLIDES.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+    if (paused) return;
+    const t = setTimeout(next, SLIDE_MS);
+    return () => clearTimeout(t);
+  }, [active, paused, next]);
 
-  const nextSlide = () => setActiveSlide((prev) => (prev + 1) % GALLERY_SLIDES.length);
-  const prevSlide = () => setActiveSlide((prev) => (prev - 1 + GALLERY_SLIDES.length) % GALLERY_SLIDES.length);
+  const onTouchStart = (e) => {
+    touchX.current = e.touches[0].clientX;
+    setPaused(true);
+  };
+  const onTouchEnd = (e) => {
+    if (touchX.current == null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(dx) > 40) (dx < 0 ? next : prev)();
+    touchX.current = null;
+    setPaused(false);
+  };
+
+  const slide = GALLERY_SLIDES[active];
 
   return (
-    <section id="siga-butchery" className="relative border-b border-stone-200 bg-white py-14 sm:py-20 md:py-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-amber-800">
-              <Flame className="w-4 h-4 text-amber-600" />
-              <span>Core Specialty · የንጹህ ስጋ ማዕከል</span>
-              <span aria-hidden="true" className="text-stone-300">·</span>
-              <span>100% Grass-Fed</span>
-            </div>
-            
-            <h2 className="mt-2 font-display text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-stone-900">
-              100% Grass-Fed Pasture Butchery & Custom Ceremony Roasting
+    <section id="siga-butchery" className="theme-light grain section relative overflow-hidden">
+      <div className="container-x">
+
+        {/* ═════════ 1. Ceremonies & Catering ═════════ */}
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
+
+          {/* Content */}
+          <div className="order-2 lg:order-1 lg:col-span-5">
+            <p className="eyebrow">
+              <span className="num">01</span>
+              Special Ceremonies &amp; Catering
+            </p>
+            <p className="amharic mt-2 text-sm font-semibold text-accent">የንጹህ ስጋ ማዕከል</p>
+
+            <h2 className="h-section mt-4">
+              Fresh Meat for Weddings, Holidays &amp; <span className="accent-italic">Live Roasting</span>
             </h2>
-            
-            <p className="mt-3 text-stone-600 text-sm sm:text-base md:text-lg leading-relaxed">
-              Meat is the heart and soul of Yenat Market. We custom-slaughter{' '}
-              <strong className="text-stone-900 font-semibold">100% grass-fed oxen, sheep, and goats</strong> — raised naturally on open pasture with{' '}
-              <span className="text-amber-900 font-bold underline decoration-amber-400 underline-offset-4">zero artificial feeds, zero hormones, and zero grains</span>. 
-              Sold by the kilo (KG) and cut fresh to order all day in Suite 102!
+
+            <p className="lead mt-5">
+              Planning an Ethiopian wedding, christening, holiday banquet (Meskel, Genna, Fasika, Eid), or family memorial?
+              We supply whole and half grass-fed sheep, goats, and oxen custom-slaughtered to your event specifications.
+            </p>
+
+            <ul className="mt-8 border-t border-line">
+              {SERVICES.map(({ icon: Icon, title, text }) => (
+                <li key={title} className="flex gap-4 border-b border-line py-5">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-forest-900 text-gold-400">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="font-display text-[1.15rem] font-semibold text-ink">{title}</p>
+                    <p className="mt-1 text-[15px] leading-relaxed text-body">{text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href={STORE_INFO.phoneClean} className="btn btn-primary">
+                <Phone className="h-4 w-4" />
+                Call {STORE_INFO.phone}
+              </a>
+              <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+                <MessageCircle className="h-4 w-4 text-spice" />
+                WhatsApp Us
+              </a>
+            </div>
+
+            <p className="mt-5 text-[13px] text-muted">
+              * WhatsApp photos &amp; video updates from the butchery floor can be provided upon request.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href={STORE_INFO.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-sm transition-all"
-            >
-              <MessageCircle className="w-4 h-4" />
-              <span>Order Meat on WhatsApp: (702) 240-8222</span>
+          {/* Gallery */}
+          <div
+            className="order-1 lg:order-2 lg:col-span-7"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <div className="relative">
+              {/* offset gold frame — editorial detail */}
+              <div className="pointer-events-none absolute -right-3 -top-3 hidden h-full w-full rounded-[30px] border border-gold-500/50 sm:block" aria-hidden />
+
+              <div
+                className="theme-dark relative aspect-[4/5] overflow-hidden rounded-[28px] bg-forest-950 sm:aspect-[4/3] lg:aspect-auto lg:h-[600px]"
+                onTouchStart={onTouchStart}
+                onTouchEnd={onTouchEnd}
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="Ceremony & butchery photos"
+              >
+                <div
+                  className="absolute inset-0 flex transition-transform duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none"
+                  style={{ transform: `translateX(-${active * 100}%)` }}
+                >
+                  {GALLERY_SLIDES.map((s, i) => (
+                    <div key={s.mediaUrl} className="relative h-full w-full shrink-0 overflow-hidden" aria-hidden={i !== active}>
+                      <img src={cld(s.mediaUrl, 400)} alt="" aria-hidden className="absolute inset-0 h-full w-full scale-125 object-cover opacity-55 blur-2xl" />
+                      <div className="absolute inset-0 bg-forest-950/35" />
+                      <img
+                        src={cld(s.mediaUrl, 1400)}
+                        alt={s.title}
+                        className="relative h-full w-full object-contain drop-shadow-[0_20px_40px_rgb(0_0_0/0.5)]"
+                        draggable={false}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                {/* Caption */}
+                <div className="absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-forest-950 via-forest-950/80 to-transparent px-6 pb-6 pt-24 sm:px-8 sm:pb-7">
+                  <div key={active} className="animate-card-switch">
+                    <h3 className="font-display text-xl font-semibold text-ink sm:text-[1.65rem]">{slide.title}</h3>
+                    <p className="mt-1.5 line-clamp-2 max-w-xl text-[13px] text-body sm:text-[15px]">{slide.caption}</p>
+                  </div>
+                </div>
+
+                {/* Counter */}
+                <div className="absolute left-5 top-5 z-30 font-display text-sm font-semibold tabular-nums text-ink">
+                  {pad(active + 1)} <span className="text-muted">— {pad(total)}</span>
+                </div>
+
+                {/* Arrows */}
+                <div className="absolute right-5 top-5 z-30 flex gap-2">
+                  {[
+                    { fn: prev, Icon: ChevronLeft, label: 'Previous photo' },
+                    { fn: next, Icon: ChevronRight, label: 'Next photo' },
+                  ].map(({ fn, Icon, label }) => (
+                    <button
+                      key={label}
+                      type="button"
+                      onClick={fn}
+                      aria-label={label}
+                      className="grid h-10 w-10 place-items-center rounded-full border border-line bg-forest-950/50 text-ink backdrop-blur transition-colors hover:bg-gold-400 hover:text-forest-950"
+                    >
+                      <Icon className="h-5 w-5" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Thumbnails */}
+            <div className="mt-4 grid grid-cols-5 gap-2 sm:gap-3">
+              {GALLERY_SLIDES.map((s, i) => (
+                <button
+                  key={s.mediaUrl}
+                  type="button"
+                  onClick={() => go(i)}
+                  aria-label={`Show photo ${i + 1}: ${s.title}`}
+                  aria-current={i === active}
+                  className={`relative aspect-[4/3] overflow-hidden rounded-xl transition-all ${
+                    i === active ? 'ring-2 ring-forest-500 ring-offset-2 ring-offset-teff-100' : 'opacity-55 hover:opacity-100'
+                  }`}
+                >
+                  <img src={cld(s.mediaUrl, 300)} alt="" className="h-full w-full object-cover" loading="lazy" />
+                  {i === active && (
+                    <span className="absolute inset-x-0 bottom-0 h-1 bg-forest-950/40">
+                      <span
+                        key={`${active}-${paused}`}
+                        className="slide-progress block h-full bg-gold-400"
+                        style={{ animationDuration: `${SLIDE_MS}ms`, animationPlayState: paused ? 'paused' : 'running' }}
+                      />
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ═════════ 2. 100% Grass-fed — slim ribbon ═════════ */}
+        <div className="theme-dark mt-16 overflow-hidden rounded-2xl bg-forest-900">
+          <div className="tibeb-thin" aria-hidden />
+          <div className="flex flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:gap-8 sm:px-8">
+            <div className="min-w-0 flex-1">
+              <h3 className="font-display text-xl font-bold text-ink sm:text-[1.4rem]">
+                100% Grass-Fed <span className="text-accent">Meat</span>
+              </h3>
+              <p className="mt-1 text-[14px] text-body">
+                Pasture-raised oxen, sheep &amp; goats — <span className="font-semibold text-spice">no hormones, no grains</span>. Cut fresh by the kilo.
+              </p>
+            </div>
+            <ul className="flex flex-wrap gap-2">
+              {GRASS_FED_POINTS.map(({ icon: Icon, label }) => (
+                <li key={label} className="chip text-ink">
+                  <Icon className="h-3.5 w-3.5 text-accent" />
+                  {label}
+                </li>
+              ))}
+            </ul>
+            <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-red btn-sm shrink-0">
+              <MessageCircle className="h-4 w-4" />
+              Chat on WhatsApp
             </a>
           </div>
         </div>
 
-        {/* 4 Signature Siga Cuts Grid */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {SIGA_CUTS.map((cut) => (
-            <div
-              key={cut.id}
-              className="group bg-[#FAF7F2] rounded-2xl border border-stone-200/90 overflow-hidden shadow-2xs hover:shadow-md hover:border-amber-400 transition-all flex flex-col justify-between"
-            >
-              <div>
-                {/* Image */}
-                <div className="relative h-48 bg-stone-200 overflow-hidden">
-                  <img
-                    src={cut.image}
-                    alt={cut.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute top-3 left-3 bg-stone-950/85 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-1 rounded-sm flex items-center gap-1.5">
-                    <Scale className="w-3 h-3 text-amber-400" />
-                    <span>{cut.badge}</span>
-                  </div>
-                </div>
-
-                {/* Body */}
-                <div className="p-5 space-y-2.5">
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-xs font-bold text-amber-800 font-display">{cut.amharicName}</span>
-                    <span className="text-[10px] uppercase font-semibold text-stone-500 tracking-wider">{cut.animal}</span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-stone-900 font-display group-hover:text-amber-800 transition-colors">
-                    {cut.name}
-                  </h3>
-
-                  <p className="text-xs text-stone-600 leading-relaxed">
-                    {cut.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5 pt-2">
-                    {cut.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 rounded text-[10px] font-semibold bg-white border border-stone-200 text-stone-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Order Footer */}
-              <div className="p-4 bg-white border-t border-stone-200/70 flex items-center justify-between text-xs">
-                <span className="text-stone-500 font-medium">Cut fresh to order</span>
-                <a
-                  href={STORE_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-bold text-amber-800 hover:text-amber-900 flex items-center gap-1"
-                >
-                  <span>Order by KG →</span>
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Compact Feature: Whole & Half Sheep & Goat House Delivery (Small & 1 Image) */}
-        <div className="mt-10 rounded-2xl bg-gradient-to-r from-stone-900 via-stone-900 to-[#1c1815] text-white overflow-hidden border border-amber-900/30 shadow-md">
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center">
-            
-            {/* Single Image Column (4 cols on md with controlled height) */}
-            <div className="relative h-44 sm:h-48 md:h-56 lg:h-60 md:col-span-4 overflow-hidden">
+        {/* ═════════ 3. Whole & Half Sheep & Goat Delivery ═════════ */}
+        <div className="card mt-6 overflow-hidden">
+          <div className="grid grid-cols-1 items-stretch md:grid-cols-12">
+            <div className="relative h-56 md:col-span-4 md:h-auto">
               <img
                 src="https://res.cloudinary.com/dkcanqmko/image/upload/c_crop,x_0,y_205,w_472,h_717/v1792346478/yenat_market/meat/sheep_goat_house_delivery.jpg"
                 alt="Whole and half grass-fed sheep and goat with direct home delivery in Las Vegas"
-                className="w-full h-full object-cover object-center"
+                className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-stone-950/80 via-transparent to-transparent" />
-              <div className="absolute top-3 left-3 bg-amber-400 text-stone-950 text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded shadow-xs">
+              <span className="absolute left-4 top-4 rounded-full bg-gold-400 px-3 py-1 text-[10.5px] font-extrabold uppercase tracking-[0.06em] text-forest-950">
                 Direct House Delivery
-              </div>
+              </span>
             </div>
 
-            {/* Compact Content Column (8 cols on md) */}
-            <div className="p-5 sm:p-6 md:p-6 md:col-span-8 space-y-2">
-              <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400">
-                <Truck className="w-3.5 h-3.5 text-amber-400" />
-                <span>Customer Delivery · የበግና የፍየል ስጋ ቤት ድረስ</span>
-              </div>
-
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-display text-white">
-                Whole &amp; Half Sheep &amp; Goat Delivered to Your House
+            <div className="p-6 sm:p-8 md:col-span-8 md:p-10">
+              <p className="eyebrow">
+                <Truck className="h-3.5 w-3.5" />
+                Customer Delivery
+              </p>
+              <p className="amharic mt-1 text-sm font-semibold text-accent">የበግና የፍየል ስጋ ቤት ድረስ</p>
+              <h3 className="mt-3 font-display text-2xl font-bold leading-tight text-ink sm:text-[1.75rem]">
+                Whole &amp; Half Sheep &amp; Goat Delivered to <span className="text-spice">Your House</span>
               </h3>
-
-              <p className="text-xs sm:text-sm text-stone-300 leading-relaxed">
-                We sell 100% natural grass-fed whole and half sheep and goats to our customers. 
-                Custom-carved to your exact cooking preferences and delivered cold and fresh straight to your front door across Las Vegas for family feasts, 
+              <p className="mt-3 text-[15px] leading-relaxed text-body">
+                We sell 100% natural grass-fed whole and half sheep and goats to our customers.
+                Custom-carved to your exact cooking preferences and delivered cold and fresh straight to your front door across Las Vegas for family feasts,
                 holidays, or gatherings.
               </p>
-
-              <div className="pt-2 flex flex-wrap items-center gap-3">
-                <a
-                  href={STORE_INFO.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-xs transition-colors"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>Order Sheep / Goat on WhatsApp: (702) 240-8222</span>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-red btn-sm">
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp: {STORE_INFO.whatsapp}
                 </a>
-
-                <a
-                  href={STORE_INFO.phoneClean}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-stone-200 font-semibold text-xs border border-white/15 transition-colors"
-                >
-                  <Phone className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Call: {STORE_INFO.phone}</span>
+                <a href={STORE_INFO.phoneClean} className="btn btn-ghost btn-sm">
+                  <Phone className="h-4 w-4 text-accent" />
+                  Call: {STORE_INFO.phone}
                 </a>
               </div>
             </div>
-
-          </div>
-        </div>
-
-        {/* Animated Butchery & Roasting Gallery Showcase: 2-Column on Tablet & Desktop */}
-        <div className="mt-14 rounded-3xl bg-stone-950 text-white overflow-hidden border border-stone-800 shadow-xl">
-          <div className="grid grid-cols-1 md:grid-cols-12 items-center">
-            
-            {/* Gallery Image Slider with Motion Effect (7 cols on Tablet & Desktop) */}
-            <div className="relative h-72 sm:h-96 md:h-[26rem] lg:h-[30rem] md:col-span-7 overflow-hidden bg-stone-900">
-              {GALLERY_SLIDES.map((slide, index) => (
-                <div
-                  key={slide.title}
-                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                    index === activeSlide ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                  }`}
-                >
-                  {slide.type === 'video' ? (
-                    <video
-                      src={slide.mediaUrl}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <img
-                      src={slide.mediaUrl}
-                      alt={slide.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent" />
-                  
-                  {/* Floating Caption on Slide */}
-                  <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 z-20">
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-amber-400 bg-black/60 px-2.5 py-1 rounded backdrop-blur-xs flex items-center gap-1.5">
-                        {slide.type === 'video' ? <Video className="w-3.5 h-3.5 text-amber-400" /> : null}
-                        <span>{slide.type === 'video' ? 'Live Roasting Video' : 'Ceremony Photo'} #{index + 1}</span>
-                      </span>
-                      {slide.type === 'video' && (
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 rounded">
-                          Live Action
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="text-base sm:text-2xl font-bold font-display text-white">
-                      {slide.title}
-                    </h3>
-                    <p className="mt-1 text-xs sm:text-sm text-stone-300 max-w-xl line-clamp-2 sm:line-clamp-none">
-                      {slide.caption}
-                    </p>
-                  </div>
-                </div>
-              ))}
-
-              {/* Prev / Next Controls */}
-              <button
-                type="button"
-                onClick={prevSlide}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-stone-900/80 hover:bg-stone-800 text-white border border-stone-700 transition-colors active:scale-95"
-                aria-label="Previous gallery photo"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                type="button"
-                onClick={nextSlide}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-30 p-2.5 rounded-full bg-stone-900/80 hover:bg-stone-800 text-white border border-stone-700 transition-colors active:scale-95"
-                aria-label="Next gallery photo"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-
-              {/* Slide Indicators */}
-              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 flex items-center gap-1.5 bg-stone-950/70 backdrop-blur-xs px-2.5 py-1.5 rounded-full border border-stone-800">
-                {GALLERY_SLIDES.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveSlide(i)}
-                    className={`h-2 rounded-full transition-all ${
-                      i === activeSlide ? 'w-5 sm:w-6 bg-amber-400' : 'w-2 bg-stone-600'
-                    }`}
-                    aria-label={`Slide ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Ceremony Roasting & Event Services Panel (5 cols on Tablet & Desktop) */}
-            <div className="p-5 sm:p-7 md:p-6 lg:p-10 md:col-span-5 space-y-4 sm:space-y-6">
-              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400">
-                <PartyPopper className="w-4 h-4" />
-                <span>Special Ceremonies & Catering</span>
-              </div>
-
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-display text-white leading-tight">
-                Fresh Meat for Weddings, Holidays & Live Roasting Services
-              </h3>
-
-              <p className="text-stone-300 text-xs sm:text-sm leading-relaxed">
-                Planning an Ethiopian wedding, christening, holiday banquet (Meskel, Genna, Fasika, Eid), or family memorial? 
-                We supply whole and half grass-fed sheep, goats, and oxen custom-slaughtered to your event specifications.
-              </p>
-
-              <div className="space-y-2.5 sm:space-y-3 pt-1">
-                <div className="flex items-start gap-2.5 text-xs text-stone-200 bg-stone-900/90 p-3 rounded-xl border border-stone-800">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-white block font-semibold">Live Roasting Service (የጥብስ ዝግጅት):</strong>
-                    <span>We roast tender marinated grass-fed meat on-demand for special events and cultural celebrations.</span>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-2.5 text-xs text-stone-200 bg-stone-900/90 p-3 rounded-xl border border-stone-800">
-                  <Truck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-white block font-semibold">Direct Venue Delivery via Our Van:</strong>
-                    <span>Chilled delivery directly to your home, church hall, reception center, or restaurant in Las Vegas.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
-                <a
-                  href={STORE_INFO.phoneClean}
-                  className="inline-flex min-h-[44px] items-center justify-center gap-2 px-5 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 active:scale-[0.98] text-stone-950 font-bold text-xs transition-all"
-                >
-                  <Phone className="w-4 h-4 text-stone-900" />
-                  <span>Call Butchery Desk: {STORE_INFO.phone}</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={onOpenVendorModal}
-                  className="inline-flex min-h-[44px] items-center justify-center gap-2 px-5 py-3 rounded-xl border border-stone-700 hover:bg-stone-800 active:scale-[0.98] text-stone-200 font-semibold text-xs transition-all"
-                >
-                  Book Ceremony Meat Supply
-                </button>
-              </div>
-
-              <p className="text-[11px] text-stone-400">
-                * Note: WhatsApp photos & video updates from the butchery floor can be provided upon request.
-              </p>
-            </div>
-
           </div>
         </div>
 

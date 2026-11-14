@@ -1,64 +1,65 @@
-import { Clock, Phone, MessageCircle } from 'lucide-react';
+import { Clock, Phone, MessageCircle, MapPin } from 'lucide-react';
 import { STORE_INFO } from '../data/marketData.js';
+
+const Dot = () => <span aria-hidden="true" className="h-1 w-1 rotate-45 bg-gold-500/70" />;
 
 export const AnnouncementBar = () => {
   return (
-    <div className="w-full border-b border-stone-800 bg-stone-950 text-stone-200">
-      {/* Mobile: clean single-line bar with phone & WhatsApp */}
-      <div className="mx-auto max-w-7xl px-4 py-2 text-[11px] sm:hidden flex items-center justify-between gap-2 whitespace-nowrap overflow-x-auto scrollbar-none">
-        <div className="flex items-center gap-1.5 text-amber-400 font-medium">
-          <Clock className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          <span>Daily 10 AM – 12 AM</span>
-        </div>
-        <div className="flex items-center gap-2.5 text-stone-300">
-          <a href={STORE_INFO.phoneClean} className="font-semibold text-white flex items-center gap-1">
-            <Phone className="h-3 w-3 text-amber-400" />
-            <span>(702) 240-8222</span>
+    <div className="theme-dark w-full bg-forest-950 text-[12.5px] text-body">
+      {/* Mobile: one clean line — hours + call + WhatsApp */}
+      <div className="container-x flex h-9 items-center justify-between gap-3 sm:hidden">
+        <span className="flex items-center gap-1.5 font-semibold text-accent">
+          <Clock className="h-3.5 w-3.5" aria-hidden />
+          Daily 10 AM – 12 AM
+        </span>
+        <div className="flex items-center gap-3">
+          <a href={STORE_INFO.phoneClean} className="flex items-center gap-1 font-semibold text-ink">
+            <Phone className="h-3 w-3 text-accent" aria-hidden />
+            (702) 240-8222
           </a>
-          <span className="text-stone-600">·</span>
           <a
             href={STORE_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-emerald-400 font-semibold flex items-center gap-1"
+            className="flex items-center gap-1 font-semibold text-accent"
           >
-            <MessageCircle className="h-3 w-3" />
-            <span>WhatsApp</span>
+            <MessageCircle className="h-3 w-3" aria-hidden />
+            WhatsApp
           </a>
         </div>
       </div>
 
-      {/* Desktop & Tablet: Strictly ONE Clean Line */}
-      <div className="mx-auto hidden max-w-7xl items-center justify-between px-4 py-2 text-xs sm:flex sm:px-6 lg:px-8 whitespace-nowrap overflow-x-auto scrollbar-none">
-        <div className="flex items-center gap-2 text-stone-300">
-          <span className="font-medium text-stone-200">{STORE_INFO.address}, Las Vegas NV 89103</span>
-          <span aria-hidden="true" className="text-stone-600">·</span>
-          <span className="font-bold text-amber-400 flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5" />
-            <span>Open Daily 10:00 AM – 12:00 AM (Midnight)</span>
+      {/* Tablet & desktop: one line */}
+      <div className="container-x hidden h-10 items-center justify-between gap-6 whitespace-nowrap sm:flex">
+        <div className="flex items-center gap-4">
+          <span className="flex items-center gap-1.5">
+            <MapPin className="h-3.5 w-3.5 text-accent" aria-hidden />
+            {STORE_INFO.address}, Las Vegas NV 89103
+          </span>
+          <Dot />
+          <span className="flex items-center gap-1.5 font-semibold text-accent">
+            <Clock className="h-3.5 w-3.5" aria-hidden />
+            Open Daily 10:00 AM – 12:00 AM (Midnight)
           </span>
         </div>
 
-        <div className="flex items-center gap-3 text-stone-300">
-          <a
-            href={STORE_INFO.phoneClean}
-            className="font-medium text-stone-200 hover:text-amber-400 transition-colors"
-          >
-            Phone: {STORE_INFO.phone}
+        <div className="flex items-center gap-4">
+          <a href={STORE_INFO.phoneClean} className="transition-colors hover:text-ink">
+            Phone: <span className="font-semibold text-ink">{STORE_INFO.phone}</span>
           </a>
-          <span aria-hidden="true" className="text-stone-600">·</span>
+          <Dot />
           <a
             href={STORE_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-medium text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+            className="flex items-center gap-1.5 font-semibold text-accent transition-colors hover:text-gold-300"
           >
-            <MessageCircle className="w-3.5 h-3.5" />
-            <span>WhatsApp</span>
+            <MessageCircle className="h-3.5 w-3.5" aria-hidden />
+            WhatsApp
           </a>
-          <span aria-hidden="true" className="text-stone-600">·</span>
-          <span className="text-purple-300 font-mono font-medium">
-            Zelle: {STORE_INFO.zelleNumber}
+          <Dot />
+          <span className="hidden md:inline">
+            Zelle: <span className="font-semibold text-ink tabular-nums">{STORE_INFO.zelleNumber}</span>
           </span>
         </div>
       </div>

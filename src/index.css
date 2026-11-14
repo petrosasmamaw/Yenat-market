@@ -1,68 +1,312 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   YENAT MARKET — Design System
+   --------------------------------------------------------------------------
+   Brand  : Ethiopian flag palette from the logo → GREEN · GOLD · RED
+   Type   : Fraunces (display serif, italic accents) · Manrope (UI/body)
+            Noto Sans/Serif Ethiopic → proper Amharic glyphs (የእናት ገበያ)
+   Motif  : Tibeb — the woven border of a habesha kemis — used as dividers
+   Rules  : no paper-white, no black text. Two surfaces only:
+            .theme-dark  → deep forest green  (default)
+            .theme-light → warm teff cream
+   ========================================================================== */
+
 @theme {
-  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-  --font-display: "Outfit", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-sans: "Figtree", "Noto Sans Ethiopic", system-ui, sans-serif;
+  --font-display: "Figtree", "Noto Sans Ethiopic", system-ui, sans-serif; /* medium headings */
+  --font-serif: "Fraunces", "Noto Serif Ethiopic", Georgia, serif;          /* big headlines only */
+  --font-ethiopic: "Noto Sans Ethiopic", "Figtree", sans-serif;
+
+  /* Static brand colours (same on every surface) */
+  --color-forest-950: #04170D;
+  --color-forest-900: #0A2E1D;
+  --color-forest-800: #0F3A26;
+  --color-forest-700: #154A31;
+  --color-forest-600: #1C5E3E;
+  --color-forest-500: #0B6B3A;   /* logo cart green */
+  --color-gold-200: #F9E3A6;
+  --color-gold-300: #F3CB5E;
+  --color-gold-400: #EDB12F;
+  --color-gold-500: #D99A06;     /* logo "YENAT" gold */
+  --color-gold-700: #8A5A00;
+  --color-berbere-300: #FF8A7E;
+  --color-berbere-500: #E0313A;
+  --color-berbere-600: #C8102E;  /* logo "MARKET" red */
+  --color-berbere-700: #9E0C24;
+  --color-teff-50: #FBF4E2;
+  --color-teff-100: #F4EAD3;
+  --color-teff-200: #EADCBC;
+  --color-teff-300: #DCCBA4;
+}
+
+/* Semantic colours — resolve per surface (theme-dark / theme-light) */
+@theme inline {
+  --color-canvas: var(--s-canvas);
+  --color-panel: var(--s-panel);
+  --color-panel-2: var(--s-panel-2);
+  --color-line: var(--s-line);
+  --color-ink: var(--s-ink);
+  --color-body: var(--s-body);
+  --color-muted: var(--s-muted);
+  --color-accent: var(--s-accent);
+  --color-spice: var(--s-spice);
+}
+
+:root,
+.theme-dark {
+  --s-canvas: #0A2E1D;
+  --s-panel: #0F3A26;
+  --s-panel-2: #133F2A;
+  --s-line: rgb(243 203 94 / 0.16);
+  --s-ink: #F8EED3;      /* headings  — 14:1 */
+  --s-body: #E2D6B4;     /* body copy — 11:1 */
+  --s-muted: #AFA684;    /* meta      — 6.5:1 */
+  --s-accent: #EDB12F;   /* gold */
+  --s-spice: #FF8A7E;    /* light berbere */
+  --btn-bg: #EDB12F;
+  --btn-fg: #04170D;
+  --btn-hover: #F3CB5E;
+  color: var(--s-body);
+}
+
+.theme-light {
+  --s-canvas: #F4EAD3;
+  --s-panel: #FBF4E2;
+  --s-panel-2: #EFE2C4;
+  --s-line: #DCCBA4;
+  --s-ink: #0B3D26;      /* deep green headings — 10:1 */
+  --s-body: #2B4636;     /* green-grey body     — 8.5:1 */
+  --s-muted: #5E6C58;    /* meta                — 4.9:1 */
+  --s-accent: #8A5A00;   /* honey gold text     — 5.4:1 */
+  --s-spice: #B3122C;    /* berbere red         — 6.3:1 */
+  --btn-bg: #0B5D35;
+  --btn-fg: #FBF4E2;
+  --btn-hover: #0F6E40;
+  color: var(--s-body);
 }
 
 @layer base {
-  html,
-  body {
-    @apply overflow-x-hidden;
-  }
-
   html {
-    @apply scroll-smooth font-sans;
+    @apply scroll-smooth bg-forest-950;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  html, body { @apply overflow-x-hidden; }
+  body { @apply font-sans antialiased; }
+  ::selection { background: #F3CB5E; color: #04170D; }
+
+  h1, h2, h3, h4 { text-wrap: balance; }
+  .font-serif { font-variation-settings: "WONK" 0, "SOFT" 30; }
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 2px solid #EDB12F;
+    outline-offset: 3px;
+    border-radius: 6px;
   }
 
-  ::-webkit-scrollbar {
-    @apply w-2 h-2;
+  ::-webkit-scrollbar { width: 10px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #04170D; }
+  ::-webkit-scrollbar-thumb { background: #1C5E3E; border-radius: 99px; border: 2px solid #04170D; }
+  ::-webkit-scrollbar-thumb:hover { background: #D99A06; }
+}
+
+@layer components {
+  /* ---------- Section rhythm ---------- */
+  .section { @apply py-20 sm:py-24 lg:py-28; }
+  .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+
+  /* ---------- Typography ---------- */
+  /* Section label — friendly sentence case, not spaced-out capitals */
+  .eyebrow {
+    @apply inline-flex flex-wrap items-center gap-x-2 gap-y-1 whitespace-nowrap text-[14px] font-semibold tracking-[0.005em] text-spice;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 6px; height: 6px;
+    background: currentColor;
+    transform: rotate(45deg);
+    flex: none;
+  }
+  .eyebrow .num { @apply text-[13px] font-bold tabular-nums text-accent; }
+
+  /* Fraunces (serif) is reserved for the two big headline sizes only */
+  .h-display {
+    @apply font-serif font-semibold text-ink tracking-[-0.02em];
+    font-size: clamp(2.6rem, 6vw, 4.6rem);
+    line-height: 1.02;
+    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+  }
+  .h-section {
+    @apply font-serif font-semibold text-ink tracking-[-0.015em];
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
+    line-height: 1.06;
+    font-variation-settings: "opsz" 120, "SOFT" 40, "WONK" 0;
+  }
+  /* Card / medium titles — Figtree, warm and friendly */
+  .h-card {
+    @apply font-display font-bold text-ink tracking-[-0.01em];
+    font-size: 1.2rem;
+    line-height: 1.25;
+  }
+  /* italic accent word inside big serif headings */
+  .accent-italic {
+    @apply font-serif italic font-medium text-spice;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 0;
+  }
+  .accent-gold { @apply font-serif italic font-medium text-accent; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 0; }
+
+  .lead { @apply text-[1.0625rem] sm:text-lg leading-[1.65] text-body; }
+  .amharic { font-family: var(--font-ethiopic); letter-spacing: 0; text-transform: none; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-center text-[15px] font-bold leading-tight transition-all duration-200 active:scale-[0.98] sm:whitespace-nowrap;
+  }
+  .btn-sm { @apply min-h-10 px-4 text-[13px]; }
+  .btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+  .btn-primary:hover { background: var(--btn-hover); transform: translateY(-1px); }
+  .btn-gold { background: #EDB12F; color: #04170D; }
+  .btn-gold:hover { background: #F3CB5E; transform: translateY(-1px); }
+  .btn-red { background: #C8102E; color: #FBF4E2; }
+  .btn-red:hover { background: #E0313A; transform: translateY(-1px); }
+  .btn-ghost { @apply border border-line text-ink; }
+  .btn-ghost:hover { @apply border-accent; transform: translateY(-1px); }
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 font-bold text-ink underline decoration-accent/50 decoration-2 underline-offset-[6px] transition-colors hover:decoration-accent;
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-[#FAF7F2];
+  /* ---------- Surfaces ---------- */
+  .card {
+    @apply rounded-[20px] border border-line bg-panel transition-all duration-300;
   }
-
-  ::-webkit-scrollbar-thumb {
-    @apply rounded bg-stone-300;
+  .card-hover:hover { @apply -translate-y-1 border-accent/60; box-shadow: 0 24px 48px -28px rgb(4 23 13 / 0.45); }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-[12px] font-semibold text-body;
   }
+  .rule { @apply h-px w-full bg-line; }
 
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-stone-400;
+  /* Light canvas has a faint teff-grain texture so it never reads as flat paper */
+  .theme-light.grain, .grain {
+    background-color: var(--s-canvas);
+    background-image:
+      radial-gradient(rgb(138 90 0 / 0.06) 1px, transparent 1.2px),
+      radial-gradient(rgb(11 107 58 / 0.04) 1px, transparent 1.2px);
+    background-size: 22px 22px, 31px 31px;
+    background-position: 0 0, 11px 7px;
+  }
+  .forest-glow {
+    background:
+      radial-gradient(70% 60% at 15% 0%, rgb(28 94 62 / 0.55), transparent 70%),
+      radial-gradient(50% 50% at 100% 100%, rgb(200 16 46 / 0.10), transparent 70%),
+      #0A2E1D;
+  }
+  .forest-deep {
+    background:
+      radial-gradient(60% 50% at 85% 0%, rgb(237 177 47 / 0.08), transparent 70%),
+      #04170D;
   }
 }
 
-@keyframes cardFadeSlide {
-  0% {
-    opacity: 0;
-    transform: translateY(6px) scale(0.98);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+/* --------------------------------------------------------------------------
+   TIBEB / ጥልፍ — habesha kemis embroidery border
+   Double gold rules · Meskel cross (red + gold) · interlaced lozenge chain
+   (gold + red thread) · green diamond joints. One tile, two sizes.
+   -------------------------------------------------------------------------- */
+.tibeb, .tibeb-thin {
+  background-color: #0A2E1D;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='24' viewBox='0 0 64 24'%3E%3Crect width='64' height='24' fill='%230A2E1D'/%3E%3Crect y='1' width='64' height='1' fill='%23D99A06'/%3E%3Crect y='3.4' width='64' height='0.5' fill='%23D99A06' opacity='0.55'/%3E%3Crect y='22' width='64' height='1' fill='%23D99A06'/%3E%3Crect y='20.1' width='64' height='0.5' fill='%23D99A06' opacity='0.55'/%3E%3Cg fill='none' stroke-linejoin='round'%3E%3Cpath d='M6 12 L9 9.6 L12 12 L15 9.6 L18 12 L21 9.6 L23.5 11.6' stroke='%23EDB12F' stroke-width='0.75'/%3E%3Cpath d='M6 12 L9 14.4 L12 12 L15 14.4 L18 12 L21 14.4 L23.5 12.4' stroke='%23E0313A' stroke-width='0.75'/%3E%3Cpath d='M40.5 11.6 L43 9.6 L46 12 L49 9.6 L52 12 L55 9.6 L58 12' stroke='%23EDB12F' stroke-width='0.75'/%3E%3Cpath d='M40.5 12.4 L43 14.4 L46 12 L49 14.4 L52 12 L55 14.4 L58 12' stroke='%23E0313A' stroke-width='0.75'/%3E%3C/g%3E%3Cg fill='%23F3CB5E'%3E%3Ccircle cx='12' cy='12' r='0.7'/%3E%3Ccircle cx='18' cy='12' r='0.7'/%3E%3Ccircle cx='46' cy='12' r='0.7'/%3E%3Ccircle cx='52' cy='12' r='0.7'/%3E%3C/g%3E%3Cg transform='translate(32 12)'%3E%3Cpath d='M0 -7.2 L1.6 -5.6 L0 -4 L-1.6 -5.6Z M7.2 0 L5.6 1.6 L4 0 L5.6 -1.6Z M0 7.2 L-1.6 5.6 L0 4 L1.6 5.6Z M-7.2 0 L-5.6 -1.6 L-4 0 L-5.6 1.6Z' fill='%23EDB12F'/%3E%3Cpath d='M0 -4 V4 M-4 0 H4' stroke='%23EDB12F' stroke-width='0.9'/%3E%3Cpath d='M0 -3 L3 0 L0 3 L-3 0Z' fill='%23C8102E' stroke='%23F3CB5E' stroke-width='0.6'/%3E%3Ccircle r='0.8' fill='%23F3CB5E'/%3E%3Cg fill='%23EDB12F'%3E%3Ccircle cx='-3.4' cy='-3.4' r='0.55'/%3E%3Ccircle cx='3.4' cy='-3.4' r='0.55'/%3E%3Ccircle cx='3.4' cy='3.4' r='0.55'/%3E%3Ccircle cx='-3.4' cy='3.4' r='0.55'/%3E%3C/g%3E%3C/g%3E%3Cpath d='M0 7.5 L4.5 12 L0 16.5Z' fill='%230B6B3A' stroke='%23EDB12F' stroke-width='0.6'/%3E%3Cpath d='M64 7.5 L59.5 12 L64 16.5Z' fill='%230B6B3A' stroke='%23EDB12F' stroke-width='0.6'/%3E%3Ccircle cx='0' cy='12' r='0.9' fill='%23F3CB5E'/%3E%3Ccircle cx='64' cy='12' r='0.9' fill='%23F3CB5E'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.tibeb { height: 28px; background-size: auto 28px; }
+.tibeb-thin { height: 14px; background-size: auto 14px; }
+
+/* --------------------------------------------------------------------------
+   Liquid logo plate — cream blob, morphing, with a rotating flag-colour rim
+   -------------------------------------------------------------------------- */
+@property --liquid-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes liquidMorph {
+  0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
+  25%      { border-radius: 58% 42% 38% 62% / 55% 38% 62% 45%; }
+  50%      { border-radius: 38% 62% 56% 44% / 62% 57% 43% 38%; }
+  75%      { border-radius: 61% 39% 45% 55% / 40% 62% 38% 60%; }
+}
+@keyframes liquidSpin { to { --liquid-angle: 360deg; } }
+.liquid-logo {
+  position: relative;
+  isolation: isolate;
+  padding: 3px;
+  background: conic-gradient(from var(--liquid-angle), #0B6B3A, #EDB12F, #C8102E, #EDB12F, #0B6B3A);
+  animation: liquidMorph 10s ease-in-out infinite, liquidSpin 7s linear infinite;
+  box-shadow: 0 30px 60px -25px rgb(0 0 0 / 0.65), 0 0 70px -20px rgb(237 177 47 / 0.35);
+}
+.liquid-logo > .liquid-inner {
+  border-radius: inherit;
+  background: radial-gradient(120% 120% at 30% 20%, #FFFBEF 0%, #FBF0D2 60%, #F2DFA8 100%);
+  box-shadow: inset 0 -10px 30px rgb(138 90 0 / 0.16), inset 0 6px 16px rgb(255 255 255 / 0.85);
+}
+.logo-chip {
+  background: linear-gradient(#FFFBEF, #FBF0D2) padding-box,
+              conic-gradient(from var(--liquid-angle), #0B6B3A, #EDB12F, #C8102E, #EDB12F, #0B6B3A) border-box;
+  border: 2px solid transparent;
+  animation: liquidSpin 7s linear infinite;
 }
 
-.animate-card-switch {
-  animation: cardFadeSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+/* --------------------------------------------------------------------------
+   Hero photo masks — the photo itself fades into the canvas (no seams)
+   -------------------------------------------------------------------------- */
+.hero-photo-mask {
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.35) 14%, rgb(0 0 0 / 0.85) 28%, #000 40%),
+    linear-gradient(to top, transparent 0%, #000 20%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.35) 14%, rgb(0 0 0 / 0.85) 28%, #000 40%),
+    linear-gradient(to top, transparent 0%, #000 20%);
+  mask-composite: intersect;
+}
+.hero-photo-mask-mobile {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 82%, transparent 100%);
 }
 
-/* Hero entrance + slow photo drift */
-@keyframes heroRise {
-  from { opacity: 0; transform: translateY(14px); }
+/* --------------------------------------------------------------------------
+   Motion
+   -------------------------------------------------------------------------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.hero-rise {
-  opacity: 0;
-  animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.hero-rise { opacity: 0; animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes kenBurns { from { transform: scale(1.07); } to { transform: scale(1); } }
+.hero-kenburns { animation: kenBurns 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes cardFadeSlide {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
-@keyframes heroKenBurns {
-  from { transform: scale(1.06); }
-  to { transform: scale(1); }
-}
-.hero-kenburns {
-  animation: heroKenBurns 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
+.animate-card-switch { animation: cardFadeSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-in { animation: fadeIn 0.25s ease-out forwards; }
+
+@keyframes slideProgress { from { width: 0%; } to { width: 100%; } }
+.slide-progress { width: 0%; animation-name: slideProgress; animation-timing-function: linear; animation-fill-mode: forwards; }
+
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 38s linear infinite; }
+
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-rise, .hero-kenburns { animation: none; opacity: 1; transform: none; }
+  .hero-rise, .hero-kenburns, .animate-card-switch { animation: none; opacity: 1; transform: none; }
+  .liquid-logo, .logo-chip, .marquee-track { animation: none; }
 }
