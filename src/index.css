@@ -1,312 +1,431 @@
 @import "tailwindcss";
+@import "./tibeb.css";
 
 /* ==========================================================================
-   YENAT MARKET — Design System
+   YENAT MARKET — Design System v2
    --------------------------------------------------------------------------
-   Brand  : Ethiopian flag palette from the logo → GREEN · GOLD · RED
-   Type   : Fraunces (display serif, italic accents) · Manrope (UI/body)
-            Noto Sans/Serif Ethiopic → proper Amharic glyphs (የእናት ገበያ)
-   Motif  : Tibeb — the woven border of a habesha kemis — used as dividers
-   Rules  : no paper-white, no black text. Two surfaces only:
-            .theme-dark  → deep forest green  (default)
-            .theme-light → warm teff cream
+   Colour logic comes straight from the logo:
+     GREEN  (the cart)            → the ground. Every surface is a green.
+     GOLD   ("YENAT")             → the voice. Headline accents, primary actions.
+     RED    ("— MARKET —")        → the accent. Labels, badges, WhatsApp. Never body text.
+   Roughly 60 / 30 / 10. No white, no cream paper — text is warm ivory only.
+
+   Surfaces (set with a theme class, everything inside re-tints itself):
+     .theme-dark  → deep forest     (default)
+     .theme-moss  → lifted emerald  (alternating sections)
+     .theme-gold  → solid gold band (statement moments)
+     .theme-red   → solid berbere   (one loud call-to-action)
+
+   Type: Outfit (display — geometric, echoes the logo lettering)
+         Figtree (UI / body) · Fraunces italic (accent words only)
+         Noto Sans/Serif Ethiopic for Amharic.
+   Motif: Tibeb — the woven border of a habesha kemis — used as dividers.
    ========================================================================== */
 
 @theme {
   --font-sans: "Figtree", "Noto Sans Ethiopic", system-ui, sans-serif;
-  --font-display: "Figtree", "Noto Sans Ethiopic", system-ui, sans-serif; /* medium headings */
-  --font-serif: "Fraunces", "Noto Serif Ethiopic", Georgia, serif;          /* big headlines only */
+  --font-display: "Outfit", "Noto Sans Ethiopic", system-ui, sans-serif;
+  --font-serif: "Fraunces", "Noto Serif Ethiopic", Georgia, serif;
   --font-ethiopic: "Noto Sans Ethiopic", "Figtree", sans-serif;
 
-  /* Static brand colours (same on every surface) */
-  --color-forest-950: #04170D;
-  --color-forest-900: #0A2E1D;
-  --color-forest-800: #0F3A26;
-  --color-forest-700: #154A31;
-  --color-forest-600: #1C5E3E;
-  --color-forest-500: #0B6B3A;   /* logo cart green */
+  /* GREEN — logo cart */
+  --color-forest-950: #04140C;
+  --color-forest-900: #082618;
+  --color-forest-850: #0B2F1E;
+  --color-forest-800: #0E3D28;
+  --color-forest-700: #134B31;
+  --color-forest-600: #1A5F3F;
+  --color-forest-500: #0B6B3A;   /* logo green */
+  --color-forest-400: #2C9A5F;
+  --color-forest-300: #58C98B;   /* leaf — "fresh" signals on dark */
+  --color-forest-200: #A5E3BF;
+
+  /* GOLD — logo "YENAT" */
+  --color-gold-100: #FCF1CF;
   --color-gold-200: #F9E3A6;
   --color-gold-300: #F3CB5E;
   --color-gold-400: #EDB12F;
-  --color-gold-500: #D99A06;     /* logo "YENAT" gold */
+  --color-gold-500: #D99A06;     /* logo gold */
+  --color-gold-600: #B97F04;
   --color-gold-700: #8A5A00;
+
+  /* RED — logo "MARKET" */
   --color-berbere-300: #FF8A7E;
+  --color-berbere-400: #F04856;
   --color-berbere-500: #E0313A;
-  --color-berbere-600: #C8102E;  /* logo "MARKET" red */
+  --color-berbere-600: #C8102E;  /* logo red */
   --color-berbere-700: #9E0C24;
-  --color-teff-50: #FBF4E2;
-  --color-teff-100: #F4EAD3;
-  --color-teff-200: #EADCBC;
-  --color-teff-300: #DCCBA4;
+  --color-berbere-800: #6E0A1B;
+  --color-berbere-900: #430812;
+
+  /* Warm ivory — TEXT ONLY, never a background */
+  --color-teff-50: #F8F0DA;
+  --color-teff-100: #EFE5C8;
 }
 
-/* Semantic colours — resolve per surface (theme-dark / theme-light) */
+/* Semantic colours — resolve per surface */
 @theme inline {
   --color-canvas: var(--s-canvas);
   --color-panel: var(--s-panel);
   --color-panel-2: var(--s-panel-2);
   --color-line: var(--s-line);
+  --color-line-strong: var(--s-line-strong);
   --color-ink: var(--s-ink);
   --color-body: var(--s-body);
   --color-muted: var(--s-muted);
   --color-accent: var(--s-accent);
   --color-spice: var(--s-spice);
+  --color-fresh: var(--s-fresh);
 }
 
 :root,
 .theme-dark {
-  --s-canvas: #0A2E1D;
-  --s-panel: #0F3A26;
-  --s-panel-2: #133F2A;
-  --s-line: rgb(243 203 94 / 0.16);
-  --s-ink: #F8EED3;      /* headings  — 14:1 */
-  --s-body: #E2D6B4;     /* body copy — 11:1 */
-  --s-muted: #AFA684;    /* meta      — 6.5:1 */
+  --s-canvas: #082618;
+  --s-panel: #0C3220;
+  --s-panel-2: #113E29;
+  --s-line: rgb(243 203 94 / 0.14);
+  --s-line-strong: rgb(243 203 94 / 0.34);
+  --s-ink: #F8F0DA;      /* headings  — 14.5:1 */
+  --s-body: #D8D1B5;     /* body copy — 10.6:1 */
+  --s-muted: #9DA78C;    /* meta      —  6.3:1 */
   --s-accent: #EDB12F;   /* gold */
-  --s-spice: #FF8A7E;    /* light berbere */
+  --s-spice: #FF8A7E;    /* light berbere (small labels only) */
+  --s-fresh: #6FD79C;    /* leaf green */
   --btn-bg: #EDB12F;
-  --btn-fg: #04170D;
+  --btn-fg: #04140C;
   --btn-hover: #F3CB5E;
   color: var(--s-body);
 }
 
-.theme-light {
-  --s-canvas: #F4EAD3;
-  --s-panel: #FBF4E2;
-  --s-panel-2: #EFE2C4;
-  --s-line: #DCCBA4;
-  --s-ink: #0B3D26;      /* deep green headings — 10:1 */
-  --s-body: #2B4636;     /* green-grey body     — 8.5:1 */
-  --s-muted: #5E6C58;    /* meta                — 4.9:1 */
-  --s-accent: #8A5A00;   /* honey gold text     — 5.4:1 */
-  --s-spice: #B3122C;    /* berbere red         — 6.3:1 */
-  --btn-bg: #0B5D35;
-  --btn-fg: #FBF4E2;
-  --btn-hover: #0F6E40;
+.theme-moss {
+  --s-canvas: #0E3D28;
+  --s-panel: #092B1B;     /* cards sit *into* the surface */
+  --s-panel-2: #072114;
+  --s-line: rgb(243 203 94 / 0.16);
+  --s-line-strong: rgb(243 203 94 / 0.36);
+  --s-ink: #F8F0DA;      /* 11.3:1 */
+  --s-body: #DDD6BA;     /*  8.6:1 */
+  --s-muted: #A9B398;    /*  5.6:1 */
+  --s-accent: #F0B93A;
+  --s-spice: #FF9A8F;
+  --s-fresh: #7BDDA5;
+  --btn-bg: #EDB12F;
+  --btn-fg: #04140C;
+  --btn-hover: #F3CB5E;
+  color: var(--s-body);
+}
+
+.theme-gold {
+  --s-canvas: #EDB12F;
+  --s-panel: #F3C552;
+  --s-panel-2: #DFA21E;
+  --s-line: rgb(4 20 12 / 0.16);
+  --s-line-strong: rgb(4 20 12 / 0.4);
+  --s-ink: #04140C;      /* 9.6:1 */
+  --s-body: #1B2A14;     /* 7.6:1 */
+  --s-muted: #453C0C;    /* 5.4:1 */
+  --s-accent: #0A5230;   /* logo green becomes the accent on gold */
+  --s-spice: #9E0C24;
+  --s-fresh: #0A5230;
+  --btn-bg: #04140C;
+  --btn-fg: #F3CB5E;
+  --btn-hover: #0E3D28;
+  color: var(--s-body);
+}
+
+.theme-red {
+  --s-canvas: #9E0C24;
+  --s-panel: #B1102B;
+  --s-panel-2: #860A1E;
+  --s-line: rgb(249 227 166 / 0.22);
+  --s-line-strong: rgb(249 227 166 / 0.5);
+  --s-ink: #FFF5DC;      /* 7.9:1 */
+  --s-body: #FBE3D2;     /* 6.7:1 */
+  --s-muted: #F2C0B4;    /* 5.0:1 */
+  --s-accent: #F3CB5E;
+  --s-spice: #F9E3A6;
+  --s-fresh: #F9E3A6;
+  --btn-bg: #EDB12F;
+  --btn-fg: #04140C;
+  --btn-hover: #F9E3A6;
   color: var(--s-body);
 }
 
 @layer base {
   html {
     @apply scroll-smooth bg-forest-950;
+    scroll-padding-top: 5.5rem;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
   }
   html, body { @apply overflow-x-hidden; }
   body { @apply font-sans antialiased; }
-  ::selection { background: #F3CB5E; color: #04170D; }
+  ::selection { background: #EDB12F; color: #04140C; }
 
   h1, h2, h3, h4 { text-wrap: balance; }
-  .font-serif { font-variation-settings: "WONK" 0, "SOFT" 30; }
   p { text-wrap: pretty; }
+  .font-serif { font-variation-settings: "WONK" 0, "SOFT" 30; }
 
   :focus-visible {
-    outline: 2px solid #EDB12F;
+    outline: 2px solid #F3CB5E;
     outline-offset: 3px;
-    border-radius: 6px;
+    border-radius: 8px;
   }
 
   ::-webkit-scrollbar { width: 10px; height: 8px; }
-  ::-webkit-scrollbar-track { background: #04170D; }
-  ::-webkit-scrollbar-thumb { background: #1C5E3E; border-radius: 99px; border: 2px solid #04170D; }
+  ::-webkit-scrollbar-track { background: #04140C; }
+  ::-webkit-scrollbar-thumb { background: #1A5F3F; border-radius: 99px; border: 2px solid #04140C; }
   ::-webkit-scrollbar-thumb:hover { background: #D99A06; }
 }
 
 @layer components {
   /* ---------- Section rhythm ---------- */
-  .section { @apply py-20 sm:py-24 lg:py-28; }
+  .section { @apply py-16 sm:py-24 lg:py-28; }
   .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
 
   /* ---------- Typography ---------- */
-  /* Section label — friendly sentence case, not spaced-out capitals */
+  /* Section label — mirrors the logo's "— MARKET —": a red rule + spaced capitals */
   .eyebrow {
-    @apply inline-flex flex-wrap items-center gap-x-2 gap-y-1 whitespace-nowrap text-[14px] font-semibold tracking-[0.005em] text-spice;
+    @apply inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 font-display text-[12px] font-semibold uppercase leading-snug tracking-[0.16em] text-accent;
   }
   .eyebrow::before {
     content: "";
-    width: 6px; height: 6px;
-    background: currentColor;
-    transform: rotate(45deg);
+    width: 26px; height: 2px;
+    border-radius: 2px;
+    background: #E0313A;
     flex: none;
   }
-  .eyebrow .num { @apply text-[13px] font-bold tabular-nums text-accent; }
+  .theme-gold .eyebrow::before { background: #9E0C24; }
+  .theme-red .eyebrow::before { background: #F3CB5E; }
+  .eyebrow.justify-center::after {
+    content: "";
+    width: 26px; height: 2px;
+    border-radius: 2px;
+    background: #E0313A;
+    flex: none;
+  }
+  /* centred labels wrap on phones — drop the side rules there so they never dangle */
+  @media (max-width: 639px) {
+    .eyebrow.justify-center { @apply justify-center tracking-[0.12em]; }
+    .eyebrow.justify-center::before, .eyebrow.justify-center::after { display: none; }
+  }
+  .eyebrow .num { @apply font-bold tabular-nums text-ink; }
+  .eyebrow .amharic { @apply text-[13px] font-semibold; }
 
-  /* Fraunces (serif) is reserved for the two big headline sizes only */
   .h-display {
-    @apply font-serif font-semibold text-ink tracking-[-0.02em];
-    font-size: clamp(2.6rem, 6vw, 4.6rem);
-    line-height: 1.02;
-    font-variation-settings: "opsz" 144, "SOFT" 50, "WONK" 0;
+    @apply font-display font-bold text-ink;
+    font-size: clamp(2.5rem, 5.4vw, 4.5rem);
+    line-height: 1.03;
+    letter-spacing: -0.025em;
   }
   .h-section {
-    @apply font-serif font-semibold text-ink tracking-[-0.015em];
-    font-size: clamp(2rem, 4.2vw, 3.25rem);
-    line-height: 1.06;
-    font-variation-settings: "opsz" 120, "SOFT" 40, "WONK" 0;
+    @apply font-display font-bold text-ink;
+    font-size: clamp(1.85rem, 3.7vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
   }
-  /* Card / medium titles — Figtree, warm and friendly */
+  .h-sub {
+    @apply font-display font-semibold text-ink;
+    font-size: clamp(1.35rem, 2.1vw, 1.7rem);
+    line-height: 1.16;
+    letter-spacing: -0.018em;
+  }
   .h-card {
-    @apply font-display font-bold text-ink tracking-[-0.01em];
+    @apply font-display font-semibold text-ink;
     font-size: 1.2rem;
-    line-height: 1.25;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
   }
-  /* italic accent word inside big serif headings */
-  .accent-italic {
-    @apply font-serif italic font-medium text-spice;
+  /* italic serif accent inside a sans headline — the one place Fraunces appears */
+  .accent-italic,
+  .accent-gold {
+    @apply font-serif italic font-medium text-accent;
+    letter-spacing: -0.015em;
     font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 0;
   }
-  .accent-gold { @apply font-serif italic font-medium text-accent; font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 0; }
 
-  .lead { @apply text-[1.0625rem] sm:text-lg leading-[1.65] text-body; }
+  .lead { @apply text-[1.0625rem] leading-[1.7] text-body sm:text-[1.125rem]; }
   .amharic { font-family: var(--font-ethiopic); letter-spacing: 0; text-transform: none; }
+  .meta { @apply text-[13px] leading-snug text-muted; }
 
   /* ---------- Buttons ---------- */
   .btn {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-center text-[15px] font-bold leading-tight transition-all duration-200 active:scale-[0.98] sm:whitespace-nowrap;
+    @apply relative inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-center text-[15px] font-bold leading-tight sm:whitespace-nowrap;
+    text-wrap: balance;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, border-color 0.2s, box-shadow 0.25s, color 0.2s;
   }
-  .btn-sm { @apply min-h-10 px-4 text-[13px]; }
-  .btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
-  .btn-primary:hover { background: var(--btn-hover); transform: translateY(-1px); }
-  .btn-gold { background: #EDB12F; color: #04170D; }
-  .btn-gold:hover { background: #F3CB5E; transform: translateY(-1px); }
-  .btn-red { background: #C8102E; color: #FBF4E2; }
-  .btn-red:hover { background: #E0313A; transform: translateY(-1px); }
-  .btn-ghost { @apply border border-line text-ink; }
-  .btn-ghost:hover { @apply border-accent; transform: translateY(-1px); }
+  .btn:active { transform: scale(0.97); }
+  .btn-sm { @apply min-h-11 px-[1.125rem] text-[13.5px]; }
+  .btn-primary { background: var(--btn-bg); color: var(--btn-fg); box-shadow: 0 10px 24px -14px var(--btn-bg); }
+  .btn-primary:hover { background: var(--btn-hover); transform: translateY(-2px); }
+  .btn-gold { background: #EDB12F; color: #04140C; box-shadow: 0 10px 26px -14px rgb(237 177 47 / 0.9); }
+  .btn-gold:hover { background: #F3CB5E; transform: translateY(-2px); box-shadow: 0 16px 30px -14px rgb(237 177 47 / 0.9); }
+  .btn-red { background: #C8102E; color: #FFF5DC; box-shadow: 0 10px 26px -14px rgb(200 16 46 / 0.95); }
+  .btn-red:hover { background: #E0313A; transform: translateY(-2px); }
+  .btn-ghost { @apply border border-line-strong text-ink; background: rgb(255 255 255 / 0.02); }
+  .btn-ghost:hover { @apply border-accent; background: rgb(243 203 94 / 0.08); transform: translateY(-2px); }
+  .theme-gold .btn-ghost:hover { background: rgb(4 20 12 / 0.08); }
+
   .link-arrow {
     @apply inline-flex items-center gap-1.5 font-bold text-ink underline decoration-accent/50 decoration-2 underline-offset-[6px] transition-colors hover:decoration-accent;
   }
+  .icon-btn {
+    @apply grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line-strong text-ink transition-all duration-200;
+    background: rgb(4 20 12 / 0.45);
+    backdrop-filter: blur(8px);
+  }
+  .icon-btn:hover { @apply border-gold-400 bg-gold-400 text-forest-950; }
 
   /* ---------- Surfaces ---------- */
   .card {
-    @apply rounded-[20px] border border-line bg-panel transition-all duration-300;
+    @apply rounded-[22px] border border-line bg-panel;
+    transition: border-color 0.3s, box-shadow 0.45s;
   }
-  .card-hover:hover { @apply -translate-y-1 border-accent/60; box-shadow: 0 24px 48px -28px rgb(4 23 13 / 0.45); }
+  /* (transform transition lives only here — never combine .card-hover with a motion element) */
+  .card-hover { transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.45s; }
+  .card-hover:hover {
+    @apply -translate-y-1.5 border-line-strong;
+    box-shadow: 0 30px 50px -30px rgb(0 0 0 / 0.7), 0 0 0 1px rgb(243 203 94 / 0.08);
+  }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line px-3 py-1 text-[12px] font-semibold text-body;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line-strong px-3 py-1.5 text-[12.5px] font-semibold leading-none text-ink;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-display text-[10.5px] font-bold uppercase leading-none tracking-[0.1em];
+  }
+  .badge-gold { @apply bg-gold-400 text-forest-950; }
+  .badge-red { background: #C8102E; color: #FFF5DC; }
+  .badge-glass { @apply text-teff-50; background: rgb(4 20 12 / 0.72); backdrop-filter: blur(8px); border: 1px solid rgb(243 203 94 / 0.22); }
+  .icon-tile {
+    @apply grid h-12 w-12 shrink-0 place-items-center rounded-2xl text-gold-300;
+    background: linear-gradient(145deg, rgb(237 177 47 / 0.2), rgb(237 177 47 / 0.05));
+    border: 1px solid rgb(243 203 94 / 0.3);
   }
   .rule { @apply h-px w-full bg-line; }
 
-  /* Light canvas has a faint teff-grain texture so it never reads as flat paper */
-  .theme-light.grain, .grain {
+  /* photo frame — every photograph gets the same treatment */
+  .photo {
+    @apply relative overflow-hidden rounded-[26px] bg-forest-950;
+    box-shadow: 0 40px 70px -40px rgb(0 0 0 / 0.85), 0 0 0 1px rgb(243 203 94 / 0.16);
+  }
+  .photo-shade { background: linear-gradient(to top, rgb(4 20 12 / 0.94) 0%, rgb(4 20 12 / 0.55) 28%, transparent 62%); }
+
+  /* ---------- Section backgrounds (all green) ---------- */
+  .surface {
+    position: relative;
+    isolation: isolate;
     background-color: var(--s-canvas);
+  }
+  /* faint woven lattice in one corner so big green fields never feel flat */
+  .surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
     background-image:
-      radial-gradient(rgb(138 90 0 / 0.06) 1px, transparent 1.2px),
-      radial-gradient(rgb(11 107 58 / 0.04) 1px, transparent 1.2px);
-    background-size: 22px 22px, 31px 31px;
-    background-position: 0 0, 11px 7px;
+      linear-gradient(45deg, rgb(243 203 94 / 0.05) 1px, transparent 1px),
+      linear-gradient(-45deg, rgb(243 203 94 / 0.05) 1px, transparent 1px);
+    background-size: 26px 26px;
+    -webkit-mask-image: radial-gradient(55% 60% at 100% 0%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(55% 60% at 100% 0%, #000 0%, transparent 72%);
   }
-  .forest-glow {
-    background:
-      radial-gradient(70% 60% at 15% 0%, rgb(28 94 62 / 0.55), transparent 70%),
-      radial-gradient(50% 50% at 100% 100%, rgb(200 16 46 / 0.10), transparent 70%),
-      #0A2E1D;
+  .surface.weave-left::before {
+    -webkit-mask-image: radial-gradient(55% 60% at 0% 100%, #000 0%, transparent 72%);
+    mask-image: radial-gradient(55% 60% at 0% 100%, #000 0%, transparent 72%);
   }
-  .forest-deep {
+  .glow-dark {
+    background-image:
+      radial-gradient(60% 55% at 10% 0%, rgb(26 95 63 / 0.6), transparent 70%),
+      radial-gradient(45% 45% at 100% 100%, rgb(237 177 47 / 0.07), transparent 70%);
+  }
+  .glow-moss {
+    background-image:
+      radial-gradient(55% 50% at 90% 0%, rgb(44 154 95 / 0.22), transparent 70%),
+      radial-gradient(50% 50% at 0% 100%, rgb(4 20 12 / 0.45), transparent 70%);
+  }
+  .glow-night {
+    background-color: #04140C;
+    background-image:
+      radial-gradient(50% 60% at 85% 10%, rgb(237 177 47 / 0.1), transparent 70%),
+      radial-gradient(45% 55% at 0% 100%, rgb(200 16 46 / 0.1), transparent 70%);
+  }
+  .band-gold {
+    background: linear-gradient(120deg, #F3CB5E 0%, #EDB12F 45%, #DFA21E 100%);
+  }
+  .band-red {
     background:
-      radial-gradient(60% 50% at 85% 0%, rgb(237 177 47 / 0.08), transparent 70%),
-      #04170D;
+      radial-gradient(60% 120% at 100% 0%, rgb(237 177 47 / 0.22), transparent 65%),
+      linear-gradient(120deg, #B1102B 0%, #9E0C24 55%, #6E0A1B 100%);
   }
 }
 
 /* --------------------------------------------------------------------------
-   TIBEB / ጥልፍ — habesha kemis embroidery border
-   Double gold rules · Meskel cross (red + gold) · interlaced lozenge chain
-   (gold + red thread) · green diamond joints. One tile, two sizes.
+   Hero — arched photo window
    -------------------------------------------------------------------------- */
-.tibeb, .tibeb-thin {
-  background-color: #0A2E1D;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='24' viewBox='0 0 64 24'%3E%3Crect width='64' height='24' fill='%230A2E1D'/%3E%3Crect y='1' width='64' height='1' fill='%23D99A06'/%3E%3Crect y='3.4' width='64' height='0.5' fill='%23D99A06' opacity='0.55'/%3E%3Crect y='22' width='64' height='1' fill='%23D99A06'/%3E%3Crect y='20.1' width='64' height='0.5' fill='%23D99A06' opacity='0.55'/%3E%3Cg fill='none' stroke-linejoin='round'%3E%3Cpath d='M6 12 L9 9.6 L12 12 L15 9.6 L18 12 L21 9.6 L23.5 11.6' stroke='%23EDB12F' stroke-width='0.75'/%3E%3Cpath d='M6 12 L9 14.4 L12 12 L15 14.4 L18 12 L21 14.4 L23.5 12.4' stroke='%23E0313A' stroke-width='0.75'/%3E%3Cpath d='M40.5 11.6 L43 9.6 L46 12 L49 9.6 L52 12 L55 9.6 L58 12' stroke='%23EDB12F' stroke-width='0.75'/%3E%3Cpath d='M40.5 12.4 L43 14.4 L46 12 L49 14.4 L52 12 L55 14.4 L58 12' stroke='%23E0313A' stroke-width='0.75'/%3E%3C/g%3E%3Cg fill='%23F3CB5E'%3E%3Ccircle cx='12' cy='12' r='0.7'/%3E%3Ccircle cx='18' cy='12' r='0.7'/%3E%3Ccircle cx='46' cy='12' r='0.7'/%3E%3Ccircle cx='52' cy='12' r='0.7'/%3E%3C/g%3E%3Cg transform='translate(32 12)'%3E%3Cpath d='M0 -7.2 L1.6 -5.6 L0 -4 L-1.6 -5.6Z M7.2 0 L5.6 1.6 L4 0 L5.6 -1.6Z M0 7.2 L-1.6 5.6 L0 4 L1.6 5.6Z M-7.2 0 L-5.6 -1.6 L-4 0 L-5.6 1.6Z' fill='%23EDB12F'/%3E%3Cpath d='M0 -4 V4 M-4 0 H4' stroke='%23EDB12F' stroke-width='0.9'/%3E%3Cpath d='M0 -3 L3 0 L0 3 L-3 0Z' fill='%23C8102E' stroke='%23F3CB5E' stroke-width='0.6'/%3E%3Ccircle r='0.8' fill='%23F3CB5E'/%3E%3Cg fill='%23EDB12F'%3E%3Ccircle cx='-3.4' cy='-3.4' r='0.55'/%3E%3Ccircle cx='3.4' cy='-3.4' r='0.55'/%3E%3Ccircle cx='3.4' cy='3.4' r='0.55'/%3E%3Ccircle cx='-3.4' cy='3.4' r='0.55'/%3E%3C/g%3E%3C/g%3E%3Cpath d='M0 7.5 L4.5 12 L0 16.5Z' fill='%230B6B3A' stroke='%23EDB12F' stroke-width='0.6'/%3E%3Cpath d='M64 7.5 L59.5 12 L64 16.5Z' fill='%230B6B3A' stroke='%23EDB12F' stroke-width='0.6'/%3E%3Ccircle cx='0' cy='12' r='0.9' fill='%23F3CB5E'/%3E%3Ccircle cx='64' cy='12' r='0.9' fill='%23F3CB5E'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
-  background-position: center;
+.arch { border-radius: 999px 999px 30px 30px; }
+.arch-ring {
+  border-radius: 999px 999px 36px 36px;
+  background: conic-gradient(from var(--spin), #58C98B, #EDB12F, #E0313A, #EDB12F, #58C98B);
+  animation: spin-ring 14s linear infinite;
 }
-.tibeb { height: 28px; background-size: auto 28px; }
-.tibeb-thin { height: 14px; background-size: auto 14px; }
-
-/* --------------------------------------------------------------------------
-   Liquid logo plate — cream blob, morphing, with a rotating flag-colour rim
-   -------------------------------------------------------------------------- */
-@property --liquid-angle {
+@property --spin {
   syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
-@keyframes liquidMorph {
-  0%, 100% { border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; }
-  25%      { border-radius: 58% 42% 38% 62% / 55% 38% 62% 45%; }
-  50%      { border-radius: 38% 62% 56% 44% / 62% 57% 43% 38%; }
-  75%      { border-radius: 61% 39% 45% 55% / 40% 62% 38% 60%; }
-}
-@keyframes liquidSpin { to { --liquid-angle: 360deg; } }
-.liquid-logo {
-  position: relative;
-  isolation: isolate;
-  padding: 3px;
-  background: conic-gradient(from var(--liquid-angle), #0B6B3A, #EDB12F, #C8102E, #EDB12F, #0B6B3A);
-  animation: liquidMorph 10s ease-in-out infinite, liquidSpin 7s linear infinite;
-  box-shadow: 0 30px 60px -25px rgb(0 0 0 / 0.65), 0 0 70px -20px rgb(237 177 47 / 0.35);
-}
-.liquid-logo > .liquid-inner {
-  border-radius: inherit;
-  background: radial-gradient(120% 120% at 30% 20%, #FFFBEF 0%, #FBF0D2 60%, #F2DFA8 100%);
-  box-shadow: inset 0 -10px 30px rgb(138 90 0 / 0.16), inset 0 6px 16px rgb(255 255 255 / 0.85);
-}
-.logo-chip {
-  background: linear-gradient(#FFFBEF, #FBF0D2) padding-box,
-              conic-gradient(from var(--liquid-angle), #0B6B3A, #EDB12F, #C8102E, #EDB12F, #0B6B3A) border-box;
-  border: 2px solid transparent;
-  animation: liquidSpin 7s linear infinite;
-}
+@keyframes spin-ring { to { --spin: 360deg; } }
 
-/* --------------------------------------------------------------------------
-   Hero photo masks — the photo itself fades into the canvas (no seams)
-   -------------------------------------------------------------------------- */
-.hero-photo-mask {
-  -webkit-mask-image:
-    linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.35) 14%, rgb(0 0 0 / 0.85) 28%, #000 40%),
-    linear-gradient(to top, transparent 0%, #000 20%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    linear-gradient(to right, transparent 0%, rgb(0 0 0 / 0.35) 14%, rgb(0 0 0 / 0.85) 28%, #000 40%),
-    linear-gradient(to top, transparent 0%, #000 20%);
-  mask-composite: intersect;
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
-.hero-photo-mask-mobile {
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 82%, transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 82%, transparent 100%);
-}
+.floaty { animation: floaty 6s ease-in-out infinite; }
+.floaty-slow { animation: floaty 8s ease-in-out -2s infinite; }
 
 /* --------------------------------------------------------------------------
    Motion
    -------------------------------------------------------------------------- */
-@keyframes rise {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.hero-rise { opacity: 0; animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+@keyframes kenBurns { from { transform: scale(1.12); } to { transform: scale(1); } }
+.hero-kenburns { animation: kenBurns 3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
-@keyframes kenBurns { from { transform: scale(1.07); } to { transform: scale(1); } }
-.hero-kenburns { animation: kenBurns 2.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+/* slow drift on the active gallery photo */
+@keyframes drift { from { transform: scale(1); } to { transform: scale(1.07); } }
+.photo-drift { animation: drift 7s ease-out forwards; }
 
 @keyframes cardFadeSlide {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.animate-card-switch { animation: cardFadeSlide 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-card-switch { animation: cardFadeSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes sheetUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-sheet { animation: sheetUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .animate-fade-in { animation: fadeIn 0.25s ease-out forwards; }
 
-@keyframes slideProgress { from { width: 0%; } to { width: 100%; } }
-.slide-progress { width: 0%; animation-name: slideProgress; animation-timing-function: linear; animation-fill-mode: forwards; }
+@keyframes slideProgress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.slide-progress { transform-origin: left; transform: scaleX(0); animation-name: slideProgress; animation-timing-function: linear; animation-fill-mode: forwards; }
 
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.marquee-track { animation: marquee 38s linear infinite; }
+.marquee-track { animation: marquee 36s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@keyframes pulseRing {
+  0% { box-shadow: 0 0 0 0 rgb(243 203 94 / 0.55); }
+  100% { box-shadow: 0 0 0 16px rgb(243 203 94 / 0); }
+}
+.pulse-ring { animation: pulseRing 2s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
 
 .scrollbar-none { scrollbar-width: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-rise, .hero-kenburns, .animate-card-switch { animation: none; opacity: 1; transform: none; }
-  .liquid-logo, .logo-chip, .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+  .hero-kenburns, .photo-drift, .animate-card-switch, .animate-sheet,
+  .floaty, .floaty-slow, .arch-ring, .marquee-track, .pulse-ring { animation: none; }
 }

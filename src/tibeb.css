@@ -1,0 +1,13 @@
+/* --------------------------------------------------------------------------
+   TIBEB / ጥልፍ — habesha kemis embroidery border
+   Double gold rules · Meskel cross (red + gold) · interlaced lozenge chain
+   (gold + red thread) · green diamond joints. One tile, two sizes.
+   -------------------------------------------------------------------------- */
+.tibeb, .tibeb-thin {
+  background-color: #082618;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='24' viewBox='0 0 64 24'%3E%3Crect width='64' height='24' fill='%23082618'/%3E%3Crect y='1' width='64' height='1' fill='%23D99A06'/%3E%3Crect y='3.4' width='64' height='0.5' fill='%23D99A06' opacity='0.55'/%3E%3Crect y='22' width='64' height='1' fill='%23D99A06'/%3E%3Crect y='20.1' width='64' height='0.5' fill='%23D99A06' opacity='0.55'/%3E%3Cg fill='none' stroke-linejoin='round'%3E%3Cpath d='M6 12 L9 9.6 L12 12 L15 9.6 L18 12 L21 9.6 L23.5 11.6' stroke='%23EDB12F' stroke-width='0.75'/%3E%3Cpath d='M6 12 L9 14.4 L12 12 L15 14.4 L18 12 L21 14.4 L23.5 12.4' stroke='%23E0313A' stroke-width='0.75'/%3E%3Cpath d='M40.5 11.6 L43 9.6 L46 12 L49 9.6 L52 12 L55 9.6 L58 12' stroke='%23EDB12F' stroke-width='0.75'/%3E%3Cpath d='M40.5 12.4 L43 14.4 L46 12 L49 14.4 L52 12 L55 14.4 L58 12' stroke='%23E0313A' stroke-width='0.75'/%3E%3C/g%3E%3Cg fill='%23F3CB5E'%3E%3Ccircle cx='12' cy='12' r='0.7'/%3E%3Ccircle cx='18' cy='12' r='0.7'/%3E%3Ccircle cx='46' cy='12' r='0.7'/%3E%3Ccircle cx='52' cy='12' r='0.7'/%3E%3C/g%3E%3Cg transform='translate(32 12)'%3E%3Cpath d='M0 -7.2 L1.6 -5.6 L0 -4 L-1.6 -5.6Z M7.2 0 L5.6 1.6 L4 0 L5.6 -1.6Z M0 7.2 L-1.6 5.6 L0 4 L1.6 5.6Z M-7.2 0 L-5.6 -1.6 L-4 0 L-5.6 1.6Z' fill='%23EDB12F'/%3E%3Cpath d='M0 -4 V4 M-4 0 H4' stroke='%23EDB12F' stroke-width='0.9'/%3E%3Cpath d='M0 -3 L3 0 L0 3 L-3 0Z' fill='%23C8102E' stroke='%23F3CB5E' stroke-width='0.6'/%3E%3Ccircle r='0.8' fill='%23F3CB5E'/%3E%3Cg fill='%23EDB12F'%3E%3Ccircle cx='-3.4' cy='-3.4' r='0.55'/%3E%3Ccircle cx='3.4' cy='-3.4' r='0.55'/%3E%3Ccircle cx='3.4' cy='3.4' r='0.55'/%3E%3Ccircle cx='-3.4' cy='3.4' r='0.55'/%3E%3C/g%3E%3C/g%3E%3Cpath d='M0 7.5 L4.5 12 L0 16.5Z' fill='%230B6B3A' stroke='%23EDB12F' stroke-width='0.6'/%3E%3Cpath d='M64 7.5 L59.5 12 L64 16.5Z' fill='%230B6B3A' stroke='%23EDB12F' stroke-width='0.6'/%3E%3Ccircle cx='0' cy='12' r='0.9' fill='%23F3CB5E'/%3E%3Ccircle cx='64' cy='12' r='0.9' fill='%23F3CB5E'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.tibeb { height: 28px; background-size: auto 28px; }
+.tibeb-thin { height: 14px; background-size: auto 14px; }

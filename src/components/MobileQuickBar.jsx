@@ -16,22 +16,22 @@ export const MobileQuickBar = ({ route = 'home' }) => {
 
   return (
     <nav className="theme-dark fixed inset-x-3 bottom-3 z-40 mx-auto max-w-md md:hidden" aria-label="Mobile navigation">
-      <div className="grid grid-cols-5 items-end gap-1 rounded-2xl border border-line bg-forest-950/92 p-1.5 shadow-[0_18px_40px_-12px_rgb(0_0_0/0.6)] backdrop-blur-xl pb-[max(0.375rem,env(safe-area-inset-bottom))]">
+      <div className="grid grid-cols-5 items-end gap-1 rounded-[22px] border border-line-strong bg-forest-950/92 p-1.5 shadow-[0_18px_40px_-12px_rgb(0_0_0/0.85)] backdrop-blur-xl pb-[max(0.375rem,env(safe-area-inset-bottom))]">
         <a href="#/market" aria-current={onMarket ? 'page' : undefined} className={`${item} ${onMarket ? 'text-gold-300' : 'text-ink'}`}>
           <Store className="h-[19px] w-[19px] text-gold-400" aria-hidden />
           <span className="leading-none">Market</span>
           <span className={`h-1 w-1 rounded-full ${onMarket ? 'bg-gold-400' : 'bg-transparent'}`} aria-hidden />
         </a>
 
-        <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${item} text-berbere-300`}>
-          <MessageCircle className="h-[19px] w-[19px]" aria-hidden />
+        <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${item} text-ink`}>
+          <MessageCircle className="h-[19px] w-[19px] text-berbere-400" aria-hidden />
           <span className="leading-none">WhatsApp</span>
           <span className="h-1 w-1" aria-hidden />
         </a>
 
         {/* Home — raised centre button */}
         <a href="#/" onClick={goHome} aria-current={!onMarket ? 'page' : undefined} className="flex flex-col items-center gap-1 pb-1 text-[11px] font-bold text-ink">
-          <span className={`-mt-7 grid h-14 w-14 place-items-center rounded-full border-4 border-forest-950 shadow-lg transition-transform active:scale-95 ${!onMarket ? 'bg-gold-400 text-forest-950' : 'bg-forest-700 text-gold-300'}`}>
+          <span className={`-mt-7 grid h-14 w-14 place-items-center rounded-full border-4 border-forest-950 shadow-lg transition-transform active:scale-95 ${!onMarket ? 'bg-gold-400 text-forest-950 shadow-[0_10px_24px_-8px_rgb(237_177_47/0.8)]' : 'bg-forest-700 text-gold-300'}`}>
             <Home className="h-6 w-6" aria-hidden />
           </span>
           <span className="leading-none">Home</span>

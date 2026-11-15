@@ -1,5 +1,6 @@
 import { STORE_INFO } from '../data/marketData.js';
 import { Truck, Check, Phone, MessageCircle, Building2, Home, ShieldCheck } from 'lucide-react';
+import { Reveal } from './Reveal.jsx';
 
 const STREAMS = [
   {
@@ -20,15 +21,15 @@ const STREAMS = [
 
 export const DeliveryServiceSection = () => {
   return (
-    <section id="delivery-service" className="theme-dark forest-glow section relative overflow-hidden">
+    <section id="delivery-service" className="theme-moss surface weave-left glow-moss section overflow-hidden">
       <div className="container-x">
         {/* Split header */}
-        <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+        <Reveal className="grid gap-6 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-7">
             <p className="eyebrow">
               <span className="num">03</span>
               Mobile Service
-              <span className="amharic text-[13px] tracking-normal text-accent">· የቤትና የሬስቶራንት ማድረስ</span>
+              <span className="amharic">· የቤትና የሬስቶራንት ማድረስ</span>
               <span className="text-muted">/</span>
               Dedicated Van
             </p>
@@ -40,76 +41,74 @@ export const DeliveryServiceSection = () => {
             Need fresh grass-fed meat by the kilo, warm daily teff injera, or bulk wholesale restaurant supplies delivered
             directly to your door? Our dedicated Yenat delivery van operates throughout the Las Vegas valley.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+        <div className="mt-12 grid grid-cols-1 gap-8 lg:mt-14 lg:grid-cols-12 lg:gap-10">
           {/* Van photo */}
-          <figure className="lg:col-span-7">
-            <div className="group relative aspect-[4/3] overflow-hidden rounded-[28px] bg-forest-800 lg:aspect-auto lg:h-full lg:min-h-[520px]">
+          <Reveal as="figure" className="lg:col-span-7">
+            <div className="photo group aspect-square sm:aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[560px]">
               <img
                 src="https://res.cloudinary.com/dkcanqmko/image/upload/f_auto,q_auto,w_1400/v1792350713/yenat_market/delivery/yenat_real_delivery_van.jpg"
                 alt="Yenat Market delivery van delivering fresh Ethiopian groceries and meat across Las Vegas"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                className="absolute inset-0 h-full w-full object-cover object-[38%_50%] transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-forest-950/90 via-forest-950/10 to-transparent" />
-              <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-gold-400 px-3 py-1.5 text-[10.5px] font-extrabold uppercase tracking-[0.06em] text-forest-950">
+              <div className="photo-shade absolute inset-0" />
+              <span className="badge badge-gold absolute left-4 top-4 px-3 py-1.5 sm:left-5 sm:top-5">
                 <Truck className="h-3.5 w-3.5" />
                 Yenat Mobile Delivery Van
               </span>
-              <figcaption className="absolute inset-x-6 bottom-6 sm:inset-x-8 sm:bottom-8">
-                <p className="font-display text-xl font-semibold text-ink sm:text-2xl">Serving Homes, Restaurants &amp; Event Venues Valley-Wide</p>
-                <p className="mt-1.5 text-[13px] text-body">Spring Valley · Summerlin · Henderson · North Las Vegas · Strip Area</p>
+              <figcaption className="absolute inset-x-5 bottom-5 sm:inset-x-8 sm:bottom-8">
+                <p className="h-sub">Serving Homes, Restaurants &amp; Event Venues Valley-Wide</p>
+                <p className="mt-2 text-[13px] font-medium text-gold-200 sm:text-[14px]">Spring Valley · Summerlin · Henderson · North Las Vegas · Strip Area</p>
               </figcaption>
             </div>
-          </figure>
+          </Reveal>
 
           {/* Streams */}
-          <div className="flex flex-col lg:col-span-5">
-            <div className="border-t border-line">
-              {STREAMS.map(({ title, sub, text, points }, i) => (
-                <div key={title} className="border-b border-line py-7">
-                  <div className="flex items-start gap-4">
-                    <span className="font-display text-3xl font-semibold leading-none text-accent/50 tabular-nums">0{i + 1}</span>
-                    <div className="min-w-0">
-                      <h3 className="font-display text-[1.35rem] font-semibold leading-snug text-ink">
-
-                        {title}
-                      </h3>
-                      <p className="mt-0.5 text-[13px] text-muted">{sub}</p>
-                      <p className="mt-3 text-[15px] leading-relaxed text-body">{text}</p>
-                      <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[14px] font-semibold text-ink">
-                        {points.map((p) => (
-                          <li key={p} className="flex items-center gap-1.5">
-                            <Check className="h-4 w-4 text-gold-400" />
-                            {p}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+          <div className="flex flex-col gap-4 lg:col-span-5">
+            {STREAMS.map(({ icon: Icon, title, sub, text, points }, i) => (
+              <Reveal key={title} delay={0.08 + i * 0.08} className="card p-6 sm:p-7">
+                <div className="flex items-center justify-between">
+                  <span className="icon-tile">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <span className="font-display text-[2rem] font-bold leading-none text-accent/35 tabular-nums">0{i + 1}</span>
                 </div>
-              ))}
-            </div>
+                <h3 className="h-card mt-5 text-[1.3rem]">{title}</h3>
+                <p className="meta mt-1">{sub}</p>
+                <p className="mt-3 text-[15px] leading-[1.7] text-body">{text}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {points.map((p) => (
+                    <li key={p} className="chip">
+                      <Check className="h-3.5 w-3.5 text-fresh" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            ))}
 
-            <p className="mt-6 flex items-center gap-2.5 text-[14px] text-body">
-              <ShieldCheck className="h-4 w-4 shrink-0 text-accent" />
-              Temperature-controlled transport for meat and injera boxes.
-              <span className="ml-auto hidden shrink-0 rounded-full border border-line px-2.5 py-0.5 text-[11.5px] font-bold text-accent sm:inline">
-                Daily Scheduled Runs
-              </span>
-            </p>
+            <Reveal delay={0.2}>
+              <p className="flex items-center gap-2.5 px-1 text-[14px] text-body">
+                <ShieldCheck className="h-4 w-4 shrink-0 text-fresh" />
+                Temperature-controlled transport for meat and injera boxes.
+                <span className="badge ml-auto hidden shrink-0 border border-line-strong py-1.5 text-accent sm:inline-flex">
+                  Daily Scheduled Runs
+                </span>
+              </p>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-[1fr_auto] lg:grid-cols-1 xl:grid-cols-[1fr_auto]">
-              <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-red">
-                <MessageCircle className="h-4 w-4" />
-                WhatsApp Van Dispatch: (702) 240-8222
-              </a>
-              <a href={STORE_INFO.phoneClean} className="btn btn-ghost">
-                <Phone className="h-4 w-4 text-accent" />
-                Call Dispatch Desk
-              </a>
-            </div>
+              <div className="mt-5 grid gap-3 sm:grid-cols-[1fr_auto] lg:grid-cols-1">
+                <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn btn-red">
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp Van Dispatch: (702) 240-8222
+                </a>
+                <a href={STORE_INFO.phoneClean} className="btn btn-ghost">
+                  <Phone className="h-4 w-4 text-accent" />
+                  Call Dispatch Desk
+                </a>
+              </div>
+            </Reveal>
           </div>
         </div>
       </div>

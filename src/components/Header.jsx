@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { STORE_INFO } from '../data/marketData.js';
 import { Menu, X, Phone, MessageCircle, ArrowUpRight } from 'lucide-react';
 
@@ -10,6 +12,28 @@ const NAV_LINKS = [
   { href: '#schedule', label: 'Schedule', title: 'Daily Drop Schedule' },
   { href: '#visit', label: 'Visit Us', title: 'Location & Hours' },
 ];
+
+const EASE = [0.16, 1, 0.3, 1];
+
+/** Logo lockup rebuilt for dark ground: leaf-green cart · gold YENAT · red — MARKET — */
+export const BrandLockup = ({ compact = false }) => (
+  <span className="flex items-center gap-2.5">
+    <img
+      src="/yenat-cart-on-dark.png"
+      alt=""
+      className={`w-auto select-none transition-all duration-300 group-hover:-translate-x-0.5 ${compact ? 'h-8' : 'h-9'}`}
+      loading="eager"
+    />
+    <span className="flex flex-col items-center leading-none">
+      <span className="font-display text-[23px] font-extrabold tracking-[0.03em] text-gold-400">YENAT</span>
+      <span className="mt-[3px] flex w-full items-center gap-1.5 font-display text-[8.5px] font-bold tracking-[0.34em] text-berbere-400">
+        <span className="h-[1.5px] flex-1 rounded-full bg-berbere-400" aria-hidden />
+        <span className="-mr-[0.34em]">MARKET</span>
+        <span className="h-[1.5px] flex-1 rounded-full bg-berbere-400" aria-hidden />
+      </span>
+    </span>
+  </span>
+);
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
@@ -46,36 +70,25 @@ export const Header = () => {
 
   return (
     <header
-      className={`theme-light sticky top-0 z-40 w-full transition-all duration-300 ${
-        scrolled ? 'bg-teff-50/95 shadow-[0_12px_30px_-20px_rgb(4_23_13/0.55)] backdrop-blur-md' : 'bg-teff-50'
+      className={`theme-dark sticky top-0 z-40 w-full border-b transition-all duration-300 ${
+        scrolled
+          ? 'border-line bg-forest-950/85 shadow-[0_18px_40px_-24px_rgb(0_0_0/0.9)] backdrop-blur-xl'
+          : 'border-transparent bg-forest-900'
       }`}
     >
-      <div className={`container-x flex items-center justify-between gap-4 transition-all duration-300 ${scrolled ? 'h-14' : 'h-16'}`}>
-        {/* Brand: cart mark + wordmark (same lettering as the logo) */}
-        <a href="/" className="group flex shrink-0 items-center gap-2.5" aria-label="Yenat Market Home">
-          <img
-            src="/yenat-cart-mark.png"
-            alt=""
-            className={`w-auto select-none transition-all duration-300 group-hover:-translate-x-0.5 ${scrolled ? 'h-8' : 'h-9'}`}
-            loading="eager"
-          />
-          <span className="flex flex-col items-center leading-none">
-            <span className="text-[22px] font-extrabold tracking-[0.04em] text-[#C98E05]">YENAT</span>
-            <span className="mt-[3px] flex w-full items-center gap-1.5 text-[8.5px] font-extrabold tracking-[0.34em] text-berbere-600">
-              <span className="h-[1.5px] flex-1 rounded-full bg-berbere-600" aria-hidden />
-              <span className="-mr-[0.34em]">MARKET</span>
-              <span className="h-[1.5px] flex-1 rounded-full bg-berbere-600" aria-hidden />
-            </span>
-          </span>
-          <span className="ml-2 hidden h-8 w-px bg-line sm:block xl:hidden 2xl:block" aria-hidden />
+      <div className={`container-x flex items-center justify-between gap-4 transition-all duration-300 ${scrolled ? 'h-[60px]' : 'h-[68px]'}`}>
+        {/* Brand */}
+        <a href="/" className="group flex shrink-0 items-center gap-3" aria-label="Yenat Market Home">
+          <BrandLockup compact={scrolled} />
+          <span className="ml-1 hidden h-8 w-px bg-line-strong sm:block xl:hidden 2xl:block" aria-hidden />
           <span className="hidden leading-tight sm:block xl:hidden 2xl:block">
             <span className="amharic block text-[14px] font-semibold text-ink">የእናት ገበያ</span>
             <span className="block text-[11.5px] text-muted">Suite 102 · Las Vegas</span>
           </span>
         </a>
 
-        {/* Desktop nav */}
-        <nav className="hidden xl:flex items-center gap-1" aria-label="Main navigation">
+        {/* Desktop nav — the active link carries a sliding gold pill */}
+        <nav className="hidden items-center rounded-full border border-line bg-forest-950/40 p-1 xl:flex" aria-label="Main navigation">
           {NAV_LINKS.map((link) => {
             const active = activeId === link.href;
             return (
@@ -84,14 +97,18 @@ export const Header = () => {
                 href={link.href}
                 title={link.title}
                 aria-current={active ? 'true' : undefined}
-                className={`group relative px-3 py-2 text-[14px] font-semibold transition-colors ${active ? 'text-ink' : 'text-body hover:text-ink'}`}
+                className={`relative rounded-full px-3.5 py-2 text-[13.5px] font-semibold transition-colors duration-300 ${
+                  active ? 'text-forest-950' : 'text-body hover:text-ink'
+                }`}
               >
-                {link.label}
-                <span
-                  className={`absolute inset-x-3 -bottom-0.5 h-[2px] origin-left rounded-full bg-berbere-600 transition-transform duration-300 ${
-                    active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}
-                />
+                {active && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="absolute inset-0 rounded-full bg-gold-400"
+                    transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  />
+                )}
+                <span className="relative">{link.label}</span>
               </a>
             );
           })}
@@ -103,23 +120,23 @@ export const Header = () => {
             href={STORE_INFO.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="grid h-10 w-10 place-items-center rounded-full border border-line text-berbere-600 transition-colors hover:border-berbere-600 hover:bg-panel-2"
+            className="grid h-11 w-11 place-items-center rounded-full bg-berbere-600 text-teff-50 transition-all duration-200 hover:-translate-y-0.5 hover:bg-berbere-500"
             aria-label="Chat on WhatsApp"
             title="Chat with us on WhatsApp"
           >
             <MessageCircle className="h-[18px] w-[18px]" />
           </a>
-          <a href={STORE_INFO.phoneClean} className="btn btn-primary btn-sm hidden md:inline-flex" title={`Call Yenat Market: ${STORE_INFO.phone}`}>
+          <a href={STORE_INFO.phoneClean} className="btn btn-gold btn-sm hidden md:inline-flex" title={`Call Yenat Market: ${STORE_INFO.phone}`}>
             <Phone className="h-4 w-4" />
             {STORE_INFO.phone}
           </a>
-          <a href={STORE_INFO.phoneClean} className="grid h-10 w-10 place-items-center rounded-full bg-forest-500 text-teff-50 md:hidden" aria-label="Call Yenat Market">
+          <a href={STORE_INFO.phoneClean} className="grid h-11 w-11 place-items-center rounded-full bg-gold-400 text-forest-950 md:hidden" aria-label="Call Yenat Market">
             <Phone className="h-[18px] w-[18px]" />
           </a>
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink transition-colors hover:border-forest-500 xl:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full border border-line-strong text-ink transition-colors hover:border-gold-400 xl:hidden"
             aria-expanded={open}
             aria-label={open ? 'Close menu' : 'Open menu'}
           >
@@ -127,62 +144,80 @@ export const Header = () => {
           </button>
         </div>
       </div>
-      <div className="tibeb-thin" aria-hidden />
 
-      {/* Mobile / tablet menu */}
-      {open && (
-        <div className="theme-dark fixed inset-0 z-50 xl:hidden animate-fade-in" role="dialog" aria-modal="true" aria-label="Menu">
-          <div className="forest-deep h-full overflow-y-auto">
-            <div className="container-x flex h-16 items-center justify-between border-b border-line">
-              <span className="text-[17px] font-extrabold tracking-[0.06em]">
-                <span className="text-gold-400">YENAT</span> <span className="text-berbere-300">MARKET</span>
-              </span>
-              <button
-                type="button"
-                onClick={close}
-                className="grid h-10 w-10 place-items-center rounded-full border border-line text-ink"
-                aria-label="Close menu"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="container-x py-6">
-              <div className="mb-4 flex items-center justify-between rounded-2xl border border-line px-4 py-3 text-[13px]">
-                <span className="flex items-center gap-2 font-semibold text-ink">
-                  <span className="h-2 w-2 rounded-full bg-gold-400" />
-                  Open Daily 10 AM – 12 AM Midnight
+      {/* Mobile / tablet menu — portalled so the blurred header can never clip it */}
+      {createPortal(
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="theme-dark fixed inset-0 z-50 xl:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+          >
+            <div className="glow-night flex h-full flex-col overflow-y-auto">
+              <div className="container-x flex h-[68px] shrink-0 items-center justify-between border-b border-line">
+                <span className="font-display text-[18px] font-extrabold tracking-[0.05em]">
+                  <span className="text-gold-400">YENAT</span> <span className="text-berbere-400">MARKET</span>
                 </span>
-                <span className="font-bold text-accent">Suite 102</span>
+                <button
+                  type="button"
+                  onClick={close}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-line-strong text-ink"
+                  aria-label="Close menu"
+                >
+                  <X className="h-5 w-5" />
+                </button>
               </div>
 
-              <nav aria-label="Mobile navigation">
-                {NAV_LINKS.map((link, i) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={close}
-                    className="group flex items-center gap-4 border-b border-line py-4"
-                  >
-                    <span className="font-display text-sm text-accent tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="flex-1 font-display text-[22px] font-semibold text-ink">{link.title}</span>
-                    <ArrowUpRight className="h-5 w-5 text-muted transition-transform group-hover:rotate-45 group-hover:text-gold-400" />
+              <div className="container-x flex-1 py-6">
+                <div className="theme-gold band-gold mb-5 flex items-center justify-between rounded-2xl px-4 py-3 text-[13px]">
+                  <span className="flex items-center gap-2 font-bold text-ink">
+                    <span className="h-2 w-2 rounded-full bg-forest-500" />
+                    Open Daily 10 AM – 12 AM Midnight
+                  </span>
+                  <span className="font-extrabold text-spice">Suite 102</span>
+                </div>
+
+                <nav aria-label="Mobile navigation">
+                  {NAV_LINKS.map((link, i) => (
+                    <motion.a
+                      key={link.href}
+                      href={link.href}
+                      onClick={close}
+                      className="group flex items-center gap-4 border-b border-line py-[1.05rem]"
+                      initial={{ opacity: 0, x: -18 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.06 + i * 0.05, ease: EASE }}
+                    >
+                      <span className="font-display text-[13px] font-semibold text-accent tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="flex-1 font-display text-[21px] font-semibold leading-tight tracking-[-0.015em] text-ink">{link.title}</span>
+                      <ArrowUpRight className="h-5 w-5 shrink-0 text-muted transition-transform group-hover:rotate-45 group-hover:text-gold-400" />
+                    </motion.a>
+                  ))}
+                </nav>
+
+                <div className="mt-7 grid gap-3">
+                  <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={close} className="btn btn-red w-full">
+                    <MessageCircle className="h-4 w-4" />
+                    Message on WhatsApp ({STORE_INFO.phone})
                   </a>
-                ))}
-              </nav>
-
-              <div className="mt-6 grid gap-3">
-                <a href={STORE_INFO.whatsappUrl} target="_blank" rel="noopener noreferrer" onClick={close} className="btn btn-red w-full">
-                  <MessageCircle className="h-4 w-4" />
-                  Message on WhatsApp ({STORE_INFO.phone})
-                </a>
-                <a href={STORE_INFO.phoneClean} className="btn btn-gold w-full">
-                  <Phone className="h-4 w-4" />
-                  Call Store: {STORE_INFO.phone}
-                </a>
+                  <a href={STORE_INFO.phoneClean} className="btn btn-gold w-full">
+                    <Phone className="h-4 w-4" />
+                    Call Store: {STORE_INFO.phone}
+                  </a>
+                </div>
               </div>
+              <div className="tibeb shrink-0" aria-hidden />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        )}
+      </AnimatePresence>,
+      document.body
       )}
     </header>
   );

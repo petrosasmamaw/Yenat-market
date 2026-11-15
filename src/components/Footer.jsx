@@ -27,32 +27,37 @@ const COLUMNS = [
 
 const PAYMENTS = ['Cash & In-Store', 'Debit & Credit Cards', 'MasterCard & Visa', 'EBT / SNAP Cards', `Zelle: ${STORE_INFO.zelleNumber}`];
 
+const ColTitle = ({ children }) => (
+  <p className="flex items-center gap-2.5 font-display text-[12px] font-semibold uppercase tracking-[0.16em] text-accent">
+    <span className="h-[2px] w-5 rounded-full bg-berbere-500" aria-hidden />
+    {children}
+  </p>
+);
+
 export const Footer = () => {
   return (
-    <footer className="theme-dark relative bg-forest-950 text-[14px] text-body">
+    <footer className="theme-dark glow-night relative text-[14px] text-body">
       <div className="tibeb" aria-hidden />
-      <div className="container-x pb-[calc(6rem+env(safe-area-inset-bottom))] pt-16 sm:pt-20 md:pb-12">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
+      <div className="container-x pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-14 sm:pt-20 md:pb-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-12">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-4">
-              <span className="logo-chip grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-2xl p-1.5">
-                <img src="/yenat-logo-cropped.png" alt="Yenat Market Logo" className="h-full w-full object-contain mix-blend-multiply" />
-              </span>
-              <div>
-                <p className="text-[20px] font-extrabold tracking-[0.06em]">
-                  <span className="text-gold-400">YENAT</span> <span className="text-berbere-300">MARKET</span>
+            <div className="flex items-end gap-4">
+              <img src="/yenat-logo-on-dark.png" alt="Yenat Market Logo" className="w-36 select-none" loading="lazy" />
+              <div className="pb-1">
+                <p className="sr-only">
+                  <span>YENAT</span> <span>MARKET</span>
                 </p>
-                <p className="amharic text-[13px] font-semibold text-gold-300">የእናት ገበያ · Las Vegas</p>
+                <p className="amharic text-[14px] font-semibold text-gold-300">የእናት ገበያ · Las Vegas</p>
               </div>
             </div>
 
-            <p className="mt-6 max-w-sm leading-relaxed text-muted">
+            <p className="mt-6 max-w-sm leading-[1.7] text-muted">
               Las Vegas’ authentic Ethiopian marketplace, fresh custom butchery, and daily bakery.
               Offering custom-cut meats by the kilo, fresh daily teff injera, stone-ground spices, cold beverages, and city-wide van delivery.
             </p>
 
-            <ul className="mt-6 space-y-3">
+            <ul className="mt-6 space-y-3.5">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <span>{STORE_INFO.fullAddress}</span>
@@ -68,10 +73,10 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 shrink-0 text-accent" />
-                <a href={`mailto:${STORE_INFO.email}`} className="transition-colors hover:text-ink">{STORE_INFO.email}</a>
+                <a href={`mailto:${STORE_INFO.email}`} className="break-all transition-colors hover:text-ink">{STORE_INFO.email}</a>
               </li>
-              <li className="flex items-center gap-3">
-                <Clock className="h-4 w-4 shrink-0 text-accent" />
+              <li className="flex items-start gap-3">
+                <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
                 <span className="font-semibold text-accent">{STORE_INFO.hours}</span>
               </li>
             </ul>
@@ -80,11 +85,14 @@ export const Footer = () => {
           {/* Link columns */}
           {COLUMNS.map(({ title, links }) => (
             <div key={title} className="lg:col-span-3">
-              <p className="text-[13px] font-semibold text-ink">{title}</p>
+              <ColTitle>{title}</ColTitle>
               <ul className="mt-5 space-y-3">
                 {links.map(([href, label]) => (
                   <li key={label}>
-                    <a href={href} className="text-muted transition-colors hover:text-ink">{label}</a>
+                    <a href={href} className="group inline-flex items-start gap-2 text-muted transition-colors hover:text-ink">
+                      <span className="mt-[0.55em] h-1 w-1 shrink-0 rotate-45 bg-gold-400/50 transition-colors group-hover:bg-gold-400" aria-hidden />
+                      {label}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -92,30 +100,30 @@ export const Footer = () => {
           ))}
 
           {/* Payments */}
-          <div className="lg:col-span-2">
-            <p className="text-[13px] font-semibold text-ink">Accepted Payments</p>
-            <ul className="mt-5 space-y-2.5">
+          <div className="md:col-span-2 lg:col-span-2">
+            <ColTitle>Accepted Payments</ColTitle>
+            <ul className="mt-5 flex flex-wrap gap-2 lg:flex-col lg:gap-2.5">
               {PAYMENTS.map((p) => (
-                <li key={p} className="flex items-center gap-2 font-medium text-body">
-                  <Check className="h-4 w-4 shrink-0 text-gold-400" />
+                <li key={p} className="flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-[13px] font-medium text-body lg:rounded-none lg:border-0 lg:p-0 lg:text-[14px]">
+                  <Check className="h-4 w-4 shrink-0 text-fresh" />
                   {p}
                 </li>
               ))}
             </ul>
-            <a href={STORE_INFO.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm mt-6">
+            <a href={STORE_INFO.googleMapsUrl} target="_blank" rel="noopener noreferrer" className="btn btn-ghost btn-sm mt-6 !whitespace-normal">
               Directions to Suite 102
-              <ArrowUpRight className="h-4 w-4 text-accent" />
+              <ArrowUpRight className="h-4 w-4 shrink-0 text-accent" />
             </a>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-[13px] text-muted sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-8 text-[13px] text-muted sm:flex-row">
           <p className="text-center sm:text-left">
             © {new Date().getFullYear()} Yenat Market LLC. All rights reserved.
             <span aria-hidden className="mx-2">·</span>
             4780 West Tropicana Ave. Suite 102, Las Vegas, NV 89103
           </p>
-          <p className="flex items-center gap-1.5">
+          <p className="flex shrink-0 items-center gap-1.5">
             Crafted with love for Ethiopian culinary tradition
             <Heart className="h-3.5 w-3.5 fill-berbere-500 text-berbere-500" />
           </p>
