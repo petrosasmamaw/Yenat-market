@@ -20,7 +20,7 @@ const COLUMNS = [
       ['#siga-butchery', 'Live Meat Roasting Service (የጥብስ ዝግጅት)'],
       ['#vendors', 'Restaurant Wholesale Teff, Meat & Spices'],
       ['#reviews', 'Celebrity Video Reviews (Helen Berhe, Biniyam)'],
-      ['#schedule', 'Daily Drop Timetable (Open until 12 AM)'],
+      ['#visit', 'Daily Drop Timetable (Open until 12 AM)'],
     ],
   },
 ];

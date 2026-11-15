@@ -5,9 +5,9 @@ import { Reveal } from './Reveal.jsx';
 
 const GALLERY_SLIDES = [
   {
-    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346481/yenat_market/ceremony/ceremony_roasting_1.jpg',
-    title: 'Ceremonial Whole Carcass Preparation & Butchery',
-    caption: 'Pasture-raised whole sheep & goats freshly prepared with traditional butcher mastery for weddings & celebrations.',
+    mediaUrl: '/ceremony/butcher-cutting-fresh.jpg',
+    title: 'Cut Fresh to Order at Our Butcher Counter',
+    caption: 'Every order is hand-carved in Suite 102 — tibs, kitfo and ceremony portions trimmed to your exact weight by the kilo.',
   },
   {
     mediaUrl: '/ceremony/van-hanging-beef.jpg',
@@ -25,9 +25,9 @@ const GALLERY_SLIDES = [
     caption: 'Freshly hung and aged whole and quarter grass-fed beef and lamb, expertly prepped for weddings, holidays, and large family banquets.',
   },
   {
-    mediaUrl: '/ceremony/butcher-cutting-fresh.jpg',
-    title: 'Cut Fresh to Order at Our Butcher Counter',
-    caption: 'Every order is hand-carved in Suite 102 — tibs, kitfo and ceremony portions trimmed to your exact weight by the kilo.',
+    mediaUrl: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346481/yenat_market/ceremony/ceremony_roasting_1.jpg',
+    title: 'Ceremonial Whole Carcass Preparation & Butchery',
+    caption: 'Pasture-raised whole sheep & goats freshly prepared with traditional butcher mastery for weddings & celebrations.',
   },
 ];
 

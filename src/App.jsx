@@ -11,7 +11,6 @@ import { SigaButcherySection } from './components/SigaButcherySection';
 import { DepartmentsShowcase } from './components/DepartmentsShowcase';
 import { DeliveryServiceSection } from './components/DeliveryServiceSection';
 import { CelebrityReviewsSection } from './components/CelebrityReviewsSection';
-import { FreshScheduleSection } from './components/FreshScheduleSection';
 import { VendorWholesaleSection } from './components/VendorWholesaleSection';
 import { LocationAndHours } from './components/LocationAndHours';
 import { FaqSection } from './components/FaqSection';
@@ -80,9 +79,6 @@ export default function App() {
 
             {/* Celebrity Video Reviews (Helen Berhe & Biniyam Shibre) & Shop Atmosphere */}
             <CelebrityReviewsSection />
-
-            {/* Peak Freshness Timetable / Daily Drops (Open 10 AM - 12 AM Midnight) */}
-            <FreshScheduleSection />
 
             {/* Dedicated B2B & Wholesale Vendor Hub */}
             <VendorWholesaleSection />

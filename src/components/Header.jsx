@@ -9,7 +9,6 @@ const NAV_LINKS = [
   { href: '#departments', label: 'Injera & Aisles', title: 'Fresh Injera & Market Aisles' },
   { href: '#delivery-service', label: 'Delivery Van', title: 'Las Vegas Delivery Service' },
   { href: '#reviews', label: 'Celebrity Reviews', title: 'Celebrity & Community Reviews' },
-  { href: '#schedule', label: 'Schedule', title: 'Daily Drop Schedule' },
   { href: '#visit', label: 'Visit Us', title: 'Location & Hours' },
 ];
 

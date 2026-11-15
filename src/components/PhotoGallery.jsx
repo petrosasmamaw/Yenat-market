@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
 
-const SLIDE_MS = 4500;
+const SLIDE_MS = 1000;
 const EASE = [0.16, 1, 0.3, 1];
 const pad = (n) => String(n).padStart(2, '0');
 
