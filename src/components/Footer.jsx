@@ -54,7 +54,7 @@ export const Footer = () => {
 
             <p className="mt-6 max-w-sm leading-[1.7] text-muted">
               Las Vegas’ authentic Ethiopian marketplace, fresh custom butchery, and daily bakery.
-              Offering custom-cut meats by the kilo, fresh daily teff injera, stone-ground spices, cold beverages, and city-wide van delivery.
+              Offering custom-cut meats by the pound, fresh daily teff injera, stone-ground spices, cold beverages, and city-wide van delivery.
             </p>
 
             <ul className="mt-6 space-y-3.5">

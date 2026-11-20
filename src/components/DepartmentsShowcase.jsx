@@ -177,7 +177,7 @@ export const DepartmentsShowcase = ({
               Explore Our <span className="accent-italic">Aisle Specialties</span>
             </h2>
             <p className="lead mt-4 max-w-2xl">
-              From our famous 100% pure teff injera and artisanal ambasha to fresh grass-fed meat by the kilo,
+              From our famous 100% pure teff injera and artisanal ambasha to fresh grass-fed meat by the pound,
               direct imported mountain spices, cold Heineken, Habesha beers, and fine wine.
             </p>
           </div>
@@ -324,7 +324,7 @@ export const DepartmentsShowcase = ({
         ) : isDefaultCuratedView ? (
           <div className="mt-12 space-y-16">
             <div>
-              <GroupHeading num="I" title="Signature Grass-Fed Cuts" sub="የንጹህ ስጋ · Cut fresh to order, sold by the kilo" />
+              <GroupHeading num="I" title="Signature Grass-Fed Cuts" sub="የንጹህ ስጋ · Cut fresh to order, sold by the pound" />
               <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
                 {signatureCuts.map((item, i) => (
                   <Reveal key={item.id} delay={i * 0.07} className="flex">{renderCard(item, { signature: true })}</Reveal>

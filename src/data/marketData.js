@@ -93,15 +93,15 @@ export const MARKET_ITEMS = [
     department: 'butchery',
     departmentLabel: '100% Grass-Fed Butchery',
     shortDesc: 'Grass-fed cubed beef',
-    fullDesc: 'Our butchery is the primary pride of Yenat Market! We slaughter 100% grass-fed oxen, sheep, and goats raised strictly on natural pasture without artificial feed or hormones. Sold by the kilo (KG) and trimmed to perfection for sizzling hot Derek Tibs or Awaze Tibs.',
+    fullDesc: 'Our butchery is the primary pride of Yenat Market! We slaughter 100% grass-fed oxen, sheep, and goats raised strictly on natural pasture without artificial feed or hormones. Sold by the pound (lb) and trimmed to perfection for sizzling hot Derek Tibs or Awaze Tibs.',
     culinaryUse: 'Sauté on high heat with fresh rosemary, jalapeños, onions, awaze chili paste, and spiced niter kibe butter.',
     origin: '100% Grass-Fed Pasture-Raised Livestock, Custom Slaughtered',
     freshStatus: 'Fresh Chilled Butchery Cases Daily',
     image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346476/yenat_market/meat/ye_tibs_siga.jpg',
-    tags: ['100% Grass-Fed', 'Sold by the Kilo', 'No Artificial Feeds', 'Ceremony Favorite'],
+    tags: ['100% Grass-Fed', 'Sold by the Pound', 'No Artificial Feeds', 'Ceremony Favorite'],
     inStock: true,
     bulkAvailable: true,
-    unitExample: 'Sold by the Kilo (KG) or Custom Weight',
+    unitExample: 'Sold by the Pound (lb) or Custom Weight',
   },
 
   // 5. MAIN SPECIALTY: Ye Tire Siga
@@ -117,10 +117,10 @@ export const MARKET_ITEMS = [
     origin: 'Natural Grass-Fed Oxen, Daily Custom Slaughter & Butchery',
     freshStatus: 'Freshly Cut Every Day from 10 AM',
     image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346474/yenat_market/meat/kurt_tire_siga.jpg',
-    tags: ['100% Grass-Fed', 'Prime Raw Cut', 'Sold by the Kilo', 'Strict Cleanliness'],
+    tags: ['100% Grass-Fed', 'Prime Raw Cut', 'Sold by the Pound', 'Strict Cleanliness'],
     inStock: true,
     bulkAvailable: true,
-    unitExample: 'Sold by the Kilo (KG) — Custom cut on demand',
+    unitExample: 'Sold by the Pound (lb) — Custom cut on demand',
   },
 
   // 6. MAIN SPECIALTY: Ye Kitfo Siga
@@ -136,10 +136,10 @@ export const MARKET_ITEMS = [
     origin: '100% Grass-Fed Oxen, Chilled Custom Cut Counter',
     freshStatus: 'Cut Fresh to Order All Day',
     image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346477/yenat_market/meat/ye_kitfo_siga.jpg',
-    tags: ['Extra Lean', '100% Grass-Fed', 'Kitfo Grade', 'Sold by the Kilo'],
+    tags: ['Extra Lean', '100% Grass-Fed', 'Kitfo Grade', 'Sold by the Pound'],
     inStock: true,
     bulkAvailable: true,
-    unitExample: 'Sold by the Kilo (KG), custom minced or sliced',
+    unitExample: 'Sold by the Pound (lb), custom minced or sliced',
   },
 
   // 7. MAIN SPECIALTY: Ye Chkna Siga
@@ -155,10 +155,10 @@ export const MARKET_ITEMS = [
     origin: '100% Grass-Fed Natural Oxen, Premium Selected Cut',
     freshStatus: 'Fresh Chilled Daily Reserve',
     image: 'https://res.cloudinary.com/dkcanqmko/image/upload/v1792346473/yenat_market/meat/chkna_tibs_cut.jpg',
-    tags: ['Tenderloin Filet', '100% Grass-Fed', 'Sold by the Kilo', 'Gourmet Prime'],
+    tags: ['Tenderloin Filet', '100% Grass-Fed', 'Sold by the Pound', 'Gourmet Prime'],
     inStock: true,
     bulkAvailable: true,
-    unitExample: 'Sold by the Kilo (KG) — Whole tenderloin or steak medallions',
+    unitExample: 'Sold by the Pound (lb) — Whole tenderloin or steak medallions',
   },
 
   // 8. CEREMONY & WHOLESALE MEAT: Sheep & Goat
@@ -177,7 +177,7 @@ export const MARKET_ITEMS = [
     tags: ['Event Roasting', 'Weddings & Holidays', 'Whole/Half Animals', 'Van Delivery'],
     inStock: true,
     bulkAvailable: true,
-    unitExample: 'Whole, half, or quarter animal by the KG, custom butchered & seasoned',
+    unitExample: 'Whole, half, or quarter animal by the lb, custom butchered & seasoned',
   },
 
   // 9. HERITAGE SPICE: Berbere
@@ -518,7 +518,7 @@ export const SCHEDULE_DAYS = [
     day: 'Monday – Thursday',
     time: '10:00 AM – 12:00 AM (Midnight)',
     title: 'Daily Fresh Butchery & Teff Injera',
-    description: 'Fresh 100% grass-fed ox, sheep, and goat custom-butchered by the kilo. Hot, pure teff injera restocked continuously throughout the day. City-wide delivery van runs scheduled for home and restaurant orders.',
+    description: 'Fresh 100% grass-fed ox, sheep, and goat custom-butchered by the pound. Hot, pure teff injera restocked continuously throughout the day. City-wide delivery van runs scheduled for home and restaurant orders.',
     badge: 'Daily Core',
   },
   {
@@ -578,7 +578,7 @@ export const FAQ_LIST = [
   },
   {
     question: 'What kind of meat do you sell and how is it prepared?',
-    answer: 'Our butchery is 100% natural and pasture-raised! We slaughter grass-fed oxen, sheep, and goats with zero artificial feed or hormones. We sell by the kilo (KG) and specialize in authentic Ethiopian cuts: Ye Tibs Siga (tender steak cubes), Ye Tire Siga (prime raw dining cuts), Ye Kitfo Siga (extra-lean trimmed beef), and Ye Chkna Siga (tenderloin filet mignon). We also provide whole/half animals and on-demand meat roasting for weddings and celebrations!',
+    answer: 'Our butchery is 100% natural and pasture-raised! We slaughter grass-fed oxen, sheep, and goats with zero artificial feed or hormones. We sell by the pound (lb) and specialize in authentic Ethiopian cuts: Ye Tibs Siga (tender steak cubes), Ye Tire Siga (prime raw dining cuts), Ye Kitfo Siga (extra-lean trimmed beef), and Ye Chkna Siga (tenderloin filet mignon). We also provide whole/half animals and on-demand meat roasting for weddings and celebrations!',
   },
   {
     question: 'What payment methods do you accept? Can I pay with EBT or Zelle?',
@@ -586,7 +586,7 @@ export const FAQ_LIST = [
   },
   {
     question: 'Do you offer home and restaurant delivery across Las Vegas?',
-    answer: 'Yes! We have our own dedicated Yenat Market delivery van. We deliver fresh grass-fed meat by the kilo, daily warm injera, spices, and groceries to homes, restaurants, catering venues, and churches across the entire Las Vegas valley. Call or WhatsApp us at (702) 240-8222 to schedule your delivery.',
+    answer: 'Yes! We have our own dedicated Yenat Market delivery van. We deliver fresh grass-fed meat by the pound, daily warm injera, spices, and groceries to homes, restaurants, catering venues, and churches across the entire Las Vegas valley. Call or WhatsApp us at (702) 240-8222 to schedule your delivery.',
   },
   {
     question: 'Is your Injera 100% gluten-free and made from pure Teff?',

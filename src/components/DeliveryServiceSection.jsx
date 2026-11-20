@@ -14,7 +14,7 @@ const STREAMS = [
     icon: Home,
     title: 'Home & Ceremony Event Delivery',
     sub: 'Fresh groceries & celebratory meat brought to your door',
-    text: 'Hosting a family dinner, birthday, holiday feast, or wedding ceremony? Order fresh grass-fed tibs, kitfo, or tire meat by the kilo, or whole & half sheep and goats delivered to your house, along with fresh ambasha, berbere, Ethiopian beer, and wine without leaving your home.',
+    text: 'Hosting a family dinner, birthday, holiday feast, or wedding ceremony? Order fresh grass-fed tibs, kitfo, or tire meat by the pound, or whole & half sheep and goats delivered to your house, along with fresh ambasha, berbere, Ethiopian beer, and wine without leaving your home.',
     points: ['Whole & half sheep / goat', 'Zelle & Cash on delivery'],
   },
 ];
@@ -38,7 +38,7 @@ export const DeliveryServiceSection = () => {
             </h2>
           </div>
           <p className="lead lg:col-span-5">
-            Need fresh grass-fed meat by the kilo, warm daily teff injera, or bulk wholesale restaurant supplies delivered
+            Need fresh grass-fed meat by the pound, warm daily teff injera, or bulk wholesale restaurant supplies delivered
             directly to your door? Our dedicated Yenat delivery van operates throughout the Las Vegas valley.
           </p>
         </Reveal>

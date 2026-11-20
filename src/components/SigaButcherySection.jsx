@@ -7,7 +7,7 @@ const GALLERY_SLIDES = [
   {
     mediaUrl: '/ceremony/butcher-cutting-fresh.jpg',
     title: 'Cut Fresh to Order at Our Butcher Counter',
-    caption: 'Every order is hand-carved in Suite 102 — tibs, kitfo and ceremony portions trimmed to your exact weight by the kilo.',
+    caption: 'Every order is hand-carved in Suite 102 — tibs, kitfo and ceremony portions trimmed to your exact weight by the pound.',
   },
   {
     mediaUrl: '/ceremony/van-hanging-beef.jpg',
@@ -47,7 +47,7 @@ const SERVICES = [
 const GRASS_FED_POINTS = [
   { icon: Leaf, label: 'Pasture-raised' },
   { icon: Ban, label: 'Hormone-free' },
-  { icon: Scale, label: 'By the kilo' },
+  { icon: Scale, label: 'By the pound' },
 ];
 
 export const SigaButcherySection = () => {
@@ -122,7 +122,7 @@ export const SigaButcherySection = () => {
                 100% Grass-Fed <span className="text-accent">Meat</span>
               </h3>
               <p className="mt-1.5 text-[15px] font-medium text-body">
-                Pasture-raised oxen, sheep &amp; goats — <span className="font-bold text-spice">no hormones, no grains</span>. Cut fresh by the kilo.
+                Pasture-raised oxen, sheep &amp; goats — <span className="font-bold text-spice">no hormones, no grains</span>. Cut fresh by the pound.
               </p>
             </div>
             <ul className="flex flex-wrap gap-2">
