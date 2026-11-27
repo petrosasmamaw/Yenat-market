@@ -10,6 +10,15 @@ const GALLERY_SLIDES = [
     caption: 'Every order is hand-carved in Suite 102 — tibs, kitfo and ceremony portions trimmed to your exact weight by the pound.',
   },
   {
+    // 8s clip played at 2x → shows for 4s
+    mediaUrl: '/ceremony/ceremony-video.mp4',
+    type: 'video',
+    playbackRate: 2,
+    duration: 4000,
+    title: 'Fresh From Our Butcher Counter',
+    caption: 'A quick look inside Yenat Market — fresh grass-fed cuts prepared by hand, sold by the pound.',
+  },
+  {
     mediaUrl: '/ceremony/van-hanging-beef.jpg',
     title: 'Chilled Van Delivery — Whole Grass-Fed Beef Quarters',
     caption: 'Fresh beef quarters hung on rails inside our refrigerated van, delivered cold and clean to your event, church hall or home.',
